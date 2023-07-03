@@ -5,7 +5,7 @@
   "main": "dist/server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "node --watch server"
+    "dev": "nodemon server"
   },
   "author": "Doug Alcedo",
   "license": "ISC",
@@ -19,6 +19,7 @@
     "buffer": "^5.5.0||^6.0.0",
     "crypto-browserify": "^3.12.0",
     "events": "^3.1.0",
+    "nodemon": "^2.0.22",
     "path-browserify": "^1.0.0",
     "process": "^0.11.10",
     "punycode": "^1.4.1",
