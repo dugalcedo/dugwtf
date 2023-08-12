@@ -1,0 +1,17 @@
+.av_1 {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 1rem;
+}
+
+.av_1 > img {
+    width: 100%;
+}
+
+.av_1_info {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    column-gap: 1rem;
+    row-gap: .5rem;
+    align-content: start;
+}

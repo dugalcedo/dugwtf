@@ -1,0 +1,14 @@
+@import url('./setup.css');
+@import url('./header.css');
+@import url('./dug.css');
+@import url('./album-viewer.css');
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex-grow: 1;
+    overflow-y: auto;
+}

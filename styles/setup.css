@@ -1,0 +1,77 @@
+@font-face {
+    font-family: Syne;
+    src: url('../fonts/syne.ttf');
+}
+
+@font-face {
+    font-family: Volcan;
+    src: url('../fonts/volcan_redonda.ttf');
+}
+
+:root {
+    --error: #ff4e6c;
+    --dark: #111111;
+    --light: #dddddd;
+    --glass: rgba(255,255,255,0.05);
+    --dug: #4fffb0;
+    --shadow: 1px 1px 0 white;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    font-family: Syne, monospace;
+    scrollbar-color: #808080 #282828;
+    color: var(--light);
+}
+*::-webkit-scrollbar {
+    width: 15px;
+    height: 15px;
+}
+*::-webkit-scrollbar-thumb {
+    background: #808080;
+}
+*::-webkit-scrollbar-track {
+    background: #282828;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    background-image: url('../images/bg.jpg');
+    padding: 2rem 0;
+}
+
+body > * {
+    width: 500px;
+    max-width: calc(100dvw - 2rem);
+    margin: auto;
+}
+
+h1, h2, h3, h4, h5, h6, figure {
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: var(--dug);
+}
+
+img {
+    display: block;
+}
+
+dug-component {
+    display: block;
+}
+
+.component-error {
+    color: var(--error);
+    font-size: 2rem;
+}
+
+.hidden {
+    display: none !important;
+}

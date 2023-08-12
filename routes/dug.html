@@ -1,0 +1,32 @@
+<section id="album-viewer"></section>
+
+<script>
+    let albumViewer = document.querySelector('#album-viewer')
+    let dug = dugs.listed.find(x => x.ID == location.hash.replace('#',''))
+    albumViewer.innerHTML = dug ? `
+        <h1>${dug.TITLE}</h1>
+        <div class="av_1">
+            <img src="${dug.cover.l}" alt="${dug.cover.alt}">
+            <div class="av_1_info">
+                ${dug.ARTIST ? `
+                <span>artist</span>
+                <span>${dug.ARTIST}</span>
+                `:``}
+                <span>type</span>
+                <span>${dug.TYPE || 'album'}</span>
+
+                <span>length</span>
+                <span>${dug.not}, ${dug.len}</span>
+
+                <span>released</span>
+                <span>${dug.date.released.display}</span>
+
+                <span>recorded</span>
+                <span>${dug.date.recorded.display}</span>
+            </div>
+        </div>
+        <div class="av_bc">
+            ${dug.bc}
+        </div>
+    ` : ``
+</script>

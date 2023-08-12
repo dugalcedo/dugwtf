@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./images/icon2.png" type="image/x-icon">
+    <link rel="stylesheet" href="./styles/_.css">
+    <script type="module">
+        import d from '/scripts/d.js'
+        d().then(dugs => {window.dugs = dugs})
+    </script>
+    <script src="./scripts/component.js"></script>
+    <title>Dug Alcedo - Electronic Music</title>
+</head>
+<body>
+    <dug-component src="./components/header.html"></dug-component>
+    <main></main>
+    <dug-component src="./components/footer.html"></dug-component>
+    <script type="module" src="./scripts/main.js"></script>
+</body>
+</html>

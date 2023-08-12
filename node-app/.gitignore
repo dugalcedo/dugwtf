@@ -1,0 +1,6 @@
+.env
+pnpm-lock.yaml
+node_modules
+2023-a
+*.scss
+test.js

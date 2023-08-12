@@ -1,0 +1,35 @@
+<header>
+    <header>
+        <a id="moose" href="#">
+            <img src="/images/moose-icon-tansparent.png" alt="anthropomorphic moose">
+        </a>
+        <figure id="logo">
+            <a href="#">
+                <img src="/images/logo.png" alt="text: dug alcedo" title="dug alcedo">
+            </a>
+            <figcaption id="subtitle">
+                electronic music
+            </figcaption>
+        </figure>
+    </header>
+    <nav>
+        <a href="#">albums</a>
+        <a href="#about">about</a>
+        <a href="#contact">contact</a>
+        <a href="#recs">recommendations</a>
+        <a href="#other">other</a>
+    </nav>
+</header>
+
+<script>
+    const logoEl = document.querySelector('#logo')
+    const subtitle = document.querySelector('#subtitle')
+    
+    respaceSubtitle()
+    window.addEventListener('resize', respaceSubtitle)
+
+    function respaceSubtitle(amt=1) {
+        let logoElWidth = logoEl.offsetWidth
+        subtitle.style.letterSpacing = `calc(${logoElWidth}px / 16 - 1.1ch)`
+    }
+</script>

@@ -1,0 +1,27 @@
+<section id="albums"></section>
+
+<script>
+    const albumsEl = document.querySelector('#albums')
+    dugs.featured.forEach(dug => {
+        const artist = dug.ARTIST || 'dug alcedo'
+        albumsEl.innerHTML += `
+            <a class="dug" href="#${dug.ID}">
+                <div class="dug_cover">
+                    <img src="${dug.cover.xs}" alt="${dug.cover.alt}">
+                </div>
+                <section class="dug_info">
+                    <h3>${dug.TITLE}</h3>
+                    <div class="dug_info_artist-date">
+                        ${artist == 'dug alcedo' ? '' : `
+                            <div class="dug_info_artist">by ${artist}</div>
+                        `}
+                        <div class="dug_info_date">${dug.date.released.display}</div>
+                    </div>
+                    ${dug.DESC ? `
+                        <div class="dug_desc">${dug.DESC}</div>
+                    `:""}
+                </section>
+            </a>
+        `
+    })
+</script>

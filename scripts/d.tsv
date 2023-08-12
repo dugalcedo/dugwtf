@@ -1,0 +1,59 @@
+ID	TYPE	TITLE	F	ARTIST	YEAR	SEASON	MONTH	DAY	H	RS_YEAR	RS_SEASON	RS_MONTH	RS_DAY	RE_YEAR	RE_SEASON	RE_MONTH	RE_DAY	LEN	NOT	NOT_EST_LOW	NOT_EST_HIGH	LEN_EST_LOW	LEN_EST_HIGH	LOCATION	LABEL	ERA	BANDCAMP ID	DESC	CREDITS	LYRICS
+DUG001	mini-album	Posneg	FALSE	Posneg	2008	0			TRUE		0									7	12	25	45	MUR		child				
+DUG002	album	My Last Place	FALSE	Posneg	2008	1			TRUE		1									7	14	25	45	MUR		child				
+DUG002b	ep	1AM	FALSE	Posneg	2008	2			TRUE		2									4	7	10	25	CDY		child				
+DUG002c	ep	Domain of the Growths	FALSE	FDVCE	2008		7		TRUE		2									3	6	10	20	CDY		child				
+DUG003	album	Rolling Glass	FALSE	FDVCE	2008				TRUE		2							32	12					CDY		child				
+DUG004	compliation	FDVCE	FALSE	FDVCE	2008				TRUE		2									11	15	30	60	CDY		child				
+DUG005	album	Two Jupiters	FALSE	FDVCE	2008				TRUE		2									5	9	20	35	CDY		child				
+DUG006	album	Torch Man Story	FALSE	FDVCE	2008	3			TRUE		3							30	8					CDY		child				
+DUG000a	compilation	Primeval Dross	FALSE	FDVCE	2008				FALSE	2008								64	20					CDY		child	3292042228			
+DUG007	mini-album	Layer Zero	FALSE	FDVCE	2009	3			TRUE										6			15	25	CDY		child				
+DUG008	album	Seaweed Dances	FALSE	FDVCE	2009		5		TRUE		1								10			45	65	CDY		child				
+DUG009	album	Leguminous Rhythms	FALSE	FDVCE	2009		9		TRUE		2				3			60	22					CDY		child				
+DUG010	album	Three Legs, Two Bandits	FALSE	FDVCE	2009		10		TRUE		3								16			73	78	CDY		child				
+DUG000b	compilation	Provenance Fen	FALSE	FDVCE	2009				FALSE	2009								131	37					CDY		child	3261715349			
+DUG010b	ep	One	FALSE	FDVCE	2009		11		TRUE		3							28		5	7			CDY		child				
+DUG011	album	Colossus Archosaur	FALSE	FDVCE	2010		1	1	FALSE	2009	3			2010	4			73	22					CDY		child	3450513756			
+DUG012	album	Stoner	FALSE	FDVCE	2010		2	14	FALSE		0							53	10					CDY		child	709445185			
+DUG013	album	Every Machine On	FALSE	FDVCE	2010		4	2	FALSE		0				1			45	15					CDY		child	3787772774			
+DUG013b	split	Kondo Split	FALSE	FDVCE & Dylan Jones	2010		5	15	FALSE		1							45	9					CDY		child	1365005315			
+DUG013c	ep	Hidden	FALSE	FDVCE	2010		5		TRUE		1									5	8	15	25	CDY		child				
+DUG014	mini-album	Camel	FALSE	FDVCE	2010		6		TRUE		1									7	8	40	60	CDY		child				
+DUG015	album	Corecore	FALSE	First Dog	2011		7	11	FALSE		1				2			57	11					TEM		early	3776743387			
+DUG015b	ep	Hidden	FALSE	First Dog	2011		9	20	TRUE		2									4	7	15	25	MUR		early				
+DUG016	mini-album	Landing	FALSE	First Dog	2011		12	12	FALSE		3							24	5					MUR		early	2607287906			
+DUG017	album	Untrue/Parrot	FALSE	First Dog	2012		1	18	FALSE	2011	3			2012	0			57	11					MUR		early	2361478125			
+DUG018	album	Videogame Sountrack	FALSE	First Dog	2012		2	1	FALSE	2012		1						83	26					MUR		early	2695211125			
+DUG019	mini-album	Camel 2	FALSE	First Dog	2012		7	1	FALSE		2							32	1					MUR		early	3116491278			
+DUG020	album	Language from the Grip	FALSE	First Dog	2012		9	5	FALSE			7				8		35	9					MUR		early	3385909548			
+DUG021	album	Feeble	TRUE	First Dog	2012		11	7	FALSE			9				11		70	24					MUR, SDG		early	3858484618			
+DUG022	album	Volt Welve	TRUE	First Dog	2013		7	27	FALSE			4				7		73	20					SDG, ASH, WFN		asheville	706814123			
+DUG023	album	Feeder	FALSE	First Dog	2013		11	7	FALSE	2012		9		2012		11		73	20					MUR, SDG, WFN		asheville	1015688186			
+DUG024	album	Paranoid Cartoons	FALSE	First Dog	2014		3	7	FALSE	2011				2014				38	9					MUR, SDG, ASH		asheville	1920506124			
+DUG025	album	Gabaraptor	TRUE	First Dog	2014		3	7	FALSE	2012				2014				43	12					SDG, WFN, ASH		asheville	2972472047			
+DUG026	album	Lucoizo	FALSE	First Dog	2014		7	21	FALSE			4				7		74	12					ASH		asheville	1203318470			
+DUG027	album	Aw Cute	TRUE	First Dog	2015		12	1	FALSE									58	14					BGO		cat city	2561784264			
+DUG027b	ep	Ow Cute	TRUE	First Dog	2016		1	1	FALSE	2014				2015				34	6					ASH, BGO		cat city	3093688189			
+DUG028	album	Bird in a Cave	TRUE	First Dog	2016		7	17	FALSE			1				6		51	12					BGO, CAT		cat city	3660544442			
+DUG029	mini-album	Loukas 1	TRUE	Loukas	2016		11	14	FALSE		3							33	7					CAT		cat city	2499258239			
+DUG030	album	Friends Fever	TRUE	First Dog	2017		5	12	FALSE	2016		12		2017		5		46	11					CAT		cat city	3613936290			
+DUG031	album	Bird in a Cave (echo)	TRUE	First Dog	2017		5	25	FALSE	2016				2017				44	12					BGO, CAT		cat city	4071937567			
+DUG032	album	Moosic	TRUE	First Dog	2018		7	15	FALSE	2017		12		2018		7		44	7					LAK		cat city	3233370815			
+DUG032b	ep	Separation Newdrum	FALSE	First Dog	2018		8	24	FALSE	2017				2018				29	9					CAT, LAK		cat city	3996183796			
+DUG033	album	Isyiau	TRUE	First Dog	2018		10	16	FALSE			7				10		81	15					LAK		colorado	2439411014			
+DUG034	album	Money Snakes	TRUE		2019		3	3	FALSE	2018		10		2019		2		99	10					LAK		colorado	3239889775			
+DUG035	album	Fish Antlers	TRUE		2019		4	3	FALSE	2019		3						38	7					LAK		colorado	2585332977			
+DUG036	mini-album	Guard Goose	FALSE		2019		7	21	FALSE			4				7		29	11					LAK		colorado	4110385408			
+DUG036b	ep	Soundcloud 2018	FALSE	First Dog	2019		9	30	FALSE	2018	2				3			35	6					LAK		colorado	1323647648			
+DUG037	album	Possum with Apple	TRUE		2019		10	27	FALSE			7				10		50	10					LAK		colorado	3517251765			
+DUG038	album	Casked Acid in Black Sheep Canyon	TRUE		2019		12	28	FALSE			11				12		44	11					LAK		colorado	117522757			
+DUG039	album	Hell Scenery	TRUE		2020		7	5	FALSE		0				2			73	19					LAK, GOL		colorado	3813412774			
+DUG040	album	XL	TRUE		2020		8	16	FALSE			7				8		35	11					GOL		colorado	3245678441			
+DUG040b	single	Pinya	FALSE		2020		9	8	FALSE			8				9		8	3					GOL		colorado	685242952			
+DUG041	album	Comber	TRUE		2020		10	19	FALSE			9				10		39	8					GOL		colorado	3522925184			
+DUG041b	single	Bonito	FALSE		2021		2	15	FALSE	2020	3							16	4					GOL		colorado	1724980487			
+DUG042	album	Big Fish eat Little Fish	TRUE		2021		4	2	FALSE		0				1			65	12					GOL		colorado	1528786253			
+DUG042b	single	Starship Comino (Cave version)	FALSE		2021		6	18	FALSE			6	18					14	1					GOL		colorado	397204052			
+DUG042c	album	I-15 Dream	TRUE	Dew for Slug	2021		10	31	FALSE	2020				2021				33	10					TAC, LAK, GOL	Pelagoram Recordings	colorado	2686980342	a queer, mormon, folktronica album by dug alcedo and experimental folk artist trees & flowers		
+DUG043	album	Goos Beyond	FALSE		2022		1	14	FALSE	2021								75	24					GOL, SHM		colorado	3909499862			
