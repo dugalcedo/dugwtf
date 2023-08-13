@@ -8,6 +8,11 @@
     src: url('../fonts/volcan_redonda.ttf');
 }
 
+@font-face {
+    font-family: "Volcan Black";
+    src: url("../fonts/volcan_black.ttf");
+}
+
 :root {
     --error: #ff4e6c;
     --dark: #111111;
@@ -74,4 +79,10 @@ dug-component {
 
 .hidden {
     display: none !important;
+}
+
+footer {
+    text-align: center;
+    font-size: .8rem;
+    padding: 1rem;
 }

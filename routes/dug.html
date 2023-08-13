@@ -3,30 +3,65 @@
 <script>
     let albumViewer = document.querySelector('#album-viewer')
     let dug = dugs.listed.find(x => x.ID == location.hash.replace('#',''))
-    albumViewer.innerHTML = dug ? `
-        <h1>${dug.TITLE}</h1>
-        <div class="av_1">
-            <img src="${dug.cover.l}" alt="${dug.cover.alt}">
-            <div class="av_1_info">
-                ${dug.ARTIST ? `
-                <span>artist</span>
-                <span>${dug.ARTIST}</span>
-                `:``}
-                <span>type</span>
-                <span>${dug.TYPE || 'album'}</span>
+    if (dug) {
+        let index = dugs.listed.findIndex(x => x.ID == location.hash.replace('#',''))
+        let prev = dugs.listed[index+1]
+        let next = dugs.listed[index-1]
+        albumViewer.innerHTML = `
+            <h1 class="av_title">${dug.TITLE}</h1>
+            <div class="av_1">
+                <a href="${dug.cover.l}" target="_blank" rel="norefferer">
+                    <img src="${dug.cover.xs}" alt="${dug.cover.alt}">
+                </a>
+                <div class="av_1_info">
+                    ${dug.ARTIST ? `
+                    <span>artist</span>
+                    <span>${dug.ARTIST}</span>
+                    `:``}
+                    <span>type</span>
+                    <span>${dug.TYPE || 'album'}</span>
+    
+                    <span>length</span>
+                    <span>${dug.not}, ${dug.len}</span>
+    
+                    <span>released</span>
+                    <span>${dug.date.released.display}</span>
+    
+                    <span>recorded</span>
+                    <span>${dug.date.recorded.display}</span>
 
-                <span>length</span>
-                <span>${dug.not}, ${dug.len}</span>
-
-                <span>released</span>
-                <span>${dug.date.released.display}</span>
-
-                <span>recorded</span>
-                <span>${dug.date.recorded.display}</span>
+                    <span>
+                        ${prev ? `<a href="#${prev.ID}">&#8656; prev</a>`:``}
+                    </span>
+                    <span>
+                        ${next ? `<a href="#${next.ID}">next &#8658;</a>`:``}
+                    </span>
+                </div>
             </div>
-        </div>
-        <div class="av_bc">
-            ${dug.bc}
-        </div>
-    ` : ``
+            <div class="av_bc">
+                ${dug.bc}
+            </div>
+            <h2>credits</h2>
+            <div class="av_2">
+                
+            </div>
+        `
+        let creditsEl = document.querySelector('.av_2')
+        if (dug.CREDITS) {
+            let credits = dug.CREDITS.split('||')
+            credits.forEach(credit => {
+                let [role, person] = credit.split('|')
+                creditsEl.innerHTML += `
+                    <span>${role}</span>
+                    <span>${person}</span>
+                    <hr><hr>
+                `
+            })
+        } else {
+            creditsEl.innerHTML += `
+                <span>music & artwork</span>
+                <span>dug alcedo</span>
+            `
+        }
+    }
 </script>

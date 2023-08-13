@@ -2,6 +2,7 @@
 @import url('./header.css');
 @import url('./dug.css');
 @import url('./album-viewer.css');
+@import url('./about.css');
 
 body {
     display: flex;

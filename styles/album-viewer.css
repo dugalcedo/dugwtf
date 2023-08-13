@@ -1,10 +1,22 @@
+#album-viewer {
+    padding: .5rem;
+}
+
+.av_title {
+    text-align: center;
+    color: transparent;
+    -webkit-text-stroke: 0.5px var(--light);
+    padding: .5rem;
+}
+
 .av_1 {
     display: grid;
     grid-template-columns: 1fr 2fr;
+    align-items: center;
     gap: 1rem;
 }
 
-.av_1 > img {
+.av_1 > a > img {
     width: 100%;
 }
 
@@ -14,4 +26,25 @@
     column-gap: 1rem;
     row-gap: .5rem;
     align-content: start;
+    font-size: .8rem;
+}
+
+.av_bc {
+    padding-top: 1rem;
+}
+
+.av_loc {
+    border-bottom: 1px dotted var(--light);
+    cursor: help;
+}
+
+.av_2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 1rem;
+}
+
+.av_2 hr {
+    width: 100%;
+    border: 1px solid var(--glass);
 }

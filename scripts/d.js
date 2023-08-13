@@ -6,8 +6,9 @@ const seasons = [
     'end of'
 ]
 
-function generateBandcampCode(bcid) {
-    return `<iframe style="border: 0; width: 100%; height: 472px;" src="https://bandcamp.com/EmbeddedPlayer/album=${bcid}/size=large/bgcol=333333/linkcol=ffffff/artwork=none/transparent=true/" seamless></iframe>`
+function generateBandcampCode(dug) {
+    let not = dug.NOT || dug.NOT_EST_HIGH
+    return `<iframe style="border: 0; width: 100%; height: ${130+35*Number(not)}px;" src="https://bandcamp.com/EmbeddedPlayer/album=${dug["BANDCAMP ID"]}/size=large/bgcol=333333/linkcol=ffffff/artwork=none/transparent=true/" seamless></iframe>`
 }
 
 function padStart(str, length=2, char='0') {
@@ -63,7 +64,7 @@ class Dug {
             reDisplay = `${seasons[this.RE_SEASON]} ${reDisplay}`
         } else reDisplay = null
 
-        let recordedDisplay = `${rsDisplay}${reDisplay ? ` to ${reDisplay}`:``} in <span class="av_loc">${this.LOCATION}</span>`
+        let recordedDisplay = `${rsDisplay}${reDisplay ? ` to ${reDisplay}`:``} in <span class="av_loc" title="SHM=Stockholm\nTAC=Tacoma,WA\nGOL=Golden,CO\nLAK=Lakewood,CO\nCAT=CathedralCity,CA\nBGO=BorregoSprings,CA\nASH=Asheville,NC\nWFN=Woodfin,NC\nSDG=SanDiego,CA\nMUR=Murrieta,CA\nTEM=Temecula,CA\nCDY=Cody,WY">${this.LOCATION}</span>`
 
         return {
             released: {
@@ -85,7 +86,7 @@ class Dug {
     }
 
     get bc() {
-        return generateBandcampCode(this['BANDCAMP ID'])
+        return generateBandcampCode(this)
     }
 }
 

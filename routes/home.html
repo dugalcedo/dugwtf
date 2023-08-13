@@ -10,11 +10,14 @@
                     <img src="${dug.cover.xs}" alt="${dug.cover.alt}">
                 </div>
                 <section class="dug_info">
-                    <h3>${dug.TITLE}</h3>
+                    <div class="dug_title-id">
+                        <h3 class="dug_title">${dug.TITLE}</h3>
+                        <div class="dug_id">${dug.ID}</div>
+                    </div>
                     <div class="dug_info_artist-date">
-                        ${artist == 'dug alcedo' ? '' : `
-                            <div class="dug_info_artist">by ${artist}</div>
-                        `}
+                        <div class="dug_info_artist">
+                            ${artist == 'dug alcedo' ? 'as dug alcedo' : `by ${artist}`}
+                        </div>
                         <div class="dug_info_date">${dug.date.released.display}</div>
                     </div>
                     ${dug.DESC ? `

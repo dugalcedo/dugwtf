@@ -22,6 +22,21 @@
     padding: 1rem;
 }
 
+.dug_title-id {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 1rem;
+}
+
+.dug_title {
+    font-style: italic;
+}
+
+.dug_id {
+    font-size: .67rem;
+}
+
 .dug_info_artist-date {
     display: flex;
     justify-content: space-between;
