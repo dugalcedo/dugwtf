@@ -24,36 +24,36 @@ DUG015	album	Corecore	FALSE	First Dog	2011		7	11	FALSE		1				2			57	11					TEM		
 DUG015b	ep	Hidden	FALSE	First Dog	2011		9	20	TRUE		2									4	7	15	25	MUR		early				
 DUG016	mini-album	Landing	FALSE	First Dog	2011		12	12	FALSE		3							24	5					MUR		early	2607287906			
 DUG017	album	Untrue/Parrot	FALSE	First Dog	2012		1	18	FALSE	2011	3			2012	0			57	11					MUR		early	2361478125			
-DUG018	album	Videogame Sountrack	FALSE	First Dog	2012		2	1	FALSE	2012		1						83	26					MUR		early	2695211125			
-DUG019	mini-album	Camel 2	FALSE	First Dog	2012		7	1	FALSE		2							32	1					MUR		early	3116491278			
+DUG018	album	Videogame Soundtrack	FALSE	First Dog	2012		2	1	FALSE	2012		1						83	26					MUR		early	2695211125			
+DUG019	mini-album	Camel 2	FALSE	First Dog	2012		7	1	FALSE		2							32	1					MUR		early	3116491278		music|dug alcedo||clipart camel|unknown||cover design|dug alcedo	
 DUG020	album	Language from the Grip	FALSE	First Dog	2012		9	5	FALSE			7				8		35	9					MUR		early	3385909548			
-DUG021	album	Feeble	TRUE	First Dog	2012		11	7	FALSE			9				11		70	24					MUR, SDG		early	3858484618			
-DUG022	album	Volt Welve	TRUE	First Dog	2013		7	27	FALSE			4				7		73	20					SDG, ASH, WFN		asheville	706814123			
-DUG023	album	Feeder	FALSE	First Dog	2013		11	7	FALSE	2012		9		2012		11		73	20					MUR, SDG, WFN		asheville	1015688186			
+DUG021	album	Feeble	TRUE	First Dog	2012		11	7	FALSE			9				11		70	24					MUR, SDG		early	3858484618		music|dug alcedo||cover|ai generated	
+DUG022	album	Volt Welve	TRUE	First Dog	2013		7	27	FALSE			4				7		73	20					SDG, ASH, WFN		asheville	706814123		music|dug alcedo||first and last tracks|sample glover (n64)	
+DUG023	album	Feeder	FALSE	First Dog	2013		11	7	FALSE	2012		9		2012		11		73	20					MUR, SDG, WFN		asheville	1015688186		music|dug alcedo||track 8|samples chris weisman||cover|ai generated	
 DUG024	album	Paranoid Cartoons	FALSE	First Dog	2014		3	7	FALSE	2011				2014				38	9					MUR, SDG, ASH		asheville	1920506124			
-DUG025	album	Gabaraptor	TRUE	First Dog	2014		3	7	FALSE	2012				2014				43	12					SDG, WFN, ASH		asheville	2972472047			
+DUG025	album	Gabaraptor	TRUE	First Dog	2014		3	7	FALSE	2012				2014				43	12					SDG, WFN, ASH		asheville	2972472047		music|dug alcedo||3d bird|unknown||cover design|dug alcedo	
 DUG026	album	Lucoizo	FALSE	First Dog	2014		7	21	FALSE			4				7		74	12					ASH		asheville	1203318470			
-DUG027	album	Aw Cute	TRUE	First Dog	2015		12	1	FALSE									58	14					BGO		cat city	2561784264			
+DUG027	album	Aw Cute	TRUE	First Dog	2015		12	1	FALSE									58	14					BGO		cat city	2561784264		music|dug alcedo||birds|ai generated||cover design|dug alcedo	
 DUG027b	ep	Ow Cute	TRUE	First Dog	2016		1	1	FALSE	2014				2015				34	6					ASH, BGO		cat city	3093688189			
 DUG028	album	Bird in a Cave	TRUE	First Dog	2016		7	17	FALSE			1				6		51	12					BGO, CAT		cat city	3660544442			
-DUG029	mini-album	Loukas 1	TRUE	Loukas	2016		11	14	FALSE		3							33	7					CAT		cat city	2499258239			
-DUG030	album	Friends Fever	TRUE	First Dog	2017		5	12	FALSE	2016		12		2017		5		46	11					CAT		cat city	3613936290			
+DUG029	mini-album	Loukas 1	TRUE	Loukas	2016		11	14	FALSE		3							33	7					CAT		cat city	2499258239		music|dug alcedo||last track|samples henry cow	
+DUG030	album	Friends Fever	TRUE	First Dog	2017		5	12	FALSE	2016		12		2017		5		46	11					CAT		cat city	3613936290		music|dug alcedo||photo|unknown	
 DUG031	album	Bird in a Cave (echo)	TRUE	First Dog	2017		5	25	FALSE	2016				2017				44	12					BGO, CAT		cat city	4071937567			
-DUG032	album	Moosic	TRUE	First Dog	2018		7	15	FALSE	2017		12		2018		7		44	7					LAK		cat city	3233370815			
-DUG032b	ep	Separation Newdrum	FALSE	First Dog	2018		8	24	FALSE	2017				2018				29	9					CAT, LAK		cat city	3996183796			
-DUG033	album	Isyiau	TRUE	First Dog	2018		10	16	FALSE			7				10		81	15					LAK		colorado	2439411014			
+DUG032	album	Moosic	TRUE	First Dog	2018		7	15	FALSE	2017		12		2018		7		44	7					LAK		cat city	3233370815		music|dug alcedo||clipart moose|unknown||cover design|dug alcedo	
+DUG032b	ep	Separation Newdrum	FALSE	First Dog	2018		8	24	FALSE	2017				2018				29	9					CAT, LAK		cat city	3996183796		music|dug alcedo||track 7|henry cow cover||track 9|lemon demon remix	
+DUG033	album	Isyiau	TRUE	First Dog	2018		10	16	FALSE			7				10		81	15					LAK		colorado	2439411014		music|dug alcedo||artwork|nintendolover2010	
 DUG034	album	Money Snakes	TRUE		2019		3	3	FALSE	2018		10		2019		2		99	10					LAK		colorado	3239889775			
-DUG035	album	Fish Antlers	TRUE		2019		4	3	FALSE	2019		3						38	7					LAK		colorado	2585332977			
-DUG036	mini-album	Guard Goose	FALSE		2019		7	21	FALSE			4				7		29	11					LAK		colorado	4110385408			
-DUG036b	ep	Soundcloud 2018	FALSE	First Dog	2019		9	30	FALSE	2018	2				3			35	6					LAK		colorado	1323647648			
-DUG037	album	Possum with Apple	TRUE		2019		10	27	FALSE			7				10		50	10					LAK		colorado	3517251765			
+DUG035	album	Fish Antlers	TRUE		2019		4	3	FALSE	2019		3						38	7					LAK		colorado	2585332977		music|dug alcedo||clipart antler fish|unknown||cover design|dug alcedo	
+DUG036	mini-album	Guard Goose	FALSE		2019		7	21	FALSE			4				7		29	11					LAK		colorado	4110385408		music|dug alcedo||photo|soudraz	
+DUG036b	ep	Soundcloud 2018	FALSE	First Dog	2019		9	30	FALSE	2018	2				3			35	6					LAK		colorado	1323647648		music|dug alcedo||cover|ai generated	
+DUG037	album	Possum with Apple	TRUE		2019		10	27	FALSE			7				10		50	10					LAK		colorado	3517251765		music|dug alcedo||photo|unknown||cover design|dug alcedo	
 DUG038	album	Casked Acid in Black Sheep Canyon	TRUE		2019		12	28	FALSE			11				12		44	11					LAK		colorado	117522757			
-DUG039	album	Hell Scenery	TRUE		2020		7	5	FALSE		0				2			73	19					LAK, GOL		colorado	3813412774			
+DUG039	album	Hell Scenery	TRUE		2020		7	5	FALSE		0				2			73	19					LAK, GOL		colorado	3813412774		music|dug alcedo||photo|unknown||cover design|dug alcedo	
 DUG040	album	XL	TRUE		2020		8	16	FALSE			7				8		35	11					GOL		colorado	3245678441			
 DUG040b	single	Pinya	FALSE		2020		9	8	FALSE			8				9		8	3					GOL		colorado	685242952			
 DUG041	album	Comber	TRUE		2020		10	19	FALSE			9				10		39	8					GOL		colorado	3522925184			
-DUG041b	single	Bonito	FALSE		2021		2	15	FALSE	2020	3							16	4					GOL		colorado	1724980487			
-DUG042	album	Big Fish eat Little Fish	TRUE		2021		4	2	FALSE		0				1			65	12					GOL		colorado	1528786253			
+DUG041b	single	Bonito	FALSE		2021		2	15	FALSE	2020	3							16	4					GOL		colorado	1724980487		music|dug alcedo||artwork|hieronymous bosch	
+DUG042	album	Big Fish eat Little Fish	TRUE		2021		4	2	FALSE		0				1			65	12					GOL		colorado	1528786253		music|dug alcedo||artwork|hieronymous bosch & dug alcedo	
 DUG042b	single	Starship Comino (Cave version)	FALSE		2021		6	18	FALSE			6	18					14	1					GOL		colorado	397204052			
 DUG042c	album	I-15 Dream	TRUE	Dew for Slug	2021		10	31	FALSE	2020				2021				33	10					TAC, LAK, GOL	Pelagoram Recordings	colorado	2686980342	a queer, mormon, folktronica album by dug alcedo and experimental folk artist trees & flowers	songwriting, vocals, guitar|thos flowers||synth, percussion, production|dug alcedo||artwork|ai generated	
-DUG043	album	Goos Beyond	FALSE		2022		1	14	FALSE	2021								75	24					GOL, SHM		colorado	3909499862			
+DUG043	album	Goos Beyond	TRUE		2022		1	14	FALSE	2021								75	24					GOL, SHM		colorado	3909499862			
