@@ -48,3 +48,7 @@
     width: 100%;
     border: 1px solid var(--glass);
 }
+
+.prev, .next {
+    padding: .5rem;
+}

@@ -3,6 +3,8 @@
 @import url('./dug.css');
 @import url('./album-viewer.css');
 @import url('./about.css');
+@import url('./modal.css');
+@import url('./other.css');
 
 body {
     display: flex;

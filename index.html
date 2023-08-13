@@ -8,8 +8,11 @@
     <script type="module">
         import d from '/scripts/d.js'
         d().then(dugs => {window.dugs = dugs})
+            .then(()=>{
+                window.dispatchEvent(new CustomEvent('dugsLoaded'))
+            })
     </script>
-    <script src="./scripts/component.js"></script>
+    <script src="./scripts/startup.js"></script>
     <title>Dug Alcedo - Electronic Music</title>
 </head>
 <body>

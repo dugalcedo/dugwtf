@@ -19,6 +19,7 @@
     --light: #dddddd;
     --glass: rgba(255,255,255,0.05);
     --dug: #4fffb0;
+    --dug-dark: #05130c;
     --shadow: 1px 1px 0 white;
 }
 
@@ -49,7 +50,7 @@ body {
     padding: 2rem 0;
 }
 
-body > * {
+body > dug-component, body > main {
     width: 500px;
     max-width: calc(100dvw - 2rem);
     margin: auto;
@@ -62,6 +63,10 @@ h1, h2, h3, h4, h5, h6, figure {
 a {
     text-decoration: none;
     color: var(--dug);
+}
+
+a:hover {
+    outline: 1px dashed var(--dug);
 }
 
 img {
