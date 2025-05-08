@@ -1,0 +1,85 @@
+:root {
+    --black: #0b1a15;
+    --white: #99e9d5;
+    --lightgray: #8bc9b9;
+    --darkgray: #223b33;
+    --semidarkgray: #3e6156;
+    --border-radius: .25rem .5rem .25rem .5rem;
+    --highlight: #a73574;
+    --highlight-text: #ff9ad1;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: monospace;
+
+    &::selection {
+        background-color: var(--highlight);
+        color: var(--highlight-text);
+    }
+}
+
+html {
+    font-size: 18px;
+}
+
+body {
+    background-color: var(--black);
+    color: var(--white);
+}
+
+/* Layout */
+html, body, #app {
+    height: 100dvh;
+}
+#app {
+    display: flex;
+    flex-direction: column;
+}
+main {
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+button {
+    cursor: pointer;
+    padding: .25rem .75rem;
+    background-color: var(--black);
+    color: var(--lightgray);
+    border: 1px solid var(--lightgray);
+    border-radius: var(--border-radius);
+
+    &:hover {
+        background-color: var(--darkgray);
+        border-color: var(--white);
+        color: var(--white);
+    }
+
+    &:active {
+        outline: 1px dashed var(--lightgray);
+    }
+}
+
+button, input {
+    font-size: 18px;
+
+    &:focus {
+        transform: scale(1.05);
+        outline: 1px dashed var(--lightgray);
+    }
+}
+
+input {
+    padding: .25rem .75rem;
+    border-radius: var(--border-radius);
+    background-color: var(--lightgray);
+    color: var(--black);
+    border: 1px solid var(--lightgray);
+
+    &::placeholder {
+        color: var(--semidarkgray);
+    }
+}
+
