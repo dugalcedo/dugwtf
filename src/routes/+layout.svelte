@@ -1,7 +1,9 @@
 <script lang="ts">
     import '../style/global.css'
-    import Header from '../layout/Header.svelte';
     import type { Snippet } from 'svelte';
+    
+    import Header from '../layout/Header.svelte';
+    import Drawer from '../layout/Drawer.svelte';
 
     const { children }: {
         children: Snippet
@@ -9,6 +11,7 @@
 
 </script>
 
+<Drawer />
 <Header />
 <main>
     {@render children()}
