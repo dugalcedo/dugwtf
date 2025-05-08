@@ -1,39 +1,62 @@
 <script lang="ts">
+    import type { MenuId, DrawerItem as DrawerItemT } from "./DrawerTypes.js";
     import layoutStore, { closeDrawer } from "../stores/layoutStore.svelte.js";
-    import Icon from "../misc/Icon.svelte";
+    import DrawerItem from "./DrawerItem.svelte";
 
-    type DrawerAnchor = {
-        text: string
-        type: "anchor"
-        href: string
-    }
-
-    type DrawerSubmenu = {
-        text: string
-        type: "submenu"
-        items: DrawerItem[]
-    }
-
-    type DrawerItem = (
-        | DrawerAnchor
-        | DrawerSubmenu
-    )
-
-    type MenuId = (
-        | 'main'
-        | 'music'
-    )
-
-    const menus: Record<MenuId, DrawerItem[]> = {
+    const menus: Record<MenuId, DrawerItemT[]> = {
         main: [
-
+            {
+                type: 'anchor',
+                text: 'home',
+                href: '/'
+            },
+            {
+                type: 'submenu',
+                text: 'music',
+                id: 'music'
+            },
+            {
+                type: 'submenu',
+                text: 'webdev',
+                id: 'webdev'
+            }
         ],
         music: [
-
-        ]
+            {
+                type: 'back'
+            },
+            {
+                type: 'anchor',
+                text: 'dugscography',
+                href: '/dugscography'
+            }
+        ],
+        webdev: [
+            {
+                type: 'back'
+            },
+            {
+                type: 'anchor',
+                text: 'pong',
+                href: '/webdev/pong'
+            }
+        ],
+        none: []
     }
 
-    const menuId = $state<MenuId>('main')
+    let menuId = $state<MenuId>('main')
+
+    const changeMenu = (id: MenuId) => {
+        menuId = 'none'
+        setTimeout(() => {
+            menuId = id
+        }, 200);
+    }
+
+    const close = () => {
+        closeDrawer()
+        changeMenu('main')
+    }
 
 </script>
 
@@ -41,13 +64,18 @@
     class="drawer-backdrop" 
     class:open={layoutStore.backdropIsVisible} 
     aria-label="close drawer"
-    onclick={closeDrawer}
+    onclick={close}
 ></button>
 
 <div class="drawer" class:open={layoutStore.drawerIsOpen}>
     {#each Object.entries(menus) as [id, items] (id)}
         <div class="drawer-items" class:open={menuId === id}>
-        
+
+            <!-- Drawer items -->
+            {#each items as item}
+                <DrawerItem {item} {changeMenu} {close} />
+            {/each}
+
         </div>
     {/each}
 </div>
@@ -85,7 +113,10 @@
         left: 0;
 
         height: 100dvh;
-        width: 50dvw;
+        min-width: 100px;
+        max-width: 75dvw;
+
+        overflow-x: hidden;
         background-color: var(--darkgray);
 
         /* closed state */
@@ -99,19 +130,22 @@
         }
     }
 
-    .drawer-item > * {
-        font-size: 12px;
-        padding: 10px 5px;
-        background: none;
-        border: 0;
-        border-radius: 0;
+    .drawer-items {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        overflow-x: hidden;
 
-        color: var(--white);
-    }
+        /* closed state */
+        translate: -100% 0;
+        pointer-events: none;
+        transition: 125ms;
 
-    .drawer-item > button {
-        display: flex;
-        align-items: center;
-        gap: 8px;
+        &.open {
+            pointer-events: all;
+            translate: 0 0;
+        }
     }
 </style>

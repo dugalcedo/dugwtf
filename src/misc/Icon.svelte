@@ -1,16 +1,18 @@
 <script lang="ts">
     const {
         name,
-        alt
+        alt,
+        style = ""
     }:{
         name: string
         alt?: string
+        style?: string
     } = $props()
 
     const altText = alt || `${name} icon`;
 </script>
 
-<img src="/icons/{name}.svg" alt={altText}>
+<img src="/icons/{name}.svg" alt={altText} style={style}>
 
 <style>
     img {
