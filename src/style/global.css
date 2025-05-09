@@ -31,6 +31,9 @@
         background-color: var(--highlight);
         color: var(--highlight-text);
     }
+
+
+    scrollbar-color: var(--white) var(--black);
 }
 
 html {

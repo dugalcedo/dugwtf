@@ -1,5 +1,6 @@
 <script lang="ts">
     import '../style/global.css'
+    import '../style/media.css'
     import type { Snippet } from 'svelte';
     
     import Header from '../layout/Header.svelte';
