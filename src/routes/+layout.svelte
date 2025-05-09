@@ -3,7 +3,7 @@
     import type { Snippet } from 'svelte';
     
     import Header from '../layout/Header.svelte';
-    import Drawer from '../layout/Drawer.svelte';
+    import Aside from '../layout/Aside.svelte';
 
     const { children }: {
         children: Snippet
@@ -11,9 +11,11 @@
 
 </script>
 
-<Drawer />
 <Header />
 <main>
-    {@render children()}
+    <Aside />
+    <div class="page">
+        {@render children()}
+    </div>
 </main>
 <footer></footer>

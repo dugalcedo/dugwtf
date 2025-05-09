@@ -34,7 +34,7 @@
 }
 
 html {
-    font-size: 12px;
+    font-size: 16px;
 }
 
 body {
@@ -46,17 +46,35 @@ body {
 html, body, #app {
     height: 100dvh;
     width: 100dvw;
-    max-height: 100dvh;
-    max-width: 100dvh;
     overflow: hidden;
 }
+
 #app {
     display: flex;
     flex-direction: column;
 }
+
+#app > * {
+    width: 800px;
+    margin: auto;
+    max-width: calc(100% - 2rem);
+}
+
 main {
     flex-grow: 1;
     overflow-y: auto;
+    border: 1px dashed var(--semidarkgray);
+    border-top: 0;
+    border-bottom: 0;
+    padding: 1rem;
+
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 1rem;
+}
+
+footer {
+    min-height: 50px;
 }
 
 button {
@@ -75,6 +93,12 @@ button {
 
     &:active {
         outline: 1px dashed var(--lightgray);
+    }
+
+    &.non {
+        border: 0;
+        padding: 0;
+        background-color: transparent;
     }
 }
 
