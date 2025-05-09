@@ -29,6 +29,21 @@
                 type: 'anchor',
                 text: 'dugscography',
                 href: '/dugscography'
+            },
+            {
+                type: 'anchor',
+                text: 'recommendations',
+                href: '/music/recs'
+            },
+            {
+                type: 'anchor',
+                text: "dug's favorites",
+                href: '/music/favs'
+            },
+            {
+                type: 'anchor',
+                text: 'blog',
+                href: '/music/blog'
             }
         ],
         webdev: [
