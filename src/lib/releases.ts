@@ -1,8 +1,8 @@
 export type Dug = {
     artist: string
-    artist_gulb: string
+    // artist_gulb: string
     title: string
-    title_gulb: string
+    // title_gulb: string
     id: string
     year: number
     type: string
@@ -15,12 +15,10 @@ export type Dug = {
 const dugs: Dug[] = [
     {
         "artist": "Dug Alcedo",
-        "artist_gulb": "dug ol'see'do",
         "title": "Hard Rock EP",
-        "title_gulb": "hor'd rok e'p",
         id: "DUG044b",
         year: 2024,
-        type: "EP",
+        type: "ep",
         bc_id: "3557368383",
         bc_link: "https://dugalcedo.bandcamp.com/album/hard-rock-ep",
         "cover_s": "/images/acxs/DUG044b.jpg",
@@ -28,9 +26,7 @@ const dugs: Dug[] = [
     },
     {
         "artist": "Dug Alcedo",
-        "artist_gulb": "dug ol'se'doo",
         "title": "Humans",
-        "title_gulb": "h'yuu'mn'z",
         "id": "DUG044",
         "year": 2024,
         "type": "album",
@@ -40,10 +36,19 @@ const dugs: Dug[] = [
         "cover_l": "/images/acs/DUG044.jpg"
     },
     {
+        artist: "Trees and Flowers",
+        title: "A Piece Of Hell For Ourselves",
+        id: "CL001",
+        year: 2023,
+        type: "production credit",
+        bc_id: "343067011",
+        bc_link: "https://pelagoramrecordings.bandcamp.com/album/a-piece-of-hell-for-ourselves",
+        cover_s: "/images/acxs/CL001.jpg",
+        cover_l: "/images/acs/CL001.jpg",
+    },
+    {
         "artist": "Dug Alcedo",
-        "artist_gulb": "dug ol'se'doo",
         "title": "Goos Beyond",
-        "title_gulb": "guuz bee'yon'd",
         "id": "DUG043",
         "year": 2022,
         "type": "album",
@@ -54,9 +59,7 @@ const dugs: Dug[] = [
     },
     {
         "artist": "Dew for Slug",
-        "artist_gulb": "duu f s'lug",
         "title": "I-15 Dream",
-        "title_gulb": "ii-15 d'reem",
         "id": "DUG042c",
         "year": 2021,
         "type": "collab",
@@ -67,9 +70,7 @@ const dugs: Dug[] = [
     },
     {
         "artist": "Dug Alcedo",
-        "artist_gulb": "dug ol'se'doo",
         "title": "Starship Comino (Cave version)",
-        "title_gulb": "s'tor'Sip koo'mee'noo (kaav vr'Zn)",
         "id": "DUG042b",
         "year": 2021,
         "type": "single",
@@ -80,9 +81,7 @@ const dugs: Dug[] = [
     },
     {
         "artist": "Dug Alcedo",
-        "artist_gulb": "dug ol'se'doo",
         "title": "Big Fish eat Little Fish",
-        "title_gulb": "big fiS eet li'tl fiS",
         "id": "DUG042",
         "year": 2021,
         "type": "album",
@@ -93,9 +92,7 @@ const dugs: Dug[] = [
     },
     {
         "artist": "Dug Alcedo",
-        "artist_gulb": "dug ol'se'doo",
         "title": "Bonito",
-        "title_gulb": "boo'nee'too",
         "id": "DUG041b",
         "year": 2021,
         "type": "single",
@@ -106,9 +103,7 @@ const dugs: Dug[] = [
     },
     {
         "artist": "Dug Alcedo",
-        "artist_gulb": "dug ol'se'doo",
         "title": "Comber",
-        "title_gulb": "koom'b'r",
         "id": "DUG041",
         "year": 2020,
         "type": "album",
@@ -119,9 +114,7 @@ const dugs: Dug[] = [
     },
     {
         "artist": "Dug Alcedo",
-        "artist_gulb": "dug ol'se'doo",
         "title": "Pinya",
-        "title_gulb": "pin'yx",
         "id": "DUG040b",
         "year": 2020,
         "type": "single",
@@ -132,9 +125,7 @@ const dugs: Dug[] = [
     },
     {
         "artist": "Dug Alcedo",
-        "artist_gulb": "dug ol'se'doo",
         "title": "XL",
-        "title_gulb": "ek's el",
         "id": "DUG040",
         "year": 2020,
         "type": "album",
@@ -145,9 +136,7 @@ const dugs: Dug[] = [
     },
     {
         "artist": "Dug Alcedo",
-        "artist_gulb": "dug ol'se'doo",
         "title": "Hell Scenery",
-        "title_gulb": "hel see'nx'ree",
         "id": "DUG039",
         "year": 2020,
         "type": "album",
@@ -158,9 +147,7 @@ const dugs: Dug[] = [
     },
     {
         "artist": "Dug Alcedo",
-        "artist_gulb": "dug ol'se'doo",
         "title": "Casked Acid in Black Sheep Canyon",
-        "title_gulb": "kas'k'd a'sid in b'lak Sip kan'yn",
         "id": "DUG038",
         "year": 2019,
         "type": "album",
@@ -171,9 +158,7 @@ const dugs: Dug[] = [
     },
     {
         "artist": "Dug Alcedo",
-        "artist_gulb": "dug ol'se'doo",
         "title": "Possum with Apple",
-        "title_gulb": "po'sm w a'pl",
         "id": "DUG037",
         "year": 2019,
         "type": "album",
@@ -184,9 +169,7 @@ const dugs: Dug[] = [
     },
     {
         "artist": "First Dog",
-        "artist_gulb": "fr's't dog",
         "title": "Soundcloud 2018",
-        "title_gulb": "saun'd k'laud 2018",
         "id": "DUG036b",
         "year": 2019,
         "type": "ep",
@@ -197,9 +180,7 @@ const dugs: Dug[] = [
     },
     {
         "artist": "Dug Alcedo",
-        "artist_gulb": "dug ol'se'doo",
         "title": "Guard Goose",
-        "title_gulb": "gor'd guus",
         "id": "DUG036",
         "year": 2019,
         "type": "mini-album",
@@ -210,9 +191,7 @@ const dugs: Dug[] = [
     },
     {
         "artist": "Dug Alcedo",
-        "artist_gulb": "dug ol'se'doo",
         "title": "Fish Antlers",
-        "title_gulb": "fiS an't'lr'z",
         "id": "DUG035",
         "year": 2019,
         "type": "album",
@@ -223,9 +202,7 @@ const dugs: Dug[] = [
     },
     {
         "artist": "Dug Alcedo",
-        "artist_gulb": "dug ol'se'doo",
         "title": "Money Snakes",
-        "title_gulb": "mu'nee s'naak's",
         "id": "DUG034",
         "year": 2019,
         "type": "album",
@@ -236,9 +213,7 @@ const dugs: Dug[] = [
     },
     {
         "artist": "First Dog",
-        "artist_gulb": "fr's't dog",
         "title": "Isyiau",
-        "title_gulb": "i'see'yau",
         "id": "DUG033",
         "year": 2018,
         "type": "album",
@@ -249,9 +224,7 @@ const dugs: Dug[] = [
     },
     {
         "artist": "First Dog",
-        "artist_gulb": "fr's't dog",
         "title": "Separation Newdrum",
-        "title_gulb": "se'px'raa'Sn nuu'd'rum",
         "id": "DUG032b",
         "year": 2018,
         "type": "ep",
@@ -262,9 +235,7 @@ const dugs: Dug[] = [
     },
     {
         "artist": "First Dog",
-        "artist_gulb": "fr's't dog",
         "title": "Moosic",
-        "title_gulb": "muu'sik",
         "id": "DUG032",
         "year": 2018,
         "type": "album",
@@ -275,9 +246,7 @@ const dugs: Dug[] = [
     },
     {
         "artist": "First Dog",
-        "artist_gulb": "fr's't dog",
         "title": "Bird in a Cave (echo)",
-        "title_gulb": "br'd in x kaav (e'koo)",
         "id": "DUG031",
         "year": 2017,
         "type": "album",
@@ -288,9 +257,7 @@ const dugs: Dug[] = [
     },
     {
         "artist": "First Dog",
-        "artist_gulb": "fr's't dog",
         "title": "Friends Fever",
-        "title_gulb": "f'ren'z fee'vr",
         "id": "DUG030",
         "year": 2017,
         "type": "album",
@@ -301,9 +268,7 @@ const dugs: Dug[] = [
     },
     {
         "artist": "Loukas",
-        "artist_gulb": "luu'ks",
         "title": "Loukas 1",
-        "title_gulb": "luu'ks 1",
         "id": "DUG029",
         "year": 2016,
         "type": "mini-album",
@@ -314,9 +279,7 @@ const dugs: Dug[] = [
     },
     {
         "artist": "First Dog",
-        "artist_gulb": "fr's't dog",
         "title": "Bird in a Cave",
-        "title_gulb": "br'd in x kaav",
         "id": "DUG028",
         "year": 2016,
         "type": "album",
@@ -327,9 +290,7 @@ const dugs: Dug[] = [
     },
     {
         "artist": "First Dog",
-        "artist_gulb": "fr's't dog",
         "title": "Ow Cute",
-        "title_gulb": "au k'yuut",
         "id": "DUG027b",
         "year": 2016,
         "type": "ep",
@@ -340,9 +301,7 @@ const dugs: Dug[] = [
     },
     {
         "artist": "First Dog",
-        "artist_gulb": "fr's't dog",
         "title": "Aw Cute",
-        "title_gulb": "o'o k'yuut",
         "id": "DUG027",
         "year": 2015,
         "type": "album",
@@ -353,9 +312,7 @@ const dugs: Dug[] = [
     },
     {
         "artist": "First Dog",
-        "artist_gulb": "fr's't dog",
         "title": "Lucoizo",
-        "title_gulb": "luuk'wo'soo",
         "id": "DUG026",
         "year": 2014,
         "type": "album",
@@ -366,9 +323,7 @@ const dugs: Dug[] = [
     },
     {
         "artist": "First Dog",
-        "artist_gulb": "fr's't dog",
         "title": "Gabaraptor",
-        "title_gulb": "ga'bx'rap'tr",
         "id": "DUG025",
         "year": 2014,
         "type": "album",
@@ -379,9 +334,7 @@ const dugs: Dug[] = [
     },
     {
         "artist": "First Dog",
-        "artist_gulb": "fr's't dog",
         "title": "Paranoid Cartoons",
-        "title_gulb": "pe'rx'noid kor'tuun'z",
         "id": "DUG024",
         "year": 2014,
         "type": "album",
@@ -392,9 +345,7 @@ const dugs: Dug[] = [
     },
     {
         "artist": "First Dog",
-        "artist_gulb": "fr's't dog",
         "title": "Feeder",
-        "title_gulb": "feed'r",
         "id": "DUG023",
         "year": 2013,
         "type": "album",
@@ -405,9 +356,7 @@ const dugs: Dug[] = [
     },
     {
         "artist": "First Dog",
-        "artist_gulb": "fr's't dog",
         "title": "Volt Welve",
-        "title_gulb": "vool't wel'v",
         "id": "DUG022",
         "year": 2013,
         "type": "album",
@@ -418,9 +367,7 @@ const dugs: Dug[] = [
     },
     {
         "artist": "First Dog",
-        "artist_gulb": "fr's't dog",
         "title": "Feeble",
-        "title_gulb": "fee'bl",
         "id": "DUG021",
         "year": 2012,
         "type": "album",
@@ -431,9 +378,7 @@ const dugs: Dug[] = [
     },
     {
         "artist": "First Dog",
-        "artist_gulb": "fr's't dog",
         "title": "Language from the Grip",
-        "title_gulb": "leq'wj fm Dx g'rip",
         "id": "DUG020",
         "year": 2012,
         "type": "album",
@@ -444,9 +389,7 @@ const dugs: Dug[] = [
     },
     {
         "artist": "First Dog",
-        "artist_gulb": "fr's't dog",
         "title": "Camel 2",
-        "title_gulb": "ka'ml 2",
         "id": "DUG019",
         "year": 2012,
         "type": "mini-album",
@@ -457,9 +400,7 @@ const dugs: Dug[] = [
     },
     {
         "artist": "First Dog",
-        "artist_gulb": "fr's't dog",
         "title": "Videogame Soundtrack",
-        "title_gulb": "naa'Sn v me'mx'ree'z",
         "id": "DUG018",
         "year": 2012,
         "type": "album",
@@ -470,9 +411,7 @@ const dugs: Dug[] = [
     },
     {
         "artist": "First Dog",
-        "artist_gulb": "fr's't dog",
         "title": "Untrue/Parrot",
-        "title_gulb": "un't'ruu/pe'rt",
         "id": "DUG017",
         "year": 2012,
         "type": "album",
@@ -483,9 +422,7 @@ const dugs: Dug[] = [
     },
     {
         "artist": "First Dog",
-        "artist_gulb": "fr's't dog",
         "title": "Landing",
-        "title_gulb": "lan'd'q",
         "id": "DUG016",
         "year": 2011,
         "type": "mini-album",
@@ -496,9 +433,7 @@ const dugs: Dug[] = [
     },
     {
         "artist": "First Dog",
-        "artist_gulb": "fr's't dog",
         "title": "Corecore",
-        "title_gulb": "koor'koor",
         "id": "DUG015",
         "year": 2011,
         "type": "album",
@@ -509,9 +444,7 @@ const dugs: Dug[] = [
     },
     {
         "artist": "FDVCE & Dylan Jones",
-        "artist_gulb": "f'd'v's'x & di'ln joon'z",
         "title": "Kondo Split",
-        "title_gulb": "koon'doo s'p'lit",
         "id": "DUG013b",
         "year": 2010,
         "type": "split",
@@ -522,9 +455,7 @@ const dugs: Dug[] = [
     },
     {
         "artist": "FDVCE",
-        "artist_gulb": "f'd'v's'x",
         "title": "Every Machine On",
-        "title_gulb": "ev'ree mx'Seen on",
         "id": "DUG013",
         "year": 2010,
         "type": "album",
@@ -535,9 +466,7 @@ const dugs: Dug[] = [
     },
     {
         "artist": "FDVCE",
-        "artist_gulb": "f'd'v's'x",
         "title": "Stoner",
-        "title_gulb": "s'toon'r",
         "id": "DUG012",
         "year": 2010,
         "type": "album",
@@ -548,9 +477,7 @@ const dugs: Dug[] = [
     },
     {
         "artist": "FDVCE",
-        "artist_gulb": "f'd'v's'x",
         "title": "Colossus Archosaur",
-        "title_gulb": "kx'lo'ss or'kx'soor",
         "id": "DUG011",
         "year": 2010,
         "type": "album",
@@ -561,9 +488,7 @@ const dugs: Dug[] = [
     },
     {
         "artist": "FDVCE",
-        "artist_gulb": "f'd'v's'x",
         "title": "Provenance Fen",
-        "title_gulb": "p'ro'vx'nn's fen",
         "id": "DUG000b",
         "year": 2009,
         "type": "compilation",
@@ -574,9 +499,7 @@ const dugs: Dug[] = [
     },
     {
         "artist": "FDVCE",
-        "artist_gulb": "f'd'v's'x",
         "title": "Primeval Dross",
-        "title_gulb": "p'rii'mee'vl d'ros",
         "id": "DUG000a",
         "year": 2008,
         "type": "compilation",
@@ -588,3 +511,21 @@ const dugs: Dug[] = [
 ]
 
 export default dugs
+
+const featuredDugIds: string[] = [
+    'DUG043', // Goos Beyond
+    'DUG042c', // I-15 dream
+    'DUG042', // Big Fish eat Little Fish
+    'DUG040', // XL
+    'DUG039', // Hell Scenery
+    'DUG038', // Casked Acid in Black Sheep Canyon
+    'DUG035', // Fish Antlers
+    'DUG034', // Money Snakes
+    'DUG033', // ISYIAU
+    'DUG029', // Loukas 1
+    'DUG027', // Aw Cute
+    'DUG025', // Gabaraptor
+    'DUG022', // Volt Welve
+    'DUG021', // Feeble
+]
+export const featuredDugs = dugs.filter(d => featuredDugIds.includes(d.id))

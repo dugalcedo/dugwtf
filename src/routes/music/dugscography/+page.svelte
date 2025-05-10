@@ -12,14 +12,15 @@
 
 <div class="inner-page">
     <h2>dugscography</h2>
-    <p>the following is a catalog of almost all of the music i have ever released</p>
+    <p>the following is a catalog of almost all of the music i have ever worked on</p>
 
-    <table border="1" style="width: 100%;">
+    <table>
         <thead>
             <tr>
                 <th>#</th>
+                <th>year</th>
                 <th>title</th>
-                <th>released</th>
+                <th>type</th>
                 <th>bandcamp</th>
             </tr>
         </thead>
@@ -31,6 +32,11 @@
                         {dug.id.replace('DUG', '')}
                     </td>
 
+                    <!-- RELEASE DATE -->
+                    <td>
+                        {dug.year}
+                    </td>
+
                     <!-- ALBUM -->
                     <td class="album">
                         <h4>{dug.title}</h4>
@@ -39,13 +45,14 @@
                         {/if}
                     </td>
 
-                    <!-- RELEASE DATE -->
+                    <!-- TYPE -->
                     <td>
-                        {dug.year}
+                        {dug.type}
                     </td>
 
+
                     <!-- link -->
-                    <td>
+                    <td class="link">
                         <a href={dug.bc_link} target="_blank">LINK</a>
                     </td>
                 </tr>
@@ -71,5 +78,52 @@
     .artist {
         font-style: italic;
         font-size: 0.8rem;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        position: relative;
+    }
+
+    thead {
+        background-color: var(--lightgray);
+        color: var(--black);
+        position: sticky;
+        top: -16px;
+    }
+
+    tbody > tr {
+        &:not(:last-child) {
+            & td {
+                border-bottom: 1px dashed var(--semidarkgray);
+            }
+
+            &:hover td {
+                border-bottom-color: var(--white);
+            }
+        }
+
+        &:nth-child(odd) {
+            background-color: var(--verydarkgray);
+        }
+    }
+
+    tbody tr > td {
+        &:not(:last-child) {
+            border-right: 1px dotted var(--semidarkgray);
+        }
+    }
+
+    th, td {
+        padding: 5px;
+    }
+
+    .link {
+        text-align: right;
+        & a {
+            display: inline-block;
+            padding: 5px;
+        }
     }
 </style>
