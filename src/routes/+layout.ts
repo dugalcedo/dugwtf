@@ -1,5 +1,5 @@
 import type { LayoutLoad } from "./$types.js"
-import { forEachSitemapItem } from "../util/sitemap.svelte.js"
+import { forEachSitemapItem } from "../lib/sitemap.svelte.js"
 
 export const prerender = true
 

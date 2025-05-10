@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type { SitemapItem } from "../util/sitemap.svelte.js";
+    import type { SitemapItem } from "../lib/sitemap.svelte.js";
     import Self from './SitemapMenu.svelte'
 
     const {

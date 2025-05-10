@@ -1,8 +1,17 @@
 <script lang="ts">
-    import sitemap from "../util/sitemap.svelte.js";
+    import sitemap from "../lib/sitemap.svelte.js";
     import SitemapMenu from "./SitemapMenu.svelte";
 </script>
 
 <aside>
-    <SitemapMenu menu={sitemap} />
+    <div class="sitemap-menu">
+        <SitemapMenu menu={sitemap} />
+    </div>
 </aside>
+
+<style>
+    .sitemap-menu {
+        position: sticky;
+        top: 0;
+    }
+</style>

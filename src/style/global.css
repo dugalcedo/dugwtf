@@ -64,6 +64,7 @@ html, body, #app {
     width: 800px;
     margin: auto;
     max-width: calc(100% - 2rem);
+    background-color: var(--black);
 }
 
 main {

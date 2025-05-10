@@ -9,6 +9,11 @@
 </script>
 
 <div class="bandcamp-player" style="width: 100%; height: 208px;">
+    {#if !loaded}
+        <div class="loading">
+            LOADING BANDCAMP PLAYER...
+        </div>
+    {/if}
     <iframe
         onload={() => {
             loaded = true
@@ -18,11 +23,6 @@
         title="Bandcamp Player"
         seamless
     ></iframe>
-    {#if !loaded}
-        <div class="loading">
-            LOADING BANDCAMP PLAYER...
-        </div>
-    {/if}
 </div>
 
 <style>
