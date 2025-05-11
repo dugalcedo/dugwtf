@@ -78,26 +78,6 @@ const sitemap = $state<SitemapItem[]>([
                 type: 'link',
                 active: false,
                 href: "/webdev"
-            },
-            {
-                text: 'neocities tools',
-                type: 'menu',
-                open: false,
-                path: '/webdev/neocities',
-                items: [
-                    {
-                        text: 'tools for neocities users',
-                        type: 'link',
-                        href: '/webdev/neocities',
-                        active: false
-                    },
-                    {
-                        text: 'tooltip',
-                        type: 'link',
-                        href: '/webdev/neocities/tooltip',
-                        active: false
-                    }
-                ]
             }
         ]
     }

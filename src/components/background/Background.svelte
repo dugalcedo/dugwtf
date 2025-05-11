@@ -11,6 +11,8 @@
 
 <style>
     #background {
+        display: none;
+
         position: absolute;
         top: 0;
         left: 0;
@@ -21,6 +23,12 @@
 
         filter: contrast(1.5) invert(0);
         mix-blend-mode: darken;
-        opacity: 0.2;
+        opacity: 0.3;
+    }
+
+    @media (min-width: 750px) {
+        #background {
+            display: block
+        }
     }
 </style>
