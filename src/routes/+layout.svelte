@@ -3,8 +3,9 @@
     import '../style/media.css'
     import type { Snippet } from 'svelte';
     
-    import Header from '../layout/Header.svelte';
-    import Aside from '../layout/Aside.svelte';
+    import Header from '../components/layout/Header.svelte';
+    import Aside from '../components/layout/Aside.svelte';
+    import Background from '../components/background/Background.svelte';
 
     const { children }: {
         children: Snippet
@@ -12,6 +13,7 @@
 
 </script>
 
+<Background />
 <Header />
 <main>
     <Aside />

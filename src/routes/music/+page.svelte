@@ -1,6 +1,6 @@
 <script lang="ts">
     import { featuredDugs } from "../../lib/releases.js";
-    import BandcampPlayer from "../../misc/BandcampPlayer.svelte";
+    import BandcampPlayer from "../../components/misc/BandcampPlayer.svelte";
 </script>
 
 <h2>Featured releases</h2>

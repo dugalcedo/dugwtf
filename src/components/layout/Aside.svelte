@@ -1,5 +1,5 @@
 <script lang="ts">
-    import sitemap from "../lib/sitemap.svelte.js";
+    import sitemap from "../../lib/sitemap.svelte.js";
     import SitemapMenu from "./SitemapMenu.svelte";
 </script>
 

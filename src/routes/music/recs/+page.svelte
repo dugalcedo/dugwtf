@@ -1,6 +1,6 @@
 <script lang="ts">
     import recs from "../../../lib/recs.js";
-    import SmallBandcampPlayer from "../../../misc/SmallBandcampPlayer.svelte";
+    import SmallBandcampPlayer from "../../../components/misc/SmallBandcampPlayer.svelte";
 </script>
 
 <h2>independent artist recommendations</h2>

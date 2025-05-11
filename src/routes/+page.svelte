@@ -1,5 +1,5 @@
 <script>
-    import Icon from "../misc/Icon.svelte";
+    import Icon from "../components/misc/Icon.svelte";
 </script>
 
 <div class="page home-page">
