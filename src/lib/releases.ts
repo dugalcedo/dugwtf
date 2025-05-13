@@ -513,6 +513,8 @@ const dugs: Dug[] = [
 export default dugs
 
 const featuredDugIds: string[] = [
+    'DUG044b', // Hard Rock
+    'DUG044', // Humans
     'DUG043', // Goos Beyond
     'DUG042c', // I-15 dream
     'DUG042', // Big Fish eat Little Fish
