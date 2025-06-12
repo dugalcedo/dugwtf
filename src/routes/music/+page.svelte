@@ -1,12 +1,13 @@
 <script lang="ts">
     import { featuredDugs } from "../../lib/releases.js";
     import BandcampPlayer from "../../components/misc/BandcampPlayer.svelte";
+    const showns = $state<boolean[]>(featuredDugs.map(() => false))
 </script>
 
 <h2>Featured releases</h2>
 
 <div class="featureds">
-    {#each featuredDugs as dug}
+    {#each featuredDugs as dug, i (dug.id)}
         <div class="featured">
 
             <!-- Cover and title -->
@@ -22,7 +23,17 @@
 
             <!-- Player -->
             <div class="player">
-                <BandcampPlayer id={dug.bc_id} />
+                {#if showns[i]}
+                    <BandcampPlayer id={dug.bc_id} />
+                {:else}
+                    <button onclick={() => {
+                        for (let j = 0; j < showns.length; j++) {
+                            showns[j] = i == j 
+                        }
+                    }}>
+                        show bandcamp player
+                    </button>
+                {/if}
             </div>
 
         </div>
