@@ -11,7 +11,6 @@
 
 <style>
     #background {
-        display: none;
 
         position: absolute;
         top: 0;
@@ -26,9 +25,4 @@
         opacity: 0.3;
     }
 
-    @media (min-width: 750px) {
-        #background {
-            display: block
-        }
-    }
 </style>
