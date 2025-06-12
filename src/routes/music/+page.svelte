@@ -12,13 +12,14 @@
 
             <!-- Cover and title -->
             <div class="cover-title">
-                <a href={dug.bc_link} target="_blank">
+                <a href={dug.cover_l} target="_blank">
                     <img src={dug.cover_s} alt="Album cover of {dug.title}">
                 </a>
                 <h3>{dug.title}</h3>
                 {#if dug.artist !== 'Dug Alcedo'}
                     <p class="artist">{dug.artist}</p>
                 {/if}
+                <p class="released">{dug.year}</p>
             </div>
 
             <!-- Player -->
@@ -33,6 +34,8 @@
                     }}>
                         show bandcamp player
                     </button>
+                    <br> <br>
+                    <a href="{dug.bc_link}" target="_blank">Link to bandcamp</a>
                 {/if}
             </div>
 
@@ -45,14 +48,9 @@
         & > .featured {
             display: grid;
             grid-template-columns: 1fr 2fr;
+            align-items: center;
 
-            &:nth-child(even) {
-                grid-template-columns: 2fr 1fr;
 
-                & .player {
-                    order: -1;
-                }
-            }
 
             margin-bottom: 1rem;
         }
@@ -63,8 +61,8 @@
 
         & img {
             width: 100%;
-            mix-blend-mode: luminosity;
-            filter: contrast(1.5);
+            /* mix-blend-mode: luminosity; */
+            /* filter: contrast(1.5); */
         }
     }
 

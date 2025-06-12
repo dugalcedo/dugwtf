@@ -37,7 +37,7 @@
                         menu={item.items} 
                         padding={padding+1} 
                         headingSize={headingSize-0.15}
-                        linkSize={linkSize-0.15}
+                        linkSize={linkSize-0.08}
                     />
                 {/if}
             {/if}
@@ -51,7 +51,6 @@
     }
 
     li button {
-        padding: .5rem;
         font-size: 1.25rem;
     }
 
@@ -63,7 +62,15 @@
 
     li a {
         display: inline-block;
-        padding: .5rem;
+        padding: 1.5rem .5rem;
+
+        &:hover {
+            background-color: rgba(255, 255, 255, 0.041);
+        }
+    }
+
+    .non {
+        padding: 1.5rem 0.5rem !important;
     }
 </style>
 

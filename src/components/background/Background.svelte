@@ -19,10 +19,6 @@
         height: 100vh;
         pointer-events: none;
         z-index: -1;
-
-        filter: contrast(1.5) invert(0);
-        mix-blend-mode: darken;
-        opacity: 0.3;
     }
 
 </style>
