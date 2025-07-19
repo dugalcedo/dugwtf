@@ -20,5 +20,5 @@
         <h1 style="text-align: center;">ALBUM NOT FOUND</h1>
     </div>
 {:else}
-    <Dugpage dug={data.dug} prev={data.prev} next={data.next} />
+    <Dugpage dug={data.dug} prev={data.prev} next={data.next}  />
 {/if}

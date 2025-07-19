@@ -11,7 +11,8 @@ export type Dug = {
     cover_s: string
     cover_l: string
     desc?: string,
-    date?: string
+    date?: string,
+    songCanLoad?: boolean
 }
 
 const dugs: Dug[] = [
@@ -61,7 +62,8 @@ const dugs: Dug[] = [
         "bc_link": "https://dugalcedo.bandcamp.com/album/goos-beyond",
         "cover_s": "/images/acxs/DUG043.jpg",
         "cover_l": "/images/acl/DUG043.jpg",
-        desc: "ambience and noise"
+        desc: "ambience and noise",
+        songCanLoad: true
     },
     {
         "artist": "Dew for Slug",
@@ -96,7 +98,8 @@ const dugs: Dug[] = [
         "bc_link": "https://dugalcedo.bandcamp.com/album/big-fish-eat-little-fish",
         "cover_s": "/images/acxs/DUG042.jpg",
         "cover_l": "/images/acl/DUG042.jpg",
-        desc: "melodic, chaotic idm"
+        desc: "melodic, chaotic idm",
+        songCanLoad: true
     },
     {
         "artist": "Dug Alcedo",
@@ -217,7 +220,8 @@ const dugs: Dug[] = [
         "bc_id": "3239889775",
         "bc_link": "https://dugalcedo.bandcamp.com/album/money-snakes",
         "cover_s": "/images/acxs/DUG034.jpg",
-        "cover_l": "/images/acl/DUG034.jpg"
+        "cover_l": "/images/acl/DUG034.jpg",
+        songCanLoad: true
     },
     {
         "artist": "First Dog",

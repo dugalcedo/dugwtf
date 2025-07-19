@@ -50,6 +50,14 @@
                 </button>
             </a>
         </div>
+        {#if dug.songCanLoad}
+            <div class="song">
+                <h4>SAMPLE</h4>
+                <audio controls>
+                    <source src="/audio/album-samples/{dug.id}.mp3">
+                </audio>
+            </div>
+        {/if}
     </section>
 </div>
 
@@ -120,6 +128,19 @@
             margin: 4px 0;
             padding: .5rem;
             font-size: 1rem;
+        }
+    }
+
+    .song {
+        padding-top: 1rem;
+        text-align: center;
+
+        & h4 {
+            margin-bottom: 8px;
+        }
+
+        & audio {
+            width: 100%;
         }
     }
 </style>
