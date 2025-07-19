@@ -31,18 +31,23 @@
         </div>
     </div>
     <img class="cover" src="{dug.cover_l}" alt="album cover of {dug.title} by {dug.artist}">
-    <div class="info">
+    <section class="info">
         <h2 class="id">{dug.id}</h2>
-        <h2 class="title">{dug.title}</h2>
-    </div>
-    <div class="links">
-        <a href="{dug.bc_link}" target="_blank">
-            <button>
-                BUY / LISTEN ON
-                <br> BANDCAMP
-            </button>
-        </a>
-    </div>
+        <h2 class="title">
+            {dug.title}
+            {#if !['Dug Alcedo', 'First Dog'].includes(dug.artist)}
+                <p class="artist">by {dug.artist}</p>
+            {/if}
+        </h2>
+        <div class="links">
+            <a href="{dug.bc_link}" target="_blank">
+                <button>
+                    BUY / LISTEN ON
+                    <br> BANDCAMP
+                </button>
+            </a>
+        </div>
+    </section>
 </div>
 
 <style>
@@ -81,6 +86,19 @@
             text-align: right;
             font-style: italic;
             padding-right: .5rem;
+        }
+
+        & .artist {
+            font-size: .8rem;
+        }
+
+        @media (min-width: 600px) {
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+
+            & .nav {
+                grid-column: span 2;
+            }
         }
     }
 
