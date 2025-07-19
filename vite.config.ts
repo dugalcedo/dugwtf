@@ -8,5 +8,11 @@ export default defineConfig({
 		alias: {
 			"@c": path.resolve(import.meta.dirname, './src/components')
 		}
+	},
+	server: {
+		watch: {
+			usePolling: true,
+			interval: 500
+		}
 	}
 });

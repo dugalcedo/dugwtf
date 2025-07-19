@@ -1,24 +1,22 @@
 <script lang="ts">
-    import '../style/global.css'
-    import '../style/media.css'
-    import type { Snippet } from 'svelte';
-    
-    import Header from '../components/layout/Header.svelte';
-    import Aside from '../components/layout/Aside.svelte';
-    import Background from '../components/background/Background.svelte';
+    import type { Snippet } from "svelte";
+    import Header from "../components/layout/Header.svelte";
 
-    const { children }: {
+    const {
+        children
+    } : {
         children: Snippet
     } = $props()
-
 </script>
 
-<Background />
+<!-- You are inside of #app -->
 <Header />
 <main>
-    <Aside />
-    <div class="page">
-        {@render children()}
-    </div>
+    {@render children()}
 </main>
-<footer></footer>
+
+<style>
+    main {
+        padding: 1rem 0;
+    }
+</style>

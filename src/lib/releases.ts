@@ -10,6 +10,8 @@ export type Dug = {
     bc_link: string
     cover_s: string
     cover_l: string
+    desc?: string,
+    date?: string
 }
 
 const dugs: Dug[] = [
@@ -23,6 +25,7 @@ const dugs: Dug[] = [
         bc_link: "https://dugalcedo.bandcamp.com/album/hard-rock-ep",
         "cover_s": "/images/acxs/DUG044b.jpg",
         "cover_l": "/images/acl/DUG044b.jpg",
+        date: '2024-12-03'
     },
     {
         "artist": "Dug Alcedo",
@@ -33,7 +36,8 @@ const dugs: Dug[] = [
         "bc_id": "1827608274",
         "bc_link": "https://dugalcedo.bandcamp.com/album/humans",
         "cover_s": "/images/acxs/DUG044.jpg",
-        "cover_l": "/images/acl/DUG044.jpg"
+        "cover_l": "/images/acl/DUG044.jpg",
+        date: '2024-04-28'
     },
     {
         artist: "Trees and Flowers",
@@ -45,6 +49,7 @@ const dugs: Dug[] = [
         bc_link: "https://pelagoramrecordings.bandcamp.com/album/a-piece-of-hell-for-ourselves",
         cover_s: "/images/acxs/CL001.jpg",
         cover_l: "/images/acl/CL001.jpg",
+        date: '2023-12-01'
     },
     {
         "artist": "Dug Alcedo",
@@ -55,7 +60,8 @@ const dugs: Dug[] = [
         "bc_id": "3909499862",
         "bc_link": "https://dugalcedo.bandcamp.com/album/goos-beyond",
         "cover_s": "/images/acxs/DUG043.jpg",
-        "cover_l": "/images/acl/DUG043.jpg"
+        "cover_l": "/images/acl/DUG043.jpg",
+        desc: "ambience and noise"
     },
     {
         "artist": "Dew for Slug",
@@ -66,7 +72,8 @@ const dugs: Dug[] = [
         "bc_id": "2686980342",
         "bc_link": "https://pelagoramrecordings.bandcamp.com/album/i-15-dream",
         "cover_s": "/images/acxs/DUG042c.jpg",
-        "cover_l": "/images/acl/DUG042c.jpg"
+        "cover_l": "/images/acl/DUG042c.jpg",
+        desc: "queer, mormon folktronica album in collaboration with Trees & Flowers"
     },
     {
         "artist": "Dug Alcedo",
@@ -88,7 +95,8 @@ const dugs: Dug[] = [
         "bc_id": "1528786253",
         "bc_link": "https://dugalcedo.bandcamp.com/album/big-fish-eat-little-fish",
         "cover_s": "/images/acxs/DUG042.jpg",
-        "cover_l": "/images/acl/DUG042.jpg"
+        "cover_l": "/images/acl/DUG042.jpg",
+        desc: "melodic, chaotic idm"
     },
     {
         "artist": "Dug Alcedo",

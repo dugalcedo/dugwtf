@@ -1,24 +1,32 @@
-<script>
-    import Icon from "../components/misc/Icon.svelte";
+<script lang="ts">
+    import dugs from "../lib/releases.js";
+    import FeaturedDugcard from "../components/FeaturedDugcard.svelte";
 </script>
 
-<div class="page home-page">
-    <p>i'm dug and i've been making experimental music since 2008</p>
-
-    <a href="/music" class="button big">
-        dug's music
-        <Icon name="right" />
-    </a>
-
-    <p>i also teach web development for a living</p>
-
-    <p>this website is a work in progress</p>
-
-    <p>you can contact me at dougalcedo@gmail.com or on discord, where my name is dugnoise, or on bluesky, where my handle is dug.wtf</p>
+<div class="res">
+    <section id="featured-dugs">
+        <FeaturedDugcard title="I-15 Dream" bgTop={-40} />
+        <FeaturedDugcard title="Goos Beyond" bgFilter="invert(1) grayscale(1) contrast(2)"/>
+        <FeaturedDugcard title="Big Fish eat Little Fish" bgFilter="invert(1) grayscale(1) brightness(0.7) contrast(5)" />
+        <FeaturedDugcard title="Money Snakes" bgTop={-25} />
+        <FeaturedDugcard title="Isyiau" />
+        <FeaturedDugcard title="Aw Cute" bgFilter="invert(1) grayscale(1) brightness(0.6) contrast(10)" />
+        <FeaturedDugcard title="Gabaraptor" bgTop={-25} bgFilter="invert(1) grayscale(1) brightness(0.7) contrast(3)" />
+        <FeaturedDugcard title="Volt Welve" bgTop={-25} bgFilter="invert(1) grayscale(1) brightness(0.7) contrast(3)"  />
+        <FeaturedDugcard title="Feeble" bgTop={-25} bgFilter="invert(1) grayscale(1) brightness(0.7) contrast(3)" />
+    </section>
+    <div class="see-all-link">
+        <a href="/dugscography">
+            <button>see all</button>
+        </a>
+    </div>
 </div>
 
+
 <style>
-    p {
-        margin: 2rem 0;
+    .see-all-link button {
+        width: 100%;
+        padding: 1rem;
+        font-size: 1.2rem;
     }
 </style>

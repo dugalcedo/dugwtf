@@ -1,0 +1,48 @@
+.black-to-white {
+    filter: invert(0.9);
+}
+
+.mobile {
+    @media (min-width: 600px) {
+        display: none;
+    }
+}
+
+.res {
+    width: var(--res-width);
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.black {
+    color: var(--black);
+}
+
+.bg-white {
+    background-color: var(--white);
+}
+
+*[class^="desktop"] {
+    display: none;
+}
+
+@media (min-width: 600px) {
+    .desktop, .desktop-block {
+        display: block;
+    }
+
+    .desktop-flex {
+        display: flex;
+    }
+
+    .desktop-grid {
+        display: grid;
+    }
+
+    .desktop-inline-block {
+        display: inline-block;
+    }
+}

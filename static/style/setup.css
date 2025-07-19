@@ -1,0 +1,56 @@
+@font-face {
+    font-family: Consola;
+    src: url("/fonts/Consola/ConsolaMono-Book.ttf");
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: Consola;
+    src: url("/fonts/Consola/ConsolaMono-Bold.ttf");
+    font-weight: bold;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: Consola, monospace;
+    margin: 0;
+    padding: 0;
+    scrollbar-width: thin;
+}
+
+html {
+    font-size: 18px;
+}
+
+body {
+    background-color: var(--black);
+    color: var(--white);
+}
+
+html, body, #app {
+    height: 100dvh;
+    overflow: hidden;
+}
+
+button {
+    cursor: pointer;
+    background-color: transparent;
+    color: var(--white);
+    border: 1px solid var(--white);
+
+    &:hover {
+        background-color: var(--white);
+        color: var(--black);
+        font-weight: bold;
+    }
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex-grow: 1;
+    overflow-y: auto;
+}
