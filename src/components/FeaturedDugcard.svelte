@@ -20,7 +20,7 @@
         src="{dug.cover_l}" 
         alt="album cover of {dug.title} by {dug.artist}" class="bg"
         style="
-            z-index: -1;
+            z-index: 1;
             position: absolute;
             top: 0%;
             left: 0%;
@@ -61,6 +61,8 @@
 
     :global(.featured-dug-card > *) {
         display: inline-block;
+        position: relative;
+        z-index: 2;
 
     }
     

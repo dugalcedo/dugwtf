@@ -1,6 +1,7 @@
 <script lang="ts">
     import type { Snippet } from "svelte";
     import Header from "../components/layout/Header.svelte";
+    import Background from "../components/layout/Background.svelte";
 
     const {
         children
@@ -10,13 +11,8 @@
 </script>
 
 <!-- You are inside of #app -->
+<Background />
 <Header />
 <main>
     {@render children()}
 </main>
-
-<style>
-    main {
-        padding: 1rem 0;
-    }
-</style>

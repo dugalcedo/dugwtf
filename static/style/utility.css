@@ -15,6 +15,7 @@
     max-width: 100%;
     padding-left: 8px;
     padding-right: 8px;
+    background-color: var(--black);
 }
 
 .black {

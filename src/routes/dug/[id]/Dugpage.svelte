@@ -32,7 +32,10 @@
     </div>
     <img class="cover" src="{dug.cover_l}" alt="album cover of {dug.title} by {dug.artist}">
     <section class="info">
-        <h2 class="id">{dug.id}</h2>
+        <h2 class="id">
+            <span>{dug.id}</span>
+            <span class="year">{dug.year}</span>
+        </h2>
         <h2 class="title">
             {dug.title}
             {#if !['Dug Alcedo', 'First Dog'].includes(dug.artist)}
@@ -72,12 +75,21 @@
 
         & .id {
             color: var(--black);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
             text-shadow: 
                 1px 1px 0px var(--white),
                 1px -1px 0px var(--white),
                 -1px -1px 0px var(--white),
                 -1px 1px 0px var(--white)
             ;
+
+            & .year {
+                text-shadow: none;
+                color: var(--white);
+                font-size: .7rem;
+            }
         }
 
         & .title {
