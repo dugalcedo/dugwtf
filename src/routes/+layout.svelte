@@ -1,6 +1,7 @@
 <script lang="ts">
     import type { Snippet } from "svelte";
     import Header from "../components/layout/Header.svelte";
+    import Footer from "../components/layout/Footer.svelte";
     import Background from "../components/layout/Background.svelte";
 
     const {
@@ -16,3 +17,4 @@
 <main>
     {@render children()}
 </main>
+<Footer />

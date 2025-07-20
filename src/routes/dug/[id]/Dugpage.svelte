@@ -1,5 +1,6 @@
 <script lang="ts">
     import { type Dug } from "../../../lib/releases.js";
+    import bcplayer from "../../../context/bcplayer.svelte.js";
 
     const {
         next,
@@ -45,19 +46,11 @@
         <div class="links">
             <a href="{dug.bc_link}" target="_blank">
                 <button>
-                    BUY / LISTEN ON
-                    <br> BANDCAMP
+                    BUY
                 </button>
             </a>
+            <button onclick={() => bcplayer.dug = dug}>PLAY</button>
         </div>
-        {#if dug.songCanLoad}
-            <div class="song">
-                <h4>SAMPLE</h4>
-                <audio controls>
-                    <source src="/audio/album-samples/{dug.id}.mp3">
-                </audio>
-            </div>
-        {/if}
     </section>
 </div>
 
@@ -131,16 +124,4 @@
         }
     }
 
-    .song {
-        padding-top: 1rem;
-        text-align: center;
-
-        & h4 {
-            margin-bottom: 8px;
-        }
-
-        & audio {
-            width: 100%;
-        }
-    }
 </style>
