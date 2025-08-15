@@ -1,5 +1,4 @@
 <script lang="ts">
-    import dugs from "../lib/releases.js";
     import FeaturedDugcard from "../components/FeaturedDugcard.svelte";
 </script>
 
@@ -24,6 +23,10 @@
 
 
 <style>
+    .see-all-link {
+        margin-bottom: 1rem;
+    }
+
     .see-all-link button {
         width: 100%;
         padding: 1rem;

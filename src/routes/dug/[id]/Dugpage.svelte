@@ -1,6 +1,6 @@
 <script lang="ts">
     import { type Dug } from "../../../lib/releases.js";
-    import bcplayer from "../../../context/bcplayer.svelte.js";
+    import { bcplayer } from "../../../context/bcplayer.svelte.js";
 
     const {
         next,
@@ -49,7 +49,12 @@
                     BUY
                 </button>
             </a>
-            <button onclick={() => bcplayer.dug = dug}>PLAY</button>
+            <button onclick={() => {
+                bcplayer.dug = dug
+                bcplayer.isOpen = true
+            }}>
+                PLAY
+            </button>
         </div>
     </section>
 </div>
@@ -118,7 +123,7 @@
     .links {
         & button {
             width: 100%;
-            margin: 4px 0;
+            /* margin: 4px 0; */
             padding: .5rem;
             font-size: 1rem;
         }

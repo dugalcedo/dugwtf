@@ -1,11 +1,11 @@
-import type { Dug } from "../lib/releases.js"
+import { type Dug } from "../lib/releases.js"
 
-type BcPlayer = {
-    dug: Dug | null
+type Bcplayer = {
+    dug: null |  Dug
+    isOpen: boolean
 }
 
-const bcplayer: BcPlayer = $state({
-    dug: null
+export const bcplayer = $state<Bcplayer>({
+    dug: null,
+    isOpen: true
 })
-
-export default bcplayer

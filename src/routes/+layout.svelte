@@ -1,8 +1,8 @@
 <script lang="ts">
     import type { Snippet } from "svelte";
     import Header from "../components/layout/Header.svelte";
-    import Footer from "../components/layout/Footer.svelte";
     import Background from "../components/layout/Background.svelte";
+    import BandcampPlayer from "../components/BandcampPlayer.svelte";
 
     const {
         children
@@ -17,4 +17,4 @@
 <main>
     {@render children()}
 </main>
-<Footer />
+<BandcampPlayer />

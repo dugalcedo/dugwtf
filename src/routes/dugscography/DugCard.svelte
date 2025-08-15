@@ -22,7 +22,6 @@
     .dug-card {
         position: relative;
         overflow: hidden;
-        box-shadow: 3px 3px 0 rgba(255, 255, 255, 0.2);
 
         & img {
             width: 100%;
