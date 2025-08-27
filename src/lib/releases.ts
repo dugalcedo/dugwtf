@@ -19,18 +19,6 @@ export type Dug = {
 const dugs: Dug[] = [
     {
         "artist": "Dug Alcedo",
-        "title": "Hard Rock EP",
-        id: "DUG044b",
-        year: 2024,
-        type: "ep",
-        bc_id: "3557368383",
-        bc_link: "https://dugalcedo.bandcamp.com/album/hard-rock-ep",
-        "cover_s": "/images/acxs/DUG044b.jpg",
-        "cover_l": "/images/acl/DUG044b.jpg",
-        date: '2024-12-03'
-    },
-    {
-        "artist": "Dug Alcedo",
         "title": "Humans",
         "id": "DUG044",
         "year": 2024,
@@ -526,7 +514,6 @@ const dugs: Dug[] = [
 export default dugs
 
 const featuredDugIds: string[] = [
-    'DUG044b', // Hard Rock
     'DUG044', // Humans
     'DUG043', // Goos Beyond
     'DUG042c', // I-15 dream
