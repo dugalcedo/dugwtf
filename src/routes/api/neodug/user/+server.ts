@@ -1,28 +1,40 @@
 import validator from "validator";
 import bcrypt from 'bcryptjs'
-import { cookieOptions, defineDugwtfRequestHandler } from "../../../../lib/server/requestHandling.js";
+import { cookieOptions, defineDugwtfRequestHandler, getUserFromEvt } from "../../../../lib/server/requestHandling.js";
 import { NeodugUser, useNeodugDb, createNeodugUserDTO, createNeodugUserToken, parseNeodugUserToken, createNeodugUserDTO_POPULATED } from "../../../../lib/server/neodugDb.js"
 
 // REGISTER
 type RegisterBody = {
     username: string
     password: string
+    email: string
 }
 
 export const POST = defineDugwtfRequestHandler(async (evt) => {
     await useNeodugDb()
 
     const body: RegisterBody = await evt.request.json()
+    body.username = body.username.trim().replaceAll(/\s+/gm, ' ')
 
     if (!validator.isStrongPassword(body.password)) throw {
         status: 400,
         message: "Password must be at least 8 characters and contain at least one of each: lowercase, uppercase, number, symbol"
     }
 
+    const existingUser = await NeodugUser.findOne({
+        username: body.username
+    })
+
+    if (existingUser) throw {
+        status: 400,
+        message: `Username taken`
+    }
+
     body.password = await bcrypt.hash(body.password, 7)
 
     const newUser = await NeodugUser.create({
         username: body.username,
+        email: body.email,
         password: body.password
     })
 
@@ -77,29 +89,7 @@ export const PUT = defineDugwtfRequestHandler(async (evt) => {
 
 ////// VERIFY TOKEN
 export const GET = defineDugwtfRequestHandler(async (evt) => {
-    const token = (
-        evt.cookies.get('neodugtoken') 
-        || evt.request.headers.get('x-neodugtoken')  
-    );
-
-    if (!token) throw {
-        status: 400,
-        message: "Missing token"
-    }
-
-    const user_id = parseNeodugUserToken(token)
-    const foundUser = await NeodugUser.findById(user_id)
-        .populate({
-            path: 'commentBoxes',
-            populate: {
-                path: 'comments'
-            }
-        })
-
-    if (!foundUser) throw {
-        status: 400,
-        message: "Token doesn't match an existing user. Maybe your username changed?"
-    }
+    const foundUser = await getUserFromEvt(evt)
 
     return {
         message: "Token verified.",

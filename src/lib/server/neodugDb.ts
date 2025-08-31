@@ -2,14 +2,17 @@ import dotenv from 'dotenv'; dotenv.config()
 import validator from 'validator'
 import jwt from 'jsonwebtoken'
 import mongoose, { Schema, model, Types, type HydratedDocument, type Mongoose } from "mongoose";
+import nodemailer from 'nodemailer'
 
 ///////// USER
 
 export interface NeodugUserInterface {
     _id: Types.ObjectId
     username: string
+    email: string
     password: string
-    commentBoxes: Types.ObjectId[]
+    verified: boolean
+    commentboxes: Types.ObjectId[]
 }
 
 const NeodugUserSchema = new Schema<NeodugUserInterface>({
@@ -26,11 +29,27 @@ const NeodugUserSchema = new Schema<NeodugUserInterface>({
             }
         }]
     },
+    email: {
+        type: String,
+        required: true,
+        unique: true,
+        validate: [{
+            message: "Invalid email.",
+            validator: (v: string) => {
+                return validator.isEmail(v)
+            }
+        }]
+    },
+    verified: {
+        type: Boolean,
+        required: true,
+        default: false
+    },
     password: {
         type: String,
         required: true
     },
-    commentBoxes: {
+    commentboxes: {
         type: [Schema.Types.ObjectId],
         required: true,
         default: [],
@@ -60,6 +79,7 @@ const NeodugCommentboxSchema = new Schema<NeodugCommentboxInterface>({
     name: {
         type: String,
         required: true,
+        unique: true,
         minlength: 3,
         maxlength: 50,
         validate: [{
@@ -87,6 +107,7 @@ export interface NeodugCommentInterface {
     author: string
     body: string
     commentbox_id: Types.ObjectId
+    date: Date
 }
 
 const NeodugCommentSchema = new Schema<NeodugCommentInterface>({
@@ -106,11 +127,43 @@ const NeodugCommentSchema = new Schema<NeodugCommentInterface>({
         type: Schema.Types.ObjectId,
         required: true,
         ref: 'commentbox'
+    },
+    date: {
+        type: Date,
+        required: true
     }
 })
 
 export const NeodugComment = model<NeodugCommentInterface>('comment', NeodugCommentSchema, 'comments')
 export type NeodugCommentType = HydratedDocument<NeodugCommentInterface>
+
+////// EMAILVERIFICATION
+
+export interface NeodugEmailVerificationInterface {
+    _id: Types.ObjectId
+    email: string
+    lastEmail?: Date
+}
+
+const NeodugEmailVerificationSchema = new Schema<NeodugEmailVerificationInterface>({
+    email: {
+        type: String,
+        required: true,
+        unique: true,
+        validate: [{
+            message: "Invalid email.",
+            validator: (v: string) => {
+                return validator.isEmail(v)
+            }
+        }]
+    },
+    lastEmail: {
+        type: Date
+    }
+})
+
+export const NeodugEmailVerification = model<NeodugEmailVerificationInterface>('emailverification', NeodugEmailVerificationSchema, 'emailverifications')
+export type NeodugEmailVerificationType = HydratedDocument<NeodugEmailVerificationInterface>
 
 //////// CONNECTION
 
@@ -131,13 +184,46 @@ export async function useNeodugDb() {
     }
 }
 
+/////// EMAIL
+
+export async function sendVerificationEmail(ev: NeodugEmailVerificationType) {
+    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+        console.log("MISSING ENV VARS FOR NODEMAILER")
+        throw { status: 503, message: "Database down." }
+    }
+
+    const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: process.env.EMAIL_USER,
+            pass: process.env.EMAIL_PASS
+        }
+    })
+
+    await transporter.sendMail({
+        from: `"Dug Alcedo from dug.wtf" <${process.env.EMAIL_USER}>`,
+        to: ev.email,
+        subject: "Verify your email for dug.wtf",
+        html: `
+            <h2>Dug.wtf</h2>
+            <a href="${process.env.URL || "https://dug.wtf"}/neo/verify/${ev._id}">
+                Click here to verify your email address.
+            </a>
+        `
+    })
+
+    ev.lastEmail = new Date()
+    await ev.save()
+}
+
+
 /////// HELPERS
 
 export const createNeodugUserDTO = (user: NeodugUserType) => {
     return {
         _id: user._id.toString(),
         username: user.username,
-        commentBoxIds: user.commentBoxes.map(cb => cb._id.toString())
+        commentBoxIds: user.commentboxes.map(cb => cb._id.toString())
     }
 }
 
@@ -167,11 +253,13 @@ export const parseNeodugUserToken = (token: string): string => {
 }
 
 export const createNeodugUserDTO_POPULATED = (user: any) => {
-    
+
     return {
         _id: user._id.toString(),
         username: user.username as string,
-        commentBoxes: user.commentBoxes.map((cb: any) => {
+        email: user.email as string,
+        verified: user.verified as boolean,
+        commentboxes: user.commentboxes.map((cb: any) => {
             return {
                 _id: cb._id.toString(),
                 name: cb.name as string,
