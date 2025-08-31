@@ -28,11 +28,10 @@
   */
 
 class NeodugCommentbox extends HTMLElement {
-    static API_URL = window.location.host.includes('localhost') ? `http://localhost:5173` : `https://dug.wtf`;
-
     originalHTML = ""
     cbCommentsTemplate = ""
     name = ""
+    url = "https://dug.wtf"
 
     /** @type {string | null | undefined} */
     simulateLongLoad = ""
@@ -75,6 +74,9 @@ class NeodugCommentbox extends HTMLElement {
 
         this.simulateLongLoad = this.getAttribute('simulatelongload')
 
+        const urlOverride = this.getAttribute('url')
+        if (urlOverride) this.url = urlOverride
+
         await this.fetchComments()
         this.render()
     })}
@@ -89,7 +91,7 @@ class NeodugCommentbox extends HTMLElement {
             await new Promise(resolve => setTimeout(resolve, ms))
         }
 
-        const url = `${NeodugCommentbox.API_URL}/api/neodug/commentbox?name=${this.name}`
+        const url = `${this.url}/api/neodug/commentbox?name=${this.name}`
         const res = await fetch(url)
 
         if (!res.ok) {
@@ -130,7 +132,7 @@ class NeodugCommentbox extends HTMLElement {
 
         const formData = this.getAndValidateFormData(e.currentTarget)
 
-        const url = `${NeodugCommentbox.API_URL}/api/neodug/comment`
+        const url = `${this.url}/api/neodug/comment`
         const options = { method: "POST", body: JSON.stringify(formData) }
         const res = await fetch(url, options)
 
