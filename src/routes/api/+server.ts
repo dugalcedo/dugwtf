@@ -1,9 +1,12 @@
 import { createCorsOptionsHandler } from "../../lib/server/cors.js"
-import { defineDugwtfRequestHandler } from "../../lib/server/requestHandling.js"
+import { defineDugwtfRequestHandler, getIP } from "../../lib/server/requestHandling.js"
+import validator from "validator"
 
 export const OPTIONS = createCorsOptionsHandler()
 
-export const GET = defineDugwtfRequestHandler(() => {
+export const GET = defineDugwtfRequestHandler((evt) => {
+    const ip = getIP(evt)
+
     return {
         message: "Welcome to the dug.wtf api.",
         data: {
@@ -16,6 +19,10 @@ export const GET = defineDugwtfRequestHandler(() => {
                         description: "Returns Dug's discography."
                     }
                 }
+            },
+            testStuff: {
+                yourIp: ip,
+                yourIpIsIp: validator.isIP(ip||"")
             }
         }
     }

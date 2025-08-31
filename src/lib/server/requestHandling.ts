@@ -112,3 +112,13 @@ export const getMongooseErrorMessage = (error: {
     }
     return message
 }
+
+export const getIP = (evt: SvelteKitEvent) => {
+    try {
+        return (
+            evt.request.headers.get('x-forwarded-for')
+            || evt.request.headers.get('x-real-ip')
+            || evt.getClientAddress()
+        )
+    } catch {}
+}
