@@ -11,7 +11,7 @@
 
     const logOut = () => {
         document.cookie = "neodugtoken=;path=/;"
-        user = undefined
+        window.location.reload()
     }
 
 </script>
@@ -29,7 +29,7 @@
 
             {#if user}
                 <div class="panel">
-                    <p>You're already logged in! So you're done with this step.</p>
+                    <p>You're already logged in as {user.username}! So you're done with this step.</p>
                     <button style="margin-top: 1rem;" onclick={logOut}>Log out</button>
                 </div>
             {:else}
@@ -74,7 +74,7 @@
                 </div>
             {:else}
                 <div class="panel">
-                    <p>You're done with this step.</p>
+                    <p>You're done with this step. Your commentbox's name is <big>{user.commentboxes[0]?.name}</big></p>
                 </div>
             {/if}
         </div>
@@ -201,5 +201,11 @@
         @media (min-width: 650px) {
             grid-template-columns: 1fr 1fr;
         }
+    }
+
+    big {
+        background-color: black;
+        font-size: 3rem;
+        color: lime;
     }
 </style>
