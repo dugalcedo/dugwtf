@@ -26,6 +26,10 @@
     background-color: var(--white);
 }
 
+.error {
+    background-color: maroon;
+}
+
 *[class^="desktop"] {
     display: none;
 }

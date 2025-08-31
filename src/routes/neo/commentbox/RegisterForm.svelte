@@ -1,5 +1,5 @@
 <script lang="ts">
-    import Form from "../../lib/components/Form.svelte";
+    import Form from "../../../lib/components/Form.svelte";
 </script>
 
 <Form
@@ -7,6 +7,9 @@
     url="/api/neodug/user"
     method="POST"
 >
+    <div class="head">
+        <h4>Register</h4>
+    </div>
     <div class="field">
         <label for="neodug-register_username">Username</label>
         <input type="text" id="neodug-register_username" name="username" required>

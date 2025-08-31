@@ -1,0 +1,46 @@
+<!-- JavaScript which defines neodug-commentbox as a custom element -->
+<script src="https://www.dug.wtf/neo/commentbox.js"></script>
+
+<neodug-commentbox name="YOUR-COMMENTBOX-NAME-GOES-HERE">
+    <h3>Leave a comment!</h3>
+
+    <!-- An error will be displayed here 
+    if it fails to fetch the comments for some reason -->
+    <p class="error">{{ fetchError }}</p>
+
+    <div class="comments">
+        <!-- Everything inside of the cb-comments 
+        element will be repeated for each comment. 
+        The double-curly-bracketed words will be
+        automatically replaced. -->
+        <cb-comments>
+            <div class="comment">
+                <p class="author">{{author}} said...</p>
+                <p class="body">{{body}}</p>
+                <div class="date">on {{date}}</div>
+            </div>
+        </cb-comments>
+    </div>
+
+    <!-- Double-curly-bracketed words will be
+    automatically replaced, and the buttons will
+    be automatically shown/hidden when on the
+    first/last page -->
+    <div class="pagination">
+        <button data-cb-previous>&larr;</button>
+        <p>Page {{page}} of {{totalPages}}</p>
+        <button data-cb-next>&rarr;</button>
+    </div>
+
+    <!-- The inputs must have the name attributes 
+    "author" and "body" -->
+    <form data-cb-form>
+        <input type="text" placeholder="Your name" name="author">
+        <br>
+        <textarea name="body" placeholder="Your comment"></textarea>
+        <br>
+        <button type="submit">Submit</button>
+        <span class="error">{{ addCommentError }}</span>
+    </form>
+
+</neodug-commentbox>

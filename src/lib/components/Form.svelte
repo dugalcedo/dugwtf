@@ -2,6 +2,7 @@
     import type { Snippet } from "svelte";
     import type { FormEventHandler } from "svelte/elements";
     import { getErrorMessage } from "../index.js";
+    import LoadingDots from "./LoadingDots.svelte";
 
     type E = Event & {
         currentTarget: EventTarget & HTMLFormElement;
@@ -86,7 +87,11 @@
     {@render children()}
     <div class="foot">
         <button disabled={loading}>
-            {loading ? "..." : buttonText}
+            {#if loading}
+                <LoadingDots />
+            {:else}
+                {buttonText}
+            {/if}
         </button>
         <span class="error">
             {error}

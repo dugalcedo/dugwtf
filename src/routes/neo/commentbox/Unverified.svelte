@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { getErrorMessage } from "../../lib/index.js";
+    import { getErrorMessage } from "../../../lib/index.js";
     import { onMount } from "svelte";
 
     const {

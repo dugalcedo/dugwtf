@@ -32,12 +32,18 @@ html, body, #app {
     overflow: hidden;
 }
 
+a {
+    color: aquamarine;
+}
+
 button {
     cursor: pointer;
     background-color: transparent;
     color: var(--white);
-    border: 0;
+    border: 1px solid rgba(255,255,255,0.05);
     border-bottom: 1px solid #777;
+    padding: .5rem 1.5rem;
+    font-size: 1rem;
     margin: 0px;
     display: inline-block;
 
@@ -56,4 +62,57 @@ button {
 main {
     flex-grow: 1;
     overflow-y: auto;
+    margin-bottom: 1rem;
+}
+
+input {
+    border: 1px solid #777;
+    background-color: rgba(255,255,255,0.05);
+    padding: .25rem;
+    color: white;
+
+    &:focus {
+        outline: 1px solid aquamarine;
+    }
+}
+
+p.m {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+form {
+    & .field {
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: 1fr 2fr;
+        align-items: flex-end;
+        margin-bottom: .5rem;
+    }
+
+    & > .head {
+        background-color: rgba(255,255,255,0.05);
+        padding: .5rem;
+        margin-bottom: .5rem;
+    }
+
+    & > .foot {
+        & button {
+            width: 100%;
+        }
+    }
+}
+
+table {
+    border-collapse: collapse;
+
+    & th {
+        background-color: var(--white);
+        color: var(--black);
+    }
+
+    & th, td {
+        border: 1px solid rgba(255,255,255,0.3);
+        padding: .5rem;
+    }
 }
