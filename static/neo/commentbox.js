@@ -31,7 +31,7 @@ class NeodugCommentbox extends HTMLElement {
     originalHTML = ""
     cbCommentsTemplate = ""
     name = ""
-    url = "https://dug.wtf"
+    url = "https://www.dug.wtf"
 
     /** @type {string | null | undefined} */
     simulateLongLoad = ""

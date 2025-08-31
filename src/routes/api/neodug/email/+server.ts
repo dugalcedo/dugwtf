@@ -1,5 +1,8 @@
+import { createCorsOptionsHandler } from "../../../../lib/server/cors.js"
 import { NeodugEmailVerification, NeodugUser, sendVerificationEmail } from "../../../../lib/server/neodugDb.js"
 import { defineDugwtfRequestHandler, getUserFromEvt } from "../../../../lib/server/requestHandling.js"
+
+export const OPTIONS = createCorsOptionsHandler()
 
 export const POST = defineDugwtfRequestHandler(async (evt) => {
     const user = await getUserFromEvt(evt)

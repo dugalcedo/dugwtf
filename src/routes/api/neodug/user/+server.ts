@@ -2,6 +2,9 @@ import validator from "validator";
 import bcrypt from 'bcryptjs'
 import { cookieOptions, defineDugwtfRequestHandler, getUserFromEvt } from "../../../../lib/server/requestHandling.js";
 import { NeodugUser, useNeodugDb, createNeodugUserDTO, createNeodugUserToken, parseNeodugUserToken, createNeodugUserDTO_POPULATED } from "../../../../lib/server/neodugDb.js"
+import { createCorsOptionsHandler } from "../../../../lib/server/cors.js"
+
+export const OPTIONS = createCorsOptionsHandler()
 
 // REGISTER
 type RegisterBody = {
