@@ -28,7 +28,7 @@
   */
 
 class NeodugCommentbox extends HTMLElement {
-    static API_URL = window.location.host.includes('localhost') ? `http://localhost:5173` : `http://dug.wtf`;
+    static API_URL = window.location.host.includes('localhost') ? `http://localhost:5173` : `https://dug.wtf`;
 
     originalHTML = ""
     cbCommentsTemplate = ""
