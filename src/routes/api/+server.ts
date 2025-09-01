@@ -22,7 +22,7 @@ export const GET = defineDugwtfRequestHandler((evt) => {
             },
             testStuff: {
                 yourIp: ip,
-                yourIpIsIp: validator.isIP(ip||"")
+                yourIpIsIp: (ip !== '::1') && validator.isIP(ip||"")
             }
         }
     }

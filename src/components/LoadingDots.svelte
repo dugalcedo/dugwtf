@@ -19,4 +19,4 @@
 
 </script>
 
-<span>{".".repeat(count)}</span>
+<span class="loading-dots">{".".repeat(count)}</span>

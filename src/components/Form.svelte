@@ -1,7 +1,7 @@
 <script lang="ts">
     import type { Snippet } from "svelte";
     import type { FormEventHandler } from "svelte/elements";
-    import { getErrorMessage } from "../index.js";
+    import { getErrorMessage } from "../lib/index.js";
     import LoadingDots from "./LoadingDots.svelte";
 
     type E = Event & {

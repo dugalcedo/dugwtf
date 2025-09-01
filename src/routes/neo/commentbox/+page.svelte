@@ -1,5 +1,5 @@
 <script lang="ts">
-    import Code from "../../../lib/components/Code.svelte";
+    import Code from "../../../components/Code.svelte";
     import LogInForm from "./LogInForm.svelte";
     import RegisterCommentBoxForm from "./RegisterCommentBoxForm.svelte";
     import RegisterForm from "./RegisterForm.svelte";

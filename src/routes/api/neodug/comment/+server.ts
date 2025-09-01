@@ -1,6 +1,6 @@
 import { createCorsOptionsHandler } from "../../../../lib/server/cors.js"
 import { NeodugComment, NeodugCommentbox } from "../../../../lib/server/neodugDb.js"
-import { defineDugwtfRequestHandler } from "../../../../lib/server/requestHandling.js"
+import { defineDugwtfRequestHandler, getIP } from "../../../../lib/server/requestHandling.js"
 
 export const OPTIONS = createCorsOptionsHandler()
 
@@ -28,7 +28,8 @@ export const POST = defineDugwtfRequestHandler(async (evt) => {
         commentbox_id: commentbox._id,
         author: body.author,
         body: body.body,
-        date: new Date()
+        date: new Date(),
+        ip: getIP(evt)
     })
 
     if (comments.length > 100) {

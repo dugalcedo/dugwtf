@@ -26,7 +26,15 @@
             </div>
         </div>
     </header>
+
 </a>
+
+<nav class="res">
+    <a href="/">home</a>
+    <a href="/dugscography">dugscography</a>
+    <a href="/neo">webdev tools</a>
+    <a href="/contact">contact</a>
+</nav>
 
 <style>
     a {
@@ -77,6 +85,21 @@
             position: relative;
             top: 20px;
             left: -45px
+        }
+    }
+
+    nav {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        & a {
+            display: block;
+            padding: 1rem;
+
+            &:hover {
+                outline: 1px dashed aquamarine;
+            }
         }
     }
 

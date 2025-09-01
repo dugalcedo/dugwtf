@@ -67,6 +67,8 @@ export interface NeodugCommentboxInterface {
     user_id: Types.ObjectId
     name: string
     comments: Types.ObjectId[]
+    banned_ips?: string[]
+    comments_require_approval?: boolean
 }
 
 
@@ -94,6 +96,16 @@ const NeodugCommentboxSchema = new Schema<NeodugCommentboxInterface>({
         required: true,
         default: [],
         ref: 'comment'
+    },
+    banned_ips: {
+        type: [String],
+        required: true,
+        default: []
+    },
+    comments_require_approval: {
+        type: Boolean,
+        required: true,
+        default: false
     }
 })
 
@@ -108,6 +120,8 @@ export interface NeodugCommentInterface {
     body: string
     commentbox_id: Types.ObjectId
     date: Date
+    ip?: string
+    approved?: boolean
 }
 
 const NeodugCommentSchema = new Schema<NeodugCommentInterface>({
@@ -131,6 +145,16 @@ const NeodugCommentSchema = new Schema<NeodugCommentInterface>({
     date: {
         type: Date,
         required: true
+    },
+    ip: {
+        type: String,
+        required: true,
+        default: ""
+    },
+    approved: {
+        type: Boolean,
+        required: true,
+        default: false
     }
 })
 

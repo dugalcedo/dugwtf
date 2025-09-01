@@ -17,6 +17,8 @@ type NeodugCommentBox_FE = {
     name: string
     comments: NeodugComment_FE
     user_id: string
+    banned_ips?: string[]
+    comments_require_approval?: boolean
 }
 
 type NeodugComment_FE = {
@@ -24,6 +26,8 @@ type NeodugComment_FE = {
     author: string
     body: string
     commentbox_id: string
+    ip: string
+    approved?: boolean
 }
 
 type NeodugEmailVerification_FE = {
