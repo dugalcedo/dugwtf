@@ -4,6 +4,7 @@
 
 <div class="res">
     <section id="featured-dugs">
+        <FeaturedDugcard title="Humans" bgTop={-40} bgFilter="invert(1)" />
         <FeaturedDugcard title="I-15 Dream" bgTop={-40} />
         <FeaturedDugcard title="Goos Beyond" bgFilter="invert(1) grayscale(1) contrast(2)"/>
         <FeaturedDugcard title="Big Fish eat Little Fish" bgFilter="invert(1) grayscale(1) brightness(0.7) contrast(5)" />
