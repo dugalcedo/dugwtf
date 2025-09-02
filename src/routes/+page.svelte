@@ -19,9 +19,6 @@
         <a href="/dugscography">
             <button>see all albums</button>
         </a>
-        <a href="/neo">
-            <button>neocities tools</button>
-        </a>
     </div>
 </div>
 

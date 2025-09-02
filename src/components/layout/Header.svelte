@@ -1,8 +1,10 @@
 <script lang="ts">
+    import Nav from "./Nav.svelte";
+
     let headerWidth = $state(0)
 </script>
 
-<a href="/">
+<a href="/" aria-label="Click to go home">
     <header class="mobile" bind:offsetWidth={headerWidth}>
         <img id="toony-moose" src="/images/moose-stamp.png" alt="toony moose" class="black-to-white">
         <h1 style="
@@ -29,21 +31,12 @@
 
 </a>
 
-<nav class="res">
-    <a href="/">home</a>
-    <a href="/dugscography">dugscography</a>
-    <a href="/neo">webdev tools</a>
-    <a href="/contact">contact</a>
-</nav>
+<Nav />
 
 <style>
     a {
         color: var(--white);
         text-decoration: none;
-    }
-
-    nav {
-        padding-bottom: 2px;
     }
 
     header.mobile {
@@ -92,19 +85,6 @@
         }
     }
 
-    nav {
-        display: flex;
-        justify-content: center;
-        align-items: center;
 
-        & a {
-            display: block;
-            padding: .3rem 1rem;
-
-            &:hover {
-                outline: 1px dashed aquamarine;
-            }
-        }
-    }
 
 </style>

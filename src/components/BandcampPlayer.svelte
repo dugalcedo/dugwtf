@@ -23,6 +23,7 @@
         bottom: 0;
         left: 0;
         transform: translate(0%, 0%);
+        z-index: 400;
     }
 
     .hidden {

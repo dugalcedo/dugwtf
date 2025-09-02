@@ -88,7 +88,7 @@
                 <p>Below is some code to get you started, but your comment box code doesn't even have to look exactly like this.</p>
             </div>
 
-            <Code path="/code/commentbox-example1.html" />
+            <Code copyBtn={true} path="/code/commentbox-example1.html" />
 
             <div class="panel">
                 <p class="m">The code can be heavily altered and it will still work. The requirements are...</p>
