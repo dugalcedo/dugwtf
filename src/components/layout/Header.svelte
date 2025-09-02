@@ -42,6 +42,10 @@
         text-decoration: none;
     }
 
+    nav {
+        padding-bottom: 2px;
+    }
+
     header.mobile {
         position: relative;
         
@@ -95,7 +99,7 @@
 
         & a {
             display: block;
-            padding: 1rem;
+            padding: .3rem 1rem;
 
             &:hover {
                 outline: 1px dashed aquamarine;

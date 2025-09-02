@@ -13,6 +13,10 @@
 </script>
 
 <!-- You are inside of #app -->
+<svelte:head>
+    <title>Dug Alcedo - electronic music</title>
+    <link rel="shortcut icon" href="/icons/favicon.png" type="image/x-icon">
+</svelte:head>
 <Background />
 <NavigationForedrop />
 <Header />

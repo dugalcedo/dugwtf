@@ -73,7 +73,7 @@
 
     .featured-dug-card:hover .bg {
         animation-name: bg-animation;
-        animation-duration: 0.1s;
+        animation-duration: 1s;
         animation-timing-function: linear;
         animation-iteration-count: infinite;
     }
