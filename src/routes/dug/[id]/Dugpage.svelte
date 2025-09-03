@@ -1,6 +1,12 @@
 <script lang="ts">
     import { type Dug } from "../../../lib/releases.js";
     import { bcplayer } from "../../../context/bcplayer.svelte.js";
+    import { beforeNavigate, afterNavigate } from "$app/navigation";
+    import { onMount } from "svelte";
+    import LoadingDots from "../../../components/LoadingDots.svelte";
+
+    let coverEl: HTMLImageElement | null = $state(null)
+    let coverLoading = $state(true)
 
     const {
         next,
@@ -11,6 +17,27 @@
         prev?: string,
         dug: Dug
     } = $props()
+
+    function waitForCoverToLoad() {
+        let checkForCoverLoadingComplete = setInterval(()=>{
+            if (coverEl?.complete) {
+                coverLoading = false
+                clearInterval(checkForCoverLoadingComplete)
+            }
+        }, 100)
+    }
+
+    onMount(() => {
+        waitForCoverToLoad()
+    })
+
+    beforeNavigate(() => {
+        coverLoading = true
+    })
+
+    afterNavigate(() => {
+        waitForCoverToLoad()
+    })
 
 </script>
 
@@ -31,7 +58,21 @@
             {/if}
         </div>
     </div>
-    <img class="cover" src="{dug.cover_l}" alt="album cover of {dug.title} by {dug.artist}">
+
+    {#if coverLoading}
+        <div class="cover-loading">
+            <LoadingDots size="3rem" />
+        </div>
+    {/if}
+    <img 
+        class="cover" 
+        class:hidden={coverLoading}
+        bind:this={coverEl} 
+        src="{dug.cover_l}" 
+        alt="album cover of {dug.title} by {dug.artist}"
+    >
+
+
     <section class="info">
         <h2 class="id">
             <span>{dug.id}</span>
@@ -72,11 +113,24 @@
         }
     }
 
+    .cover-loading {
+        width: 100%;
+        aspect-ratio: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+    }
+
     .dugpage {
         display: grid;
 
         & .cover {
             width: 100%;
+
+            &.hidden {
+                display: none;
+            }
         }
 
         & .id {
