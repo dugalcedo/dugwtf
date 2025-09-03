@@ -14,6 +14,7 @@ export type Dug = {
     date?: string,
     songCanLoad?: boolean
     sample_bc_id?: string
+    desc_long?: string
 }
 
 const dugs: Dug[] = [

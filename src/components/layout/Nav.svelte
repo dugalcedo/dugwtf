@@ -1,21 +1,28 @@
 <script lang="ts">
+    import { onClickOutside } from "../../lib/index.js";
+
     const navItems = [
         { href: "/", text: "home" },
         { href: "/dugscography", text: "dugscography" },
-        { href: "/recs", text: "recs" },
+        { href: "/musicilove", text: "music i love" },
         { href: "/neo", text: "webdev tools" },
         { href: "/contact", text: "contact" }
     ]
+
+    let mobileMenuShown = $state(false)
 </script>
 
-<nav class="res mobile">
-    <button>
+<nav class="res mobile" class:menu-shown={mobileMenuShown} use:onClickOutside={() => mobileMenuShown = false}>
+    <button onclick={() => mobileMenuShown = !mobileMenuShown}>
         MENU
     </button>
     <div class="menu">
         {#each navItems as item}
-            <a href={item.href}>{item.text}</a>
+            <a href={item.href} onclick={() => mobileMenuShown = false}>
+                {item.text}
+            </a>
         {/each}
+        <button class="close-btn" onclick={() => mobileMenuShown = false}>&times;</button>
     </div>
 </nav>
 
@@ -44,11 +51,20 @@
             background-color: white;
             width: calc(100% - 16px);
             z-index: 500;
-            border-bottom: 4px dashed black;
             box-shadow: 0px 4rem 5rem rgba(0, 0, 0, 0.5);
         }
 
-        &:hover > .menu {
+        & .close-btn {
+            color: black;
+            font-size: 3rem;
+            padding: 0 0 .5rem 0;
+            height: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        &.menu-shown > .menu {
             display: flex;
             flex-direction: column;
         }
@@ -70,9 +86,14 @@
         display: none;
         justify-content: center;
         align-items: center;
+        font-size: .8rem;
 
         @media (min-width: 620px) {
             display: flex;
+        }
+
+        @media (min-width: 800px) {
+            font-size: 1rem;
         }
 
         & a {
