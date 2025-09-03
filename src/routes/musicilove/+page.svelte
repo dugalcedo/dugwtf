@@ -1,5 +1,11 @@
 <script lang="ts">
-    const loves = [
+    type Love = {
+        artist: string
+        title: string
+        url: string
+    };
+
+    const loves: Love[] = [
         {
             artist: 'Chris Weisman',
             title: 'Transparency',
@@ -211,7 +217,7 @@
             url: "https://www.youtube.com/watch?v=1r9lSa_9TKg"
         },
         {
-            aritst: "Stereolab",
+            artist: "Stereolab",
             title: "Switched On",
             url: "https://www.youtube.com/watch?v=JpHiIk4-1j8"
         },
