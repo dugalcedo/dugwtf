@@ -118,7 +118,7 @@
         },
         {
             artist: "Zach Hill",
-            title: "Dark Art",
+            title: "Astrological Straits",
             url: "https://www.youtube.com/watch?v=M4kVOJfZg_E"
         },
         {
@@ -280,6 +280,11 @@
             artist: "YMO",
             title: "Technodelic",
             url: "https://www.youtube.com/watch?v=4-XUTTqMs48"
+        },
+        {
+            artist: "WRS",
+            title: "Zone",
+            url: "https://wrswrswrswrs.bandcamp.com/album/zone"
         }
     ]
 
