@@ -22,7 +22,8 @@
         method = "GET",
         body = {},
         beforeSubmit = (e, fd, api) => fd,
-        onSuccess = (result) => {window.location.reload()}
+        onSuccess = (result) => {window.location.reload()},
+        formDataToParams = false
     } : {
         id?: string,
         class?: string,
@@ -33,7 +34,8 @@
         method?: string,
         body?: Record<string, any>,
         beforeSubmit?: (e: E, fd: any, api: FormApi) => any,
-        onSuccess?: string | ((result: any) => void)
+        onSuccess?: string | ((result: any) => void),
+        formDataToParams?: boolean
     } = $props()
 
     let error = $state("")
@@ -49,6 +51,7 @@
         }
 
         const fd = beforeSubmit(e, Object.fromEntries(new FormData(e.currentTarget)), api)
+        const data = { ...fd, ...body }
 
         if (error) {
             loading = false
@@ -58,13 +61,18 @@
         const options = {
             method,
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                ...fd,
-                ...body
+            body: formDataToParams ? undefined : JSON.stringify(data)
+        }
+
+        let _url = new URL(`${window.location.protocol}//${window.location.host}${url}`)
+
+        if (formDataToParams) {
+            Object.entries(data).forEach(([k,v]) => {
+                _url.searchParams.set(k, v?.toString() || "")
             })
         }
 
-        const res = await fetch(url, options)
+        const res = await fetch(_url, options)
 
         if (!res.ok) {
             error = await getErrorMessage(res)

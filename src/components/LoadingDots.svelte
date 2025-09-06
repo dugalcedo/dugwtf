@@ -1,6 +1,6 @@
 <script lang="ts">
     import { onDestroy, onMount } from "svelte";
-    const { max = 5, size = "1rem" }: { max?: number, size?: string } = $props()
+    const { max = 5, size = "3rem" }: { max?: number, size?: string } = $props()
     let count = $state(1)
 
     let interval: any;
