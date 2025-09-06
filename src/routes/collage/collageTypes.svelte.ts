@@ -64,6 +64,7 @@ export const saveCollageToLocalStorage = (collage: CollageData) => {
 export type CollageStore = {
     collageData: CollageData
     tiers: PopulatedCollageTier[]
+    beingMovedIndex: number
 }
 
 export const collageStore = $state<CollageStore>({
@@ -84,7 +85,8 @@ export const collageStore = $state<CollageStore>({
             color: 'transparent',
             albums: this.collageData.albums.filter((album: CollageAlbum) => !tierTitles.includes(album.tier))
         }]
-    }
+    },
+    beingMovedIndex: -1
 })
 
 
@@ -99,5 +101,28 @@ export const addAlbumToCollage = (album: AlbumResult) => {
 export const removeAlbumFromCollage = (album: AlbumResult | CollageAlbum) => {
     const i = collageStore.collageData.albums.findIndex(alb => alb.id === album.id)
     collageStore.collageData.albums.splice(i, 1)
+    saveCollageToLocalStorage(collageStore.collageData)
+}
+
+export const moveAlbumInCollage = (currentIndex: number, newIndex: number) => {
+    const album = collageStore.collageData.albums[currentIndex]
+
+    if (!album) {
+        console.warn("Cannot move album because currentIndex does not match any album.", currentIndex, album)
+        return
+    }
+
+    if (
+        newIndex < 0 
+        || newIndex > collageStore.collageData.albums.length
+        || !Number.isInteger(newIndex)
+    ) {
+        console.warn("Cannot move album because newIndex is invalid", newIndex)
+        return
+    }
+
+    collageStore.collageData.albums.splice(currentIndex, 1)
+    collageStore.collageData.albums.splice(newIndex, 0, album)
+    collageStore.beingMovedIndex = -1
     saveCollageToLocalStorage(collageStore.collageData)
 }

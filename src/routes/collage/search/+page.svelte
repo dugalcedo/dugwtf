@@ -8,6 +8,10 @@
     let ETA = $state(0)
     let albumsFound: AlbumResult[] | null = $state(null)
 
+    let artist_input: null | HTMLInputElement = $state(null)
+    let artist_value = $state("")
+    let album_value = $state("")
+
     const handleCreateTicket = (result: TicketResult) => {
         ETA = result.data.estimatedWaitTime
         submittingTicket = true
@@ -17,9 +21,9 @@
     const handleSubmitTicket = async (ticket: string) => {
         const res = await fetch(`/api/albumSearch/submitTicket?ticket=${ticket}`)
         const data = await res.json()
-        console.log(data)
         albumsFound = data?.data || []
         submittingTicket = false
+        artist_input?.focus()
     }
 
 </script>
@@ -45,11 +49,11 @@
             <div class="body">
                 <div class="field">
                     <label for="albumSearchForm_artist">artist</label>
-                    <input type="text" id="albumSearchForm_artist" name="artist" autocomplete="off">
+                    <input bind:this={artist_input} type="text" id="albumSearchForm_artist" name="artist" autocomplete="off" bind:value={artist_value}>
                 </div>
                 <div class="field">
                     <label for="albumSearchForm_album">album</label>
-                    <input type="text" id="albumSearchForm_album" name="album" autocomplete="off">
+                    <input type="text" id="albumSearchForm_album" name="album" autocomplete="off" bind:value={album_value}>
                 </div>
             </div>
         </Form>
