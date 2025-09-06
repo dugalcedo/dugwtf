@@ -13,7 +13,7 @@ export const discogsFetch = (path: string, params: Record<string, string>) => {
     const url = new URL(`${DISCOGS_API_ROOT}${path}`)
 
     Object.entries(params).forEach(([k,v]) => {
-        url.searchParams.set(k, v)
+        if (v) url.searchParams.set(k, v)
     })
 
     url.searchParams.set('key', process.env.DISCOGS_CONSUMER_KEY)

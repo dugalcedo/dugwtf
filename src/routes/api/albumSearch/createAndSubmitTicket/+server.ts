@@ -5,9 +5,9 @@ import albumSearchQueue, { discogsAlbumSearchFetch } from "../albumSearchQueue.j
 export const GET = defineDugwtfRequestHandler(async (evt) => {
     const { artist, album } = Object.fromEntries(new URL(evt.url).searchParams)
 
-    if (!artist || !album) throw {
+    if (!artist && !album) throw {
         status: 400,
-        message: "artist and album searchParams required"
+        message: "artist or album searchParams required"
     }
 
     const { ticket } = albumSearchQueue.createTicket(async () => {
