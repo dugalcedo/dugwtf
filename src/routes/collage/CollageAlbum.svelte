@@ -30,17 +30,17 @@
     class:being-moved={beingMoved} 
     class:darken={!beingMoved && (collageStore.beingMovedIndex != -1)}
 >
-    {#if moveOngoing && i == 0}
+    {#if moveOngoing && (i == 0) && (collageStore.beingMovedIndex !== 0)}
         <button class="move-here-btn left" onclick={() => handleMoveHere(0)}>
-            MOVE HERE
+            HERE
         </button>
     {/if}
     <img class="cover" src={album.cover_image} alt="album cover of {album.title}">
-    {#if moveOngoing}
+    {#if moveOngoing && (collageStore.beingMovedIndex !== i+1) && (collageStore.beingMovedIndex !== i)}
         <button class="move-here-btn right" onclick={() => handleMoveHere(1)}>
-            MOVE HERE
+            HERE
         </button>
-    {:else}
+    {:else if !moveOngoing}
         <div class="controls">
             <button 
                 class="move-btn" 

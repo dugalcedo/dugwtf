@@ -121,8 +121,18 @@ export const moveAlbumInCollage = (currentIndex: number, newIndex: number) => {
         return
     }
 
+    // Get tier
+    const newNeighbor = (
+        collageStore.collageData.albums[newIndex]
+        || collageStore.collageData.albums[newIndex-1]
+        || collageStore.collageData.albums[newIndex+1]
+        || album
+    );
+    album.tier = newNeighbor.tier
+
+    // Splice and quit
     collageStore.collageData.albums.splice(currentIndex, 1)
-    collageStore.collageData.albums.splice(newIndex, 0, album)
+    collageStore.collageData.albums.splice(newIndex > currentIndex ? (newIndex - 1) : newIndex, 0, album)
     collageStore.beingMovedIndex = -1
     saveCollageToLocalStorage(collageStore.collageData)
 }
