@@ -29,6 +29,7 @@
 <div class="album" 
     class:being-moved={beingMoved} 
     class:darken={!beingMoved && (collageStore.beingMovedIndex != -1)}
+    data-i={i || "N/A"}
 >
     {#if moveOngoing && (i == 0) && (collageStore.beingMovedIndex !== 0)}
         <button class="move-here-btn left" onclick={() => handleMoveHere(0)}>

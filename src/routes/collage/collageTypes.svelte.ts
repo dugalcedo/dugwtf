@@ -22,8 +22,12 @@ export type CollageTier = {
     color: string
 }
 
+export type CollageAlbumWithIndex = CollageAlbum & {
+    i: number
+}
+
 export type PopulatedCollageTier = CollageTier & {
-    albums: CollageAlbum[]
+    albums: CollageAlbumWithIndex[]
 }
 
 export type CollageData = {
@@ -63,28 +67,32 @@ export const saveCollageToLocalStorage = (collage: CollageData) => {
 
 export type CollageStore = {
     collageData: CollageData
-    tiers: PopulatedCollageTier[]
+    populatedTiers: PopulatedCollageTier[]
     beingMovedIndex: number
 }
 
 export const collageStore = $state<CollageStore>({
     collageData: defaultCollageData(),
-    get tiers() {
+    get populatedTiers() {
+        const albums: CollageAlbumWithIndex[] = this.collageData.albums.map((alb, i) => ({ ...alb, i }))
+
         let tiers = this.collageData.tiers.reduce((tiers: PopulatedCollageTier[], tier: CollageTier) => {
             tiers.push({
                 ...tier,
-                albums: this.collageData.albums.filter(album => album.tier === tier.title)
+                albums: albums.filter(album => album.tier === tier.title)
             })
             return tiers
         }, [])
 
         const tierTitles = this.collageData.tiers.map(t => t.title)
 
-        return [...tiers, {
+        tiers = [...tiers, {
             title: 'untiered',
             color: 'transparent',
-            albums: this.collageData.albums.filter((album: CollageAlbum) => !tierTitles.includes(album.tier))
+            albums: albums.filter((album: CollageAlbum) => !tierTitles.includes(album.tier))
         }]
+
+        return tiers
     },
     beingMovedIndex: -1
 })
@@ -135,4 +143,15 @@ export const moveAlbumInCollage = (currentIndex: number, newIndex: number) => {
     collageStore.collageData.albums.splice(newIndex > currentIndex ? (newIndex - 1) : newIndex, 0, album)
     collageStore.beingMovedIndex = -1
     saveCollageToLocalStorage(collageStore.collageData)
+}
+
+export function createAlbumRows(albums: CollageAlbumWithIndex[], perRow: number) {
+    const result: CollageAlbumWithIndex[][] = [];
+    const rowCount = Math.ceil(albums.length/perRow)
+    for (let i = 0; i < rowCount; i++) {
+        const start = i * perRow
+        const end = (i+1) * perRow
+        result.push(albums.slice(start, end))
+    }
+    return result
 }

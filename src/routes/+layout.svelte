@@ -4,6 +4,7 @@
     import Background from "../components/layout/Background.svelte";
     import BandcampPlayer from "../components/BandcampPlayer.svelte";
     import NavigationForedrop from "../components/NavigationForedrop.svelte";
+    import Modals from "../components/layout/Modals.svelte";
 
     const {
         children
@@ -15,6 +16,7 @@
 <!-- You are inside of #app -->
 <Background />
 <NavigationForedrop />
+<Modals />
 <Header />
 <main>
     {@render children()}

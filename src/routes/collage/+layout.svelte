@@ -12,17 +12,23 @@
 </script>
 
 {#if collageStore.collageData}
+    <br><br>
+    {@render children()}
+
     <div class="res">
         <nav>
             <a href="/collage">My collage</a>
             <a href="/collage/search">Search for albums</a>
         </nav>
     </div>
-
-    {@render children()}
 {:else}
     <div class="res" style="text-align: center;">
         <LoadingDots />
     </div>
 {/if}
 
+<style>
+    nav {
+        padding-bottom: 1.5rem;
+    }
+</style>
