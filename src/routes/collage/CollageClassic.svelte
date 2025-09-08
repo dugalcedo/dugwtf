@@ -6,11 +6,13 @@
     const {
         perRow,
         titlesFontSize,
-        titlesToSide
+        titlesToSide,
+        collageType
     }: {
         perRow: number,
         titlesFontSize: number,
-        titlesToSide: boolean
+        titlesToSide: boolean,
+        collageType: 'classic' | 'tiered'
     } = $props()
 
     const gtc = $derived.by(() => {
@@ -34,6 +36,8 @@
                 {perRow}
                 {titlesFontSize}
                 {titlesToSide}
+                {collageType}
+                moveTierOnMove={false}
             />
        {/each}
     </div>

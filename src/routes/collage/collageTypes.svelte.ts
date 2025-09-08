@@ -69,11 +69,12 @@ export type CollageStore = {
     collageData: CollageData
     populatedTiers: PopulatedCollageTier[]
     beingMovedIndex: number
+    beingMovedTierIndex: number
 }
 
 export const collageStore = $state<CollageStore>({
     collageData: defaultCollageData(),
-    get populatedTiers() {
+    get populatedTiers(): PopulatedCollageTier[] {
         const albums: CollageAlbumWithIndex[] = this.collageData.albums.map((alb, i) => ({ ...alb, i }))
 
         let tiers = this.collageData.tiers.reduce((tiers: PopulatedCollageTier[], tier: CollageTier) => {
@@ -87,14 +88,19 @@ export const collageStore = $state<CollageStore>({
         const tierTitles = this.collageData.tiers.map(t => t.title)
 
         tiers = [...tiers, {
-            title: 'untiered',
+            title: 'UNTIERED',
             color: 'transparent',
             albums: albums.filter((album: CollageAlbum) => !tierTitles.includes(album.tier))
         }]
 
         return tiers
     },
-    beingMovedIndex: -1
+    beingMovedIndex: -1,
+    get beingMovedTierIndex(): number {
+        if (this.beingMovedIndex == -1) return -1
+        const album = this.collageData.albums[this.beingMovedIndex]
+        return this.populatedTiers.findIndex(t => (t.title||"UNTIERED") === (album?.tier)||"UNTIERED")
+    }
 })
 
 
@@ -112,7 +118,7 @@ export const removeAlbumFromCollage = (album: AlbumResult | CollageAlbum) => {
     saveCollageToLocalStorage(collageStore.collageData)
 }
 
-export const moveAlbumInCollage = (currentIndex: number, newIndex: number) => {
+export const moveAlbumInCollage = (currentIndex: number, newIndex: number, moveTier: boolean) => {
     const album = collageStore.collageData.albums[currentIndex]
 
     if (!album) {
@@ -130,13 +136,15 @@ export const moveAlbumInCollage = (currentIndex: number, newIndex: number) => {
     }
 
     // Get tier
-    const newNeighbor = (
-        collageStore.collageData.albums[newIndex]
-        || collageStore.collageData.albums[newIndex-1]
-        || collageStore.collageData.albums[newIndex+1]
-        || album
-    );
-    album.tier = newNeighbor.tier
+    if (moveTier) {
+        const newNeighbor = (
+            collageStore.collageData.albums[newIndex]
+            || collageStore.collageData.albums[newIndex-1]
+            || collageStore.collageData.albums[newIndex+1]
+            || album
+        );
+        album.tier = newNeighbor.tier
+    }
 
     // Splice and quit
     collageStore.collageData.albums.splice(currentIndex, 1)
@@ -154,4 +162,41 @@ export function createAlbumRows(albums: CollageAlbumWithIndex[], perRow: number)
         result.push(albums.slice(start, end))
     }
     return result
+}
+
+export function addTier(title: string, color: string, d: 1 | -1, adjacentIndex: number) {
+    const newTier: CollageTier = { title, color }
+    const newTierIndex = adjacentIndex + (d == -1 ? 0 : 1);
+    collageStore.collageData.tiers.splice(newTierIndex, 0, newTier)
+    saveCollageToLocalStorage(collageStore.collageData)
+}
+
+export function moveAlbumToDifferentTier(albumIndex: number, tierIndex: number) {
+    const albums = collageStore.collageData.albums
+    const album = albums[albumIndex]
+    const tiers = collageStore.populatedTiers
+    const tier = tiers[tierIndex]
+
+    // change album index so it's the highest in its tier (lowest ranked)
+    albums.splice(albumIndex, 1)
+    const albumsWithIndices = albums.map((alb, i) => ({ ...alb, i }))
+    const albumsInNewTier = albumsWithIndices.filter(alb => alb.tier === tier.title)
+    const highestIndex = Math.min(...albumsInNewTier.map(alb => alb.i))
+    albums.splice(highestIndex, 0, album)
+
+    // change tier
+    album.tier = tier.title || "UNTIERED"
+    collageStore.beingMovedIndex = -1
+    saveCollageToLocalStorage(collageStore.collageData)
+}
+
+export function deleteTier(tierIndex: number) {
+    collageStore.collageData.tiers.splice(tierIndex, 1)
+    saveCollageToLocalStorage(collageStore.collageData)
+}
+
+export function editTier(tierIndex: number, newData: CollageTier) {
+    if (tierIndex < 0 || tierIndex > collageStore.collageData.tiers.length-1) return
+    collageStore.collageData.tiers[tierIndex] = newData
+    saveCollageToLocalStorage(collageStore.collageData)
 }

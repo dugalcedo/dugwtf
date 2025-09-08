@@ -15,9 +15,9 @@
 <div class:res={!extendedWidth} class:extend={extendedWidth} id="collage-page">
 
     {#if collageType === 'classic'}
-        <CollageClassic {perRow} {titlesFontSize} {titlesToSide} />
+        <CollageClassic {perRow} {titlesFontSize} {titlesToSide} {collageType} />
     {:else}
-        <CollageTiered {perRow} {titlesFontSize} {titlesToSide} />
+        <CollageTiered {perRow} {titlesFontSize} {titlesToSide} {collageType} />
     {/if}
 
     <div class="controls">

@@ -1,16 +1,21 @@
 <script lang="ts">
-    import { collageStore, type CollageAlbum, removeAlbumFromCollage, moveAlbumInCollage } from "./collageTypes.svelte.js";
+    import { collageStore, type CollageAlbum, removeAlbumFromCollage, moveAlbumInCollage, moveAlbumToDifferentTier } from "./collageTypes.svelte.js";
 
     const {
         album,
-        i
+        i,
+        moveTierOnMove,
+        collageType
     }: {
         album: CollageAlbum
         i: number
+        moveTierOnMove: boolean
+        collageType: 'classic' | 'tiered'
     } = $props()
 
     const beingMoved = $derived(i === collageStore.beingMovedIndex)
     const moveOngoing = $derived(-1 != collageStore.beingMovedIndex)
+
 
     const handleMove = () => {
         collageStore.beingMovedIndex = i
@@ -21,7 +26,7 @@
     }
 
     const handleMoveHere = (delta: 1 | 0) => {
-        moveAlbumInCollage(collageStore.beingMovedIndex, i+delta)
+        moveAlbumInCollage(collageStore.beingMovedIndex, i+delta, moveTierOnMove)
     }
 </script>
 

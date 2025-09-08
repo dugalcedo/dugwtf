@@ -6,12 +6,16 @@
         albums,
         perRow,
         titlesFontSize,
-        titlesToSide
+        titlesToSide,
+        moveTierOnMove,
+        collageType
     } : {
         albums: CollageAlbumWithIndex[],
         perRow: number
         titlesFontSize: number
         titlesToSide: boolean
+        moveTierOnMove: boolean
+        collageType: 'classic' | 'tiered'
     } = $props()
 
     const gtc = $derived.by(() => {
@@ -28,7 +32,7 @@
     {#each albums as album, i (album.id)}
         {#if titlesToSide}
             <div class="album-container">
-                <CollageAlbum {album} i={album.i} />
+                <CollageAlbum {collageType} {moveTierOnMove} {album} i={album.i} />
             </div>
             {#if i == albums.length-1}
                 {@const r = perRow - albums.length}
@@ -45,7 +49,7 @@
             {/if}
         {:else}
             <div class="album-container">
-                <CollageAlbum {album} i={album.i} />
+                <CollageAlbum {collageType} {moveTierOnMove} {album} i={album.i} />
                 <div class="title" style="font-size: {titlesFontSize}px;">
                     {album.title}
                 </div>
