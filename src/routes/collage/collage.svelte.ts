@@ -10,10 +10,11 @@ const TicketResultSchema = z.object({
 export type TicketResult = z.infer<typeof TicketResultSchema>;
 
 const AlbumResultSchema = z.object({
-    id: z.int(),
-    master_id: z.int(),
+    id: z.int().or(z.string().min(1)),
+    master_id: z.int().optional(),
     title: z.string(),
-    cover_image: z.string()
+    cover_image: z.string(),
+    i: z.number().optional()
 }).strip()
 
 export type AlbumResult = z.infer<typeof AlbumResultSchema>
@@ -40,7 +41,8 @@ export type CollageStore = {
     extendedWidth: boolean
     gap: number
     roundness: number
-    beingMovedIndex: number
+    beingMovedIndex: number | undefined
+    changingNameIndex: number | undefined
 }
 
 export const collageStore: CollageStore = $state<CollageStore>({
@@ -52,7 +54,8 @@ export const collageStore: CollageStore = $state<CollageStore>({
     extendedWidth: false,
     gap: 5,
     roundness: 0,
-    beingMovedIndex: -1
+    beingMovedIndex: undefined,
+    changingNameIndex: undefined
 })
 
 ////
@@ -88,8 +91,10 @@ export function getCollageDataFromLocalStorage(): {
 }
 
 export function saveToLocalStorage() {
-    CollageDataSchema.parse($state.snapshot(collageStore.data))
-    localStorage.setItem('dugwtf::collage', JSON.stringify(collageStore.data))
+    const data = $state.snapshot(collageStore.data)
+    console.log("Saving to localStroage:", data)
+    CollageDataSchema.parse(data)
+    localStorage.setItem('dugwtf::collage', JSON.stringify(data))
 }
 
 
@@ -112,7 +117,10 @@ export function removeAlbum(album: AlbumResult) {
     saveToLocalStorage()
 }
 
-export function moveAlbum(collage: List, newIndex: number) {
+export function moveAlbum(collage: List, newIndex?: number) {
+    if (newIndex === undefined) return;
+    if (collageStore.beingMovedIndex === undefined) return
+
     const albumBeingMoved = collage.albums[collageStore.beingMovedIndex]
     
     // Delete
@@ -125,7 +133,17 @@ export function moveAlbum(collage: List, newIndex: number) {
 
 
     collageStore.beingMovedIndex = -1
-    // saveToLocalStorage()
+    saveToLocalStorage()
+}
+
+export function changeAlbumName(album: AlbumResult, newTitle: string) {
+    const collage = collageStore.data.collages.find(col => col.name == collageStore.selectedCollage)
+    if (!collage) return
+    const _album = collage.albums.find(alb => alb.id == album.id)
+    if (!_album) return
+    _album.title = newTitle.trim()
+    saveToLocalStorage()
+    collageStore.changingNameIndex = undefined
 }
 
 export function addCollage(listName: string) {
@@ -142,4 +160,10 @@ export function deleteCollage() {
     if (!listName) return
     collageStore.data.collages = collageStore.data.collages.filter(list => list.name != listName)
     saveToLocalStorage()
+}
+
+///// 
+
+export type LAYOUT_DATA = {
+    path: string
 }

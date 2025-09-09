@@ -5,7 +5,10 @@
         { href: "/", text: "home" },
         { href: "/dugscography", text: "dugscography" },
         { href: "/musicilove", text: "music i love" },
-        { href: "/neo", text: "webdev tools" },
+        { text: "stuff", items: [
+            { href: "/neo", text: "webdev tools" },
+            { href: "/collage", text: "album cover collage maker" }
+        ] },
         { href: "/contact", text: "contact" }
     ]
 
@@ -18,9 +21,17 @@
     </button>
     <div class="menu">
         {#each navItems as item}
-            <a href={item.href} onclick={() => mobileMenuShown = false}>
-                {item.text}
-            </a>
+            {#if item.href}
+                <a href={item.href} onclick={() => mobileMenuShown = false}>
+                    {item.text}
+                </a>
+            {:else if item.items}
+                {#each item.items as jtem}
+                    <a href={jtem.href} onclick={() => mobileMenuShown = false}>
+                        {jtem.text}
+                    </a>
+                {/each}
+            {/if}
         {/each}
         <button class="close-btn" onclick={() => mobileMenuShown = false}>&times;</button>
     </div>
@@ -28,7 +39,20 @@
 
 <nav class="res desktop-flex">
     {#each navItems as item}
-        <a href={item.href}>{item.text}</a>
+            {#if item.href}
+                <a href={item.href} onclick={() => mobileMenuShown = false}>
+                    {item.text}
+                </a>
+            {:else if item.items}
+                <div class="dropdown">
+                    <button>{item.text}</button>
+                    <div class="menu">
+                        {#each item.items as jtem}
+                            <a href={jtem.href}>{jtem.text}</a>
+                        {/each}
+                    </div>
+                </div>
+            {/if}
     {/each}
 </nav>
 
@@ -105,6 +129,34 @@
             &:hover {
                 background-color: aquamarine;
                 color: black;
+            }
+        }
+
+        & > .dropdown {
+            position: relative;
+
+            & > button {
+                border: 0;
+            }
+                
+
+            & > .menu {
+                position: absolute;
+                z-index: 5;
+                min-width: 200px;
+                display: none;
+
+                & > a {
+                    background-color: white;
+                    color: black;
+                    &:hover {
+                        background-color: aquamarine;
+                    }
+                }
+            }
+
+            &:hover > .menu {
+                display: block;
             }
         }
     }

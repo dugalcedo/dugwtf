@@ -16,28 +16,32 @@
     {#if collageStore.data.collages.length == 0}
         <p style="text-align: center; font-size: 0.8rem; font-style: italic;">You don't have any collages yet</p>
     {:else}
-        <p style="
-            text-align: center;
-        ">
-            &darr;&darr;&darr; SELECT A COLLAGE &darr;&darr;&darr;
-        </p>
-        <div class="collages">
-            {#each collageStore.data.collages as list (list.name)}
-                <div class="collage">
-                    <button class="sel" onclick={() => collageStore.selectedCollage = list.name} class:selected={list.name == collageStore.selectedCollage}>
-                        {list.name}
-                    </button>
-                    <button class="del" onclick={() => handleDeleteCollage(list.name)}>
-                        &times;
-                    </button>
-                </div>
-            {/each}
+        <div class="collage-selector">
+            <p style="
+                text-align: center;
+            ">
+                &darr;&darr;&darr; SELECT A COLLAGE &darr;&darr;&darr;
+            </p>
+            <div class="collages">
+                {#each collageStore.data.collages as list (list.name)}
+                    <div class="collage">
+                        <button class="sel" onclick={() => collageStore.selectedCollage = list.name} class:selected={list.name == collageStore.selectedCollage}>
+                            {list.name}
+                        </button>
+                        <button class="del" onclick={() => handleDeleteCollage(list.name)}>
+                            &times;
+                        </button>
+                    </div>
+                {/each}
+            </div>
         </div>
     {/if}
     
     
     {#if collageStore.data.collages.length < 3}
-        <AddCollageForm />
+        <div class="add-collage-form">
+            <AddCollageForm />
+        </div>
     {:else}
         <p style="text-align: center; font-size: 0.7rem; font-style: italic;">You have the maximum allowed number of collages (3)</p>
     {/if}
@@ -92,5 +96,9 @@
                 display: block;
             }
         }
+    }
+
+    .collage-selector, .add-collage-form {
+        background-color: rgba(255, 255, 255, 0.05);
     }
 </style>

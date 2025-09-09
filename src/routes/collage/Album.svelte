@@ -1,16 +1,13 @@
 <script lang="ts">
     import { type AlbumResult, collageStore, type List, moveAlbum, removeAlbum } from "./collage.svelte.js";
     const { album, collage, rowIndex }: { album: AlbumResult, collage: List, rowIndex: number } = $props()
-    const i = $derived.by(() => {
-        const i = collage.albums.findIndex(alb => alb.id == album.id)
-        return i < 0 ? -2 : i
-    })
 </script>
+
 
 <div 
     class="album"
-    class:being-moved={collageStore.beingMovedIndex === i}
-    class:other-being-moved={collageStore.beingMovedIndex !== i && collageStore.beingMovedIndex !== -1}
+    class:being-moved={collageStore.beingMovedIndex === album.i}
+    class:other-being-moved={collageStore.beingMovedIndex !== album.i && collageStore.beingMovedIndex !== -1 && collageStore.beingMovedIndex !== undefined}
 >
     <div 
         class="cover-container" 
@@ -20,14 +17,15 @@
             class="cover"
             src="https://corsproxy.io/?{encodeURIComponent(album.cover_image)}"
             crossorigin="anonymous"
-            alt="album cover of {album.title}"
+            alt={album.title}
             style="
                 border-radius: {collageStore.roundness}%;
+                font-size: {collageStore.fontSize}px;
             "
         >
 
         <div class="controls">
-            <button onclick={() => collageStore.beingMovedIndex = i}>
+            <button onclick={() => collageStore.beingMovedIndex = album.i}>
                 MOV
             </button> 
             <button class="del" onclick={() => removeAlbum(album)}>
@@ -36,12 +34,12 @@
         </div>
 
         <div class="move-here-controls">
-            <button onclick={() => moveAlbum(collage, i)}>
+            <button onclick={() => moveAlbum(collage, album.i)}>
                 &lt;
                 <br>&lt;
                 <br>&lt;
             </button>
-            <button onclick={() => moveAlbum(collage, i+1)}>
+            <button onclick={() => moveAlbum(collage, (album.i || (album.i === 0 ? 0 : -2))+1)}>
                 &gt; 
                 <br>&gt;
                 <br>&gt;

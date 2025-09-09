@@ -4,13 +4,15 @@
         min,
         max,
         step = 1,
-        id = ""
+        id = "",
+        name = ""
     } : {
         value: number,
         min: number,
         max: number,
         step?: number,
-        id?: string
+        id?: string,
+        name?: string
     } = $props()
 
     const handleChange = (delta: 1 | -1) => {
@@ -20,13 +22,13 @@
 </script>
 
 <div class="number-input">
-    <button onclick={() => handleChange(-1)}>&minus;</button>
+    <button type="button" onclick={() => handleChange(-1)}>&minus;</button>
     <span>{value}</span>
-    <button onclick={() => handleChange(1)}>&plus;</button>
+    <button type="button" onclick={() => handleChange(1)}>&plus;</button>
 </div>
 
 <div class="hidden-input">
-    <input type="number" id={id} min={min} max={max} step={step}>
+    <input type="number" bind:value={value} name={name} id={id} min={min} max={max} step={step}>
 </div>
 
 <style>

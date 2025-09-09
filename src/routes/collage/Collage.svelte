@@ -3,6 +3,7 @@
     import Album from "./Album.svelte";
     import { type List, type AlbumResult, collageStore } from "./collage.svelte.js";
     import html2canvas from "html2canvas";
+    import AlbumTitle from "./AlbumTitle.svelte";
 
     const {
         collage
@@ -11,9 +12,10 @@
     } = $props()
 
     const rows: AlbumResult[][] = $derived.by(() => {
+        const albums = collage.albums.map((alb, i) => ({...alb, i}))
         const rows: AlbumResult[][] = []
-        for (let i = 0; i < collage.albums.length; i += collageStore.perRow) {
-            rows.push(collage.albums.slice(i, i + collageStore.perRow))
+        for (let i = 0; i < albums.length; i += collageStore.perRow) {
+            rows.push(albums.slice(i, i + collageStore.perRow))
         }
         return rows
     })
@@ -67,10 +69,11 @@
                     {#if r}
                         <div class="spacer" style="grid-column: span {r};"></div>
                     {/if}
+                    <!-- TITLES -->
                     <div class="titles" style="font-size: {collageStore.fontSize}px">
                         <ul>
                             {#each row as album}
-                                <li>{album.title}</li>
+                                <AlbumTitle {album} />
                             {/each}
                         </ul>
                     </div>
@@ -92,17 +95,6 @@
 
             & ul {
                 list-style-type: none;
-
-                & li {
-                    position: relative;
-
-                    &::before {
-                        position: absolute;
-                        content: '⬝';
-                        left: -10px;
-                        color: white;
-                    }
-                }
             }
         }
     }
