@@ -13,38 +13,44 @@
 </script>
 
 <div class="container">
-    {#if collageStore.data.collages.length == 0}
-        <p style="text-align: center; font-size: 0.8rem; font-style: italic;">You don't have any collages yet</p>
-    {:else}
-        <div class="collage-selector">
-            <p style="
-                text-align: center;
-            ">
-                &darr;&darr;&darr; SELECT A COLLAGE &darr;&darr;&darr;
-            </p>
-            <div class="collages">
-                {#each collageStore.data.collages as list (list.name)}
-                    <div class="collage">
-                        <button class="sel" onclick={() => collageStore.selectedCollage = list.name} class:selected={list.name == collageStore.selectedCollage}>
-                            {list.name}
-                        </button>
-                        <button class="del" onclick={() => handleDeleteCollage(list.name)}>
-                            &times;
-                        </button>
-                    </div>
-                {/each}
+    <div class="head">
+        <img src="/icons/grid.svg" alt="grid">
+        Collage selection
+    </div>
+    <div class="body">
+        {#if collageStore.data.collages.length == 0}
+            <p style="text-align: center; font-size: 0.8rem; font-style: italic;">You don't have any collages yet</p>
+        {:else}
+            <div class="collage-selector" class:glowing={collageStore.data.collages.length && !collageStore.selectedCollage}>
+                <p style="
+                    text-align: center;
+                ">
+                    &darr;&darr;&darr; SELECT A COLLAGE &darr;&darr;&darr;
+                </p>
+                <div class="collages">
+                    {#each collageStore.data.collages as list (list.name)}
+                        <div class="collage">
+                            <button class="sel" onclick={() => collageStore.selectedCollage = list.name} class:selected={list.name == collageStore.selectedCollage}>
+                                {list.name}
+                            </button>
+                            <button class="del" onclick={() => handleDeleteCollage(list.name)}>
+                                &times;
+                            </button>
+                        </div>
+                    {/each}
+                </div>
             </div>
-        </div>
-    {/if}
-    
-    
-    {#if collageStore.data.collages.length < 3}
-        <div class="add-collage-form">
-            <AddCollageForm />
-        </div>
-    {:else}
-        <p style="text-align: center; font-size: 0.7rem; font-style: italic;">You have the maximum allowed number of collages (3)</p>
-    {/if}
+        {/if}
+        
+        
+        {#if collageStore.data.collages.length < 3}
+            <div class="add-collage-form" class:glowing={collageStore.data.collages.length === 0}>
+                <AddCollageForm />
+            </div>
+        {:else}
+            <p style="text-align: center; font-size: 0.7rem; font-style: italic;">You have the maximum allowed number of collages (3)</p>
+        {/if}
+    </div>
 </div>
 
 <Modal 
@@ -61,6 +67,29 @@
 </Modal>
 
 <style>
+    .container {
+        background-color: rgba(255, 255, 255, 0.05);
+        border: 1px solid white;
+
+        & > .head {
+            background-color: white;
+            color: black;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 5px;
+
+            & img {
+                width: 25px;
+            }
+        }
+
+        & > .body {
+            padding: 5px;
+        }
+    }
+
     .container, .container * {
         font-size: .8rem !important;
     }
@@ -100,5 +129,25 @@
 
     .collage-selector, .add-collage-form {
         background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    .glowing {
+        animation: glow infinite 1s linear;
+    }
+
+    @keyframes glow {        
+        0% {
+            box-shadow: 0 0 20px rgba(0, 238, 178, 0.1);
+        }
+        50% {
+            box-shadow: 0 0 20px rgba(0, 238, 178, 1);
+        }
+        100% {
+            box-shadow: 0 0 20px rgba(0, 238, 178, 0.1);
+        }
+    }
+
+    :global(.add-collage-form form) {
+        margin-bottom: 0;
     }
 </style>

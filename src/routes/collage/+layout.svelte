@@ -46,9 +46,15 @@
         </div>
         
         <nav>
-            {#each navItems as item}
-                <a href="{item.href}" class:active={data.path == item.href}>{item.text}</a>
-            {/each}
+            <div class="head">
+                <img src="/icons/cursor.svg" alt="cursor">
+                Navigation
+            </div>
+            <div class="body">
+                {#each navItems as item}
+                    <a href="{item.href}" class:active={data.path == item.href}>{item.text}</a>
+                {/each}
+            </div>
         </nav>
 
 
@@ -59,22 +65,40 @@
 
 <style>
     nav {
-        display: flex;
-        align-items: center;
-        padding-bottom: 1rem;
+        margin-bottom: 1rem;
+        margin-top: 10px;
+        border: 1px solid aquamarine;
+
+        & > .head {
+            background-color: aquamarine;
+            color: black;
+            font-weight: bold;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            & img {
+                width: 25px;
+            }
+        }
+
+        & > .body {
+            display: flex;
+            align-items: center;
+        }
         
-        & > a {
+        & a {
             flex-grow: 1;
             text-align: center;
             padding: .5rem;
-            border: 1px solid rgba(255, 255, 255, 0.4);
         }
     }
 
     .controls-container {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
+        gap: 10px;
     }
 
     .extend {
