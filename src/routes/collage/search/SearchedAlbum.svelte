@@ -1,6 +1,6 @@
 <script lang="ts">
-    import type { AlbumResult } from "../collageTypes.svelte.js";
-    import { collageStore, addAlbumToCollage, removeAlbumFromCollage } from "../collageTypes.svelte.js";
+    import type { AlbumResult } from "../collage.svelte.js";
+    import { collageStore, addAlbum, removeAlbum } from "../collage.svelte.js";
 
     const {
         album
@@ -8,20 +8,21 @@
         album: AlbumResult
     } = $props()
 
-    const isInCollage = $derived(collageStore.collageData.albums.findIndex(alb => alb.id === album.id) !== -1)
+    const collage = $derived(collageStore.data.collages.find(list => list.name == collageStore.selectedCollage))
+    const albumInCollage = $derived(collage?.albums.some(alb => alb.id == album.id))
 
 </script>
 
 <div class="album">
     <img src="{album.cover_image}" alt="album cover of {album.title}">
     <p>{album.title}</p>
-    {#if isInCollage}
-        <button class="remove-btn" onclick={() => removeAlbumFromCollage(album)}>
-            remove
+    {#if albumInCollage}
+        <button class="rem" onclick={() => removeAlbum(album)}>
+            Remove from {collage?.name}
         </button>
     {:else}
-        <button class="add-btn" onclick={() => addAlbumToCollage(album)}>
-            add
+        <button class="add" onclick={() => addAlbum(album)}>
+            Add to {collage?.name}
         </button>
     {/if}
 </div>
@@ -35,7 +36,8 @@
         }
     }
 
-    .remove-btn {
+    .rem {
         background-color: maroon;
     }
+    
 </style>

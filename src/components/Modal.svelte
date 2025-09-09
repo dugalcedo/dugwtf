@@ -7,12 +7,14 @@
         shown = $bindable(),
         confirmBtn,
         cancelBtn,
+        confirmBtnRed = false,
         onConfirm
     }: {
         head?: Snippet
         children: Snippet
         shown: boolean
         confirmBtn?: string
+        confirmBtnRed?: boolean
         cancelBtn?: string
         onConfirm?: (data: Record<string, any>) => void
     } = $props()
@@ -36,12 +38,16 @@
         let data: any = {}
         if (form) data = Object.fromEntries(new FormData(form));
         if (onConfirm) onConfirm(data)
+        shown = false
     }
 
     const handleConfirmBtnClick = () => {
         if (form) {
             form.requestSubmit()
+        } else if (onConfirm) {
+            onConfirm({})
         }
+        shown = false
     }
 
     const armForm = () => {
@@ -78,7 +84,7 @@
                     </button>
                 {/if}
                 {#if confirmBtn}
-                    <button onclick={handleConfirmBtnClick} aria-label="submit form">
+                    <button onclick={handleConfirmBtnClick} aria-label="submit form" class:red={confirmBtnRed}>
                         {confirmBtn}
                     </button>
                 {/if}
@@ -134,5 +140,9 @@
                 }
             }
         }
+    }
+
+    .red {
+        background-color: maroon;
     }
 </style>
