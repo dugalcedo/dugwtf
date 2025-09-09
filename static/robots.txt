@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /
+Disallow: /private/
+Disallow: /admin/
+Disallow: /api/
+Disallow: /*?*
+Crawl-delay: 1
+
+# Google-specific directives
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0.3
+
+# Image bots
+User-agent: Googlebot-Image
+Allow: /images/*
+
+Sitemap: https://dug.wtf/sitemap.xml
