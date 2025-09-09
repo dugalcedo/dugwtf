@@ -1,6 +1,8 @@
 <script lang="ts">
+    import { tick } from "svelte";
     import Album from "./Album.svelte";
     import { type List, type AlbumResult, collageStore } from "./collage.svelte.js";
+    import html2canvas from "html2canvas";
 
     const {
         collage
@@ -18,9 +20,37 @@
 
     const gtc = $derived(collageStore.titlesToSide ? `repeat(${collageStore.perRow}, 1fr) 2fr;`: `repeat(${collageStore.perRow}, 1fr)`)
 
+    let downloading = $state(false)
+
+    let collageElement: HTMLDivElement | null = $state(null)
+
+    const takeScreenshot = async () => {
+        downloading = true
+
+        await tick()
+
+        const canvas = await html2canvas(collageElement!, {
+            scale: 2,
+            allowTaint: true,
+            useCORS: true,
+            backgroundColor: "#111",
+        })
+
+        // Doawnload
+        const dataUrl = canvas.toDataURL('image/jpeg')
+        const a = document.createElement('a')
+        a.href = dataUrl
+        a.download = `collage.jpeg`
+        document.body.append(a)
+        a.click()
+        a.remove()
+
+        downloading = false
+    }
+
 </script>
 
-<div class="collage">
+<div class="collage" bind:this={collageElement} class:downloading={downloading}>
     <div class="albums-and-titles">
         {#each rows as row, rowI}
             <div class="row" style="
@@ -50,6 +80,10 @@
     </div>
 </div>
 
+<button onclick={takeScreenshot}>
+    Download image
+</button>
+
 <style>
 
     .row {
@@ -57,8 +91,24 @@
             padding-left: 1.5rem;
 
             & ul {
-                list-style-type: square;
+                list-style-type: none;
+
+                & li {
+                    position: relative;
+
+                    &::before {
+                        position: absolute;
+                        content: '⬝';
+                        left: -10px;
+                        color: white;
+                    }
+                }
             }
         }
     }
+
+    .downloading {
+        padding: 1rem;
+    }
+
 </style>

@@ -18,7 +18,8 @@
 
         <img
             class="cover"
-            src="{album.cover_image}"
+            src="https://corsproxy.io/?{encodeURIComponent(album.cover_image)}"
+            crossorigin="anonymous"
             alt="album cover of {album.title}"
             style="
                 border-radius: {collageStore.roundness}%;
