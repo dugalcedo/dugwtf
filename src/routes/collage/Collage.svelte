@@ -52,40 +52,44 @@
 
 </script>
 
-<div class="collage" bind:this={collageElement} class:downloading={downloading}>
-    <div class="albums-and-titles">
-        {#each rows as row, rowI}
-            <div class="row" style="
-                display: grid; 
-                grid-template-columns: {gtc};
-                gap: {collageStore.gap}px;
-                padding-bottom: {rowI < rows.length-1 ? collageStore.gap : 0}px;
-            ">
-                {#each row as album}
-                    <Album {album} {collage} rowIndex={rowI} />
-                {/each}
-                {#if collageStore.titlesToSide}
-                {@const r = collageStore.perRow - row.length}
-                    {#if r}
-                        <div class="spacer" style="grid-column: span {r};"></div>
+{#if !collage.albums.length}
+    <p>You have no albums in this collage</p>
+{:else}
+    <div class="collage" bind:this={collageElement} class:downloading={downloading}>
+        <div class="albums-and-titles">
+            {#each rows as row, rowI}
+                <div class="row" style="
+                    display: grid; 
+                    grid-template-columns: {gtc};
+                    gap: {collageStore.gap}px;
+                    padding-bottom: {rowI < rows.length-1 ? collageStore.gap : 0}px;
+                ">
+                    {#each row as album}
+                        <Album {album} {collage} rowIndex={rowI} />
+                    {/each}
+                    {#if collageStore.titlesToSide}
+                    {@const r = collageStore.perRow - row.length}
+                        {#if r}
+                            <div class="spacer" style="grid-column: span {r};"></div>
+                        {/if}
+                        <!-- TITLES -->
+                        <div class="titles" style="font-size: {collageStore.fontSize}px">
+                            <ul>
+                                {#each row as album}
+                                    <AlbumTitle {album} />
+                                {/each}
+                            </ul>
+                        </div>
                     {/if}
-                    <!-- TITLES -->
-                    <div class="titles" style="font-size: {collageStore.fontSize}px">
-                        <ul>
-                            {#each row as album}
-                                <AlbumTitle {album} />
-                            {/each}
-                        </ul>
-                    </div>
-                {/if}
-            </div>
-        {/each}
+                </div>
+            {/each}
+        </div>
     </div>
-</div>
 
-<button onclick={takeScreenshot}>
-    Download image
-</button>
+    <button onclick={takeScreenshot}>
+        Download image
+    </button>
+{/if}
 
 <style>
 
