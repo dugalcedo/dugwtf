@@ -32,6 +32,11 @@
 
 </script>
 
+<svelte:head>
+    <title>Album cover collage maker - Dug Alcedo</title>
+    <meta name="description" content="Generate a collage of album covers by searching for albums manually or via lastfm profile.">
+</svelte:head>
+
 <div class="res" class:extend={collageStore.extendedWidth}>
     {#if loading}
         <LoadingDots />

@@ -8,6 +8,10 @@
     })
 </script>
 
+<svelte:head>
+    <meta name="description" content="The discography of experimental electronic musician Dug Alcedo (formerly known as First Dog). Ambient, noise, glitch, IDM.">
+</svelte:head>
+
 <div class="dugscography res">
     {#each Object.entries(years).reverse() as [year, dugs]}
         {#if parseInt(year) > 2012}
