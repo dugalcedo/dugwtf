@@ -1,10 +1,10 @@
-type NeodugData_FE = {
+export type NeodugData_FE = {
     user?: NeodugUser_FE
     emailVerification?: NeodugEmailVerification_FE
     error?: string
 }
 
-type NeodugUser_FE = {
+export type NeodugUser_FE = {
     _id: string
     username: string
     email: string
@@ -12,7 +12,7 @@ type NeodugUser_FE = {
     commentboxes: NeodugCommentBox_FE[]
 }
 
-type NeodugCommentBox_FE = {
+export type NeodugCommentBox_FE = {
     _id: string
     name: string
     comments: NeodugComment_FE
@@ -21,7 +21,7 @@ type NeodugCommentBox_FE = {
     comments_require_approval?: boolean
 }
 
-type NeodugComment_FE = {
+export type NeodugComment_FE = {
     _id: string
     author: string
     body: string
@@ -30,7 +30,12 @@ type NeodugComment_FE = {
     approved?: boolean
 }
 
-type NeodugEmailVerification_FE = {
+export type NeodugEmailVerification_FE = {
     email: string
     lastEmail: string
+}
+
+export type BlogPageData = {
+    date: string
+    md: string | null
 }
