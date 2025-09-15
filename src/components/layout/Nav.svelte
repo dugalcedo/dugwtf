@@ -8,7 +8,8 @@
         { text: "stuff", items: [
             { href: "/neo", text: "webdev tools" },
             { href: "/collage", text: "album cover collage maker" },
-            { href: "/blog", text: "blog" }
+            { href: "/atoms", text: "atoms" },
+            { href: "/blog", text: "blog" },
         ] },
         { href: "/contact", text: "contact" }
     ]
