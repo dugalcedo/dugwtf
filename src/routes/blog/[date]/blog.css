@@ -1,0 +1,21 @@
+.blog-markdown, .blog-markdown * {
+    font-family: monospace !important;
+}
+
+.blog-markdown {
+
+    & .time {
+        margin: 1.5rem 0 -1rem 0;
+        color: aquamarine;
+        font-weight: bold;
+    }
+
+    & h1, h2, h3, h4, h5, h6, p {
+        margin-top: .75em;
+        margin-bottom: .755em;
+    }
+
+    & p {
+        text-align: justify;
+    }
+}

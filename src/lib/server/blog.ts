@@ -1,16 +1,16 @@
-import fs from 'fs/promises'
+const posts = import.meta.glob('./blog/*.md', { query: '?raw', import: 'default' })
 import { toDugIpa } from './dugipa.js'
-
 import showdown from 'showdown'
 const mdConverter = new showdown.Converter()
 
-const blogDir = await fs.readdir('./blog')
 export const blogs: Record<string, string> = {}
+export const dates: string[] = []
 
-for (const file of blogDir) {
-    try {
-        const ipa = toDugIpa(await fs.readFile(`./blog/${file}`, 'utf-8'))
-        blogs[file] = mdConverter.makeHtml(ipa)
-    } catch {}
+for (const pathName in posts) {
+    const post = await posts[pathName]() as string
+    const fileName = pathName.replace('./blog/','')
+    blogs[fileName] = mdConverter.makeHtml(toDugIpa(post))    
+    dates.push(fileName.replace('.md', ''))
 }
 
+dates.sort((a, b) => new Date(b).getTime() - new Date(a).getTime())

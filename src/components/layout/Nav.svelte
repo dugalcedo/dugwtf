@@ -7,7 +7,8 @@
         { href: "/musicilove", text: "music i love" },
         { text: "stuff", items: [
             { href: "/neo", text: "webdev tools" },
-            { href: "/collage", text: "album cover collage maker" }
+            { href: "/collage", text: "album cover collage maker" },
+            { href: "/blog", text: "blog" }
         ] },
         { href: "/contact", text: "contact" }
     ]

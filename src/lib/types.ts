@@ -39,3 +39,7 @@ export type BlogPageData = {
     date: string
     md: string | null
 }
+
+export type BlogLayoutData = {
+    dates: string[]
+}
