@@ -1,8 +1,9 @@
 <script lang="ts">
     import { tick } from "svelte";
     import Atom1 from "./Atom1.svelte";
+    import NumberInput from "../../components/NumberInput.svelte";
 
-    const LIFETIME = 10
+    let LIFETIME = $state(10)
 
     let warningShown = $state(true)
     let on = $state(true)
@@ -37,6 +38,15 @@
             </button>
         </div>
     {:else if on}
+        <div class="controls">
+            <label for="atom1_interval">Interval (s)</label>
+            <NumberInput 
+                bind:value={LIFETIME}
+                min={3}
+                max={60}
+                step={1}
+            />
+        </div>
         <p class="new-atom-in">
             new atom in.. {newAtomIn}
         </p>
@@ -71,5 +81,13 @@
         padding-top: 2rem;
         font-size: 1.5rem;
         color: aquamarine;
+    }
+    
+    .controls {
+        width: 250px;
+        text-align: center;
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
     }
 </style>
