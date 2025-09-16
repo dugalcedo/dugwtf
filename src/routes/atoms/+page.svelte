@@ -2,10 +2,11 @@
     import { tick } from "svelte";
     import Atom1 from "./Atom1.svelte";
 
+    const LIFETIME = 10
 
     let warningShown = $state(true)
     let on = $state(true)
-    let newAtomIn = $state(5)
+    let newAtomIn = $state(LIFETIME)
 
     let colors = $state(['cyan', 'magenta', 'yellow', 'white', 'lime'])
 
@@ -13,7 +14,7 @@
         setInterval(async () => {
             newAtomIn--
             if (newAtomIn <= 0) {
-                newAtomIn = 5
+                newAtomIn = LIFETIME
                 on = false
                 await tick()
                 on = true
