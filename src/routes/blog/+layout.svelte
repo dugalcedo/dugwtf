@@ -9,9 +9,9 @@
 <div class="res">
     
     <nav>
-        <h3>Most recent entries:</h3>
+        <p>Most recent entries:</p>
         {#each recentDates as date}
-            <a href="/blog/{date}">{date}</a>
+            <a href="/blog/{date}" class="recent-blog">{date}</a>
         {/each}
     </nav>
 
@@ -23,5 +23,19 @@
         display: flex;
         align-items: center;
         gap: 1rem;
+        padding: 1rem 5px;
+        background-color: rgba(255, 255, 255, 0.02);
+
+        & p {
+            font-size: .8rem;
+        }
+    }
+
+    .recent-blog {
+        background-color: aquamarine;
+        color: black;
+        padding: 3px;
+        font-size: .6rem;
+        text-decoration: none;
     }
 </style>

@@ -1,7 +1,5 @@
-const posts = import.meta.glob('./blog/*.md', { query: '?raw', import: 'default' })
-import { toDugIpa } from './dugipa.js'
-import showdown from 'showdown'
-const mdConverter = new showdown.Converter()
+const posts = import.meta.glob('./blog/*.html', { query: '?raw', import: 'default' })
+import { parseBlog } from './dugipa.js'
 
 export const blogs: Record<string, string> = {}
 export const dates: string[] = []
@@ -9,8 +7,8 @@ export const dates: string[] = []
 for (const pathName in posts) {
     const post = await posts[pathName]() as string
     const fileName = pathName.replace('./blog/','')
-    blogs[fileName] = mdConverter.makeHtml(toDugIpa(post))    
-    dates.push(fileName.replace('.md', ''))
+    blogs[fileName] = parseBlog(post)
+    dates.push(fileName.replace('.html', ''))
 }
 
 dates.sort((a, b) => new Date(b).getTime() - new Date(a).getTime())

@@ -5,6 +5,6 @@ export const load = async ({ params }): Promise<BlogPageData> => {
 
     return {
         date: params.date,
-        md: blogs[`${params.date}.md`] || null
+        md: blogs[`${params.date}.html`] || null
     }
 }
