@@ -7,9 +7,9 @@
 
     let warningShown = $state(true)
     let on = $state(true)
-    let newAtomIn = $state(LIFETIME)
+    let newAtomIn = $derived(LIFETIME)
 
-    let colors = $state(['cyan', 'magenta', 'yellow', 'white', 'lime'])
+    let colors = $state(['#ffa500', '#00ff7f', '#00bfff', '#0000ff', '#ff1493'])
 
     function startCountdown() {
         setInterval(async () => {
