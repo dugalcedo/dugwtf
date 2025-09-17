@@ -5,6 +5,7 @@ export type AtomInteraction = {
 export type AtomInit = {
     substrate: Substrate
     colorName: string
+    colorValue: string
     x: number
     y: number
     w: number
@@ -13,6 +14,7 @@ export type AtomInit = {
 
 export type SubstrateInit = {
     canvas: HTMLCanvasElement
+    settings?: SubstrateSettings
 }
 
 export class Substrate {
@@ -21,6 +23,7 @@ export class Substrate {
     canvas: HTMLCanvasElement
     ctx: CanvasRenderingContext2D
     atoms: Atom[] = []
+    paused = true
 
     defineInteraction(colorName1: string, colorName2: string, interaction: AtomInteraction) {
         // parent
@@ -38,6 +41,17 @@ export class Substrate {
     constructor(init: SubstrateInit) {
         this.canvas = init.canvas
         this.ctx = this.canvas.getContext('2d')!
+
+        // INIT SETTINGS
+        if (!init.settings) return;
+        for (const color of init.settings.colors) {
+            this.atomInteractions[color.name] = {}
+            for (const color2 of init.settings.colors) {
+                this.atomInteractions[color.name][color2.name] = {
+                    gravity: color.interactions[color2.name].gravity
+                }
+            }
+        }
     }
 
     draw() {
@@ -58,6 +72,18 @@ export class Substrate {
             atom.move()
         }
     }
+
+    frame() {
+        this.measureForcesAndMoveAll()
+        this.draw()
+        if (this.paused) return;
+        requestAnimationFrame(this.frame.bind(this))
+    }
+
+    startLoop() {
+        this.paused = false
+        requestAnimationFrame(this.frame.bind(this))
+    }
 }
 
 ////////// ATOM
@@ -65,6 +91,7 @@ export class Substrate {
 export class Atom {
     substrate: Substrate
     colorName: string
+    colorValue: string
     w: number
     h: number
     x: number
@@ -75,6 +102,7 @@ export class Atom {
     constructor(init: AtomInit) {
         this.substrate = init.substrate
         this.colorName = init.colorName
+        this.colorValue = init.colorValue
         this.x = init.x
         this.y = init.y
         this.w = init.w
@@ -86,7 +114,7 @@ export class Atom {
         const ctx = this.substrate.ctx;
         ctx.beginPath()
         ctx.rect(this.x, this.y, this.w, this.h)
-        ctx.fillStyle = this.colorName
+        ctx.fillStyle = this.colorValue
         ctx.fill()
     }
 
@@ -126,4 +154,19 @@ export class Atom {
         this.vx = 0
         this.vy = 0
     }
+}
+
+export type SubstrateSettings = {
+    atomCount: number
+    colors: Color[]
+}
+
+export type Color = {
+    name: string
+    value: string
+    size: number
+    prevalence: number
+    interactions: Record<string, {
+        gravity: number
+    }>
 }

@@ -18,3 +18,14 @@ export const onClickOutside = <T extends HTMLElement>(node: T, cb: MouseEventHan
         cb(e as MouseEvent & { currentTarget: T })
     })
 }
+
+export const randRange = (min: number, max: number) => Math.random()*(max-min) + min;
+
+export const miniUID = (length: number = 10) => {
+    let chars = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890"
+    let id = ""
+    for (let i = 0; i < length; i++) {
+        id += chars[Math.floor(Math.random()*chars.length)]
+    }
+    return id
+}

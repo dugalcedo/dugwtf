@@ -1,4 +1,3 @@
-import { toWauHTML } from "./wauparse/html.js"
 
 const map: Record<string, string> = {
     a: 'æ',
@@ -135,14 +134,14 @@ export const toDugIpa = (duglish: string) => {
 
 export const parseBlog = (input: string): string => {
     // find wau
-    const wauRegExp = /\{\{wau\}\}(?:(?!\{\{\/wau\}\}).)*\{\{\/wau\}\}/gs;
-    const wauMatches = [...input.matchAll(wauRegExp)]
-    for (const wauMatch of wauMatches) {
-        const original = wauMatch[0].trim()
-        const trimmed = original.slice(7, -8)
-        const parsed = parseWhileIgnoring(trimmed, toWauHTML, /<[^>]+>/gm, 0)
-        input = `<span class="wau-span">${input.replace(original, parsed)}<span>`
-    }
+    // const wauRegExp = /\{\{wau\}\}(?:(?!\{\{\/wau\}\}).)*\{\{\/wau\}\}/gs;
+    // const wauMatches = [...input.matchAll(wauRegExp)]
+    // for (const wauMatch of wauMatches) {
+    //     const original = wauMatch[0].trim()
+    //     const trimmed = original.slice(7, -8)
+    //     const parsed = parseWhileIgnoring(trimmed, toWauHTML, /<[^>]+>/gm, 0)
+    //     input = `<span class="wau-span">${input.replace(original, parsed)}<span>`
+    // }
 
     const dugRegExp = /\{\{dugipa\}\}(?:(?!\{\{\/dugipa\}\}).)*\{\{\/dugipa\}\}/gs;
     const dugMatches = [...input.matchAll(dugRegExp)]

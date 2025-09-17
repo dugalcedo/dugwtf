@@ -1,27 +1,86 @@
 <script lang="ts">
     import { tick } from "svelte";
     import Atom1 from "./Atom1.svelte";
-    import NumberInput from "../../components/NumberInput.svelte";
-
-    let LIFETIME = $state(10)
+    import { type AtomInteraction, type Color, type SubstrateSettings } from "./engine.js";
+    import Atom1Form from "./Atom1Form.svelte";
+    import { randRange } from "../../lib/index.js";
 
     let warningShown = $state(true)
     let on = $state(true)
-    let newAtomIn = $derived(LIFETIME)
+    let autoRandomize = $state(true)
+    let autoRandomizeInterval = $state(5)
+    let timeRemaining = $state(5)
+    let autoRandomizeIntervalObj = $state<any>()
 
-    let colors = $state(['#ffa500', '#00ff7f', '#00bfff', '#0000ff', '#ff1493'])
+    function stopInterval() {
+        clearInterval(autoRandomizeIntervalObj)
+    }
 
-    function startCountdown() {
-        setInterval(async () => {
-            newAtomIn--
-            if (newAtomIn <= 0) {
-                newAtomIn = LIFETIME
-                on = false
-                await tick()
-                on = true
+    function startInterval() {
+        clearInterval(autoRandomizeIntervalObj)
+        autoRandomizeIntervalObj = setInterval(() => {
+            timeRemaining--
+            if (timeRemaining <= 0) {
+                randomize()
+                timeRemaining = autoRandomizeInterval
             }
         }, 1000)
     }
+
+    async function resetInterval() {
+        stopInterval()
+        await tick()
+        startInterval()
+    }
+
+    const reset = async () => {
+        on = false
+        await tick()
+        on = true
+    }
+
+    const randomize = async () => {
+        for (let i = 0; i < settingsColors.length; i++) {
+            for (const color in settingsColors[i].interactions) {
+                const int = settingsColors[i].interactions[color]
+                int.gravity = Number(randRange(0, 1).toFixed(3))
+            }
+        }
+        reset()
+    }
+
+    let initialColors = [
+        { name: 'orange', value: '#ffa500' },
+        { name: 'green', value: '#00ff7f' },
+        { name: 'lightblue', value: '#00bfff' },
+        { name: 'blue', value: '#0000ff' },
+        { name: 'magenta', value: '#ff1493' },
+    ]
+
+    let settingsColors = $state(initialColors.map(c => {
+        const color: Color = {
+            ...c,
+            size: 4,
+            prevalence: Number((1/initialColors.length).toFixed(2)),
+            interactions: initialColors.reduce((int, {name}) => {
+                int[name] = {
+                    gravity: Number(randRange(0, 1).toFixed(3))
+                }
+
+                return int
+            }, {} as Record<string, AtomInteraction>) 
+        }
+        return color
+    }))
+
+    let atomCount = $state(500)
+
+    const settings = $derived({
+        colors: settingsColors,
+        atomCount
+    })
+
+    startInterval()
 
 </script>
 
@@ -32,27 +91,60 @@
         <div class="okay-c">
             <button class="okay" onclick={() => {
                 warningShown = false
-                startCountdown()
             }}>
                 I'll be okay
             </button>
         </div>
     {:else if on}
         <div class="controls">
-            <label for="atom1_interval">Interval (s)</label>
-            <NumberInput 
-                bind:value={LIFETIME}
-                min={3}
-                max={60}
-                step={1}
-            />
+            <button onclick={reset}>
+                Reset
+            </button>
+            <button onclick={randomize}>
+                Randomize
+            </button>
+            <div>
+                <label for="atom-auto-randomize">Auto</label>
+                <input type="checkbox" checked={autoRandomize} onchange={e => {
+                    autoRandomize = e.currentTarget.checked
+                    if (!autoRandomize) stopInterval();
+                    else resetInterval()
+                }}>
+                {#if autoRandomize}
+                    <input 
+                        type="number" 
+                        aria-label="auto randomize interval in seconds" 
+                        value={autoRandomizeInterval} 
+                        oninput={e => {
+                            autoRandomizeInterval = Number(e.currentTarget.value)
+                            resetInterval()
+                        }}
+                        min={3} max={60} step={1}
+                        style="width: 60px"
+                    >
+                    <span>secs</span>
+                {/if}
+            </div>
         </div>
-        <p class="new-atom-in">
-            new atom in.. {newAtomIn}
-        </p>
-        <Atom1 {colors} />
+        <Atom1 {settings} />
+
+        {#if autoRandomize}
+            <div class="countdown">
+                New atoms in {timeRemaining} seconds
+            </div>
+        {/if}
+
+        <Atom1Form 
+            settings={structuredClone($state.snapshot(settings))}
+            apply={(newSettings) => {
+                atomCount = newSettings.atomCount
+                settingsColors = newSettings.colors
+                reset()
+            }}
+        />
     {/if}
 </div>
+
 
 <style>
     .warn {
@@ -76,18 +168,24 @@
         margin-top: 1rem;
     }
 
-    .new-atom-in {
-        text-align: center;
-        padding-top: 2rem;
-        font-size: 1.5rem;
-        color: aquamarine;
-    }
-    
     .controls {
-        width: 250px;
+        margin-top: 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+
+        & > div {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+        }
+    }
+
+    .countdown {
         text-align: center;
-        max-width: 100%;
-        margin-left: auto;
-        margin-right: auto;
+        padding-bottom: 1rem;
+        color: aquamarine;
+        font-size: 1.2rem;
     }
 </style>
