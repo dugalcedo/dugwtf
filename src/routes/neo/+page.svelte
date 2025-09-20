@@ -19,6 +19,11 @@
             <p>An easy-to-style comment box (aka "guestbook") so your visitors can leave messages on your site.</p>
             <a href="/neo/commentbox">Go &rarr;</a>
         </div>
+        <div class="tool">
+            <h4>Snippet</h4>
+            <p>Load smaller HTML components (e.g. a header) from other files into your web page.</p>
+            <a href="/neo/snippet">Go &rarr;</a>
+        </div>
     </div>
 </div>
 

@@ -4,6 +4,7 @@
     import RegisterCommentBoxForm from "./RegisterCommentBoxForm.svelte";
     import RegisterForm from "./RegisterForm.svelte";
     import Unverified from "./Unverified.svelte";
+    import { type NeodugData_FE } from "../../../lib/types.js";
 
     const { data }: { data: NeodugData_FE } = $props()
 

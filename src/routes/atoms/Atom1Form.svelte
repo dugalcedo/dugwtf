@@ -41,6 +41,8 @@
                 gravity: Number(randRange(0, 1).toFixed(3))
             }
         })
+
+        formData.colors.push(newColor)
     }
 
 </script>
@@ -92,6 +94,9 @@
                     </fieldset>
                 </div>
             {/each}
+            <!-- <button onclick={addColor} type="button">
+                ADD COLOR
+            </button> -->
         </fieldset>
     </div>
     <div class="foot">

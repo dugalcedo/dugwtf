@@ -34,7 +34,7 @@
     }
 </script>
 
-{#if text}
+{#if text && !error}
 <code><pre>{@html text}</pre></code>
 {#if copyBtn}
     <button 
