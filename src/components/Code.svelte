@@ -26,7 +26,7 @@
 
     const handleCopy = async () => {
         copiedMsgShown = true
-        window.navigator.clipboard.writeText(text)
+        window.navigator.clipboard.writeText(text.replaceAll('&lt;','<').replaceAll('&gt','>'))
 
         setTimeout(() => {
             copiedMsgShown = false
