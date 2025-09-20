@@ -11,7 +11,8 @@ class NeodugSnippet extends HTMLElement {
     async _load() {
         // check for snippet.html
         try {
-            this._folder = this.dataset.folder || ""
+            const root = `${window.location.protocol}//${window.location.host}`
+            this._folder = `${root}${this.dataset.folder || ""}`
             if (this._folder.endsWith('/')) this._folder = this._folder.slice(0, -1);
             const res = await fetch(`${this._folder}/snippet.html`)
             if (!res.ok) throw `${this._folder}/snippet.html not found.`;

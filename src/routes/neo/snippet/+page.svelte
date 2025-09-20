@@ -10,6 +10,9 @@
         <div class="step">
             <h3>step 1</h3>
             <p class="subtitle">paste the script element inside your &lt;head&gt;</p>
+            <div class="panel">
+                <p>The URL must contain "www"</p>
+            </div>
             <Code copyBtn={true} path="/code/snippet-script.html" />
         </div>
 
