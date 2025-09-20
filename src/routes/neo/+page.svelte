@@ -8,9 +8,6 @@
     <p>
         This is where I plan to share various HTML/CSS/JavaScript tools designed with the intention of helping <a href="https://neocities.org" target="_blank">Neocities</a> users improve their websites without having to learn any advanced web development skills.
     </p>
-    <p>
-        At the moment, I only have one tool available to share: <a href="/neo/commentbox">Commentbox</a>. I've noticed that many Neocities users like to have comment boxes or "guestbooks" on their sites, so I wanted to create a way to easily add one to your site without having to write any JavaScript, and still have it be customizable so you can style it how ever you want to.
-    </p>
 
     <h3>Tools</h3>
     <div class="tools">
