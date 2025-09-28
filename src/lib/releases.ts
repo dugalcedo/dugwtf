@@ -33,7 +33,8 @@ const dugs: Dug[] = [
         date: '2025-09-28',
         label: 'pelagoram recordings',
         credits: {
-            'composition, electronics, mixing': ['dug alcedo'],
+            'songwriting': ['dug alcedo', 'thos f'],
+            'electronics, mixing': ['dug alcedo'],
             'lyrics, vocals, guitar': ['thos f'],
             'artwork': ['stevie clue'],
             'cover layout': ['thos f']
