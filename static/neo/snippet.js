@@ -19,6 +19,7 @@ class NeodugSnippet extends HTMLElement {
             const text = await res.text();
             this._html = text
         } catch (error) {
+            console.warn(`${this._folder} is missing a snippet.html file!`)
             console.error(error)
             return
         }

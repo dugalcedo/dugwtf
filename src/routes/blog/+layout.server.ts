@@ -1,7 +1,7 @@
-import { dates } from "../../lib/server/blog.js"
+import { labels } from "../../lib/server/blog.js"
 
 export const load = () => {
     return {
-        dates
+        labels
     }
 }

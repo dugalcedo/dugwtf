@@ -35,11 +35,16 @@ export type NeodugEmailVerification_FE = {
     lastEmail: string
 }
 
-export type BlogPageData = {
+export type Blog = {
     date: string
-    md: string | null
+    title: string
+    post: string
+}
+
+export type BlogPageData = {
+    blog: Blog | null
 }
 
 export type BlogLayoutData = {
-    dates: string[]
+    labels: string[]
 }
