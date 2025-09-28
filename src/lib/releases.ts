@@ -15,7 +15,8 @@ export type Dug = {
     songCanLoad?: boolean
     sample_bc_id?: string
     desc_long?: string
-    label?: string
+    label?: string,
+    credits?: Record<string, string[]>
 }
 
 const dugs: Dug[] = [
@@ -30,7 +31,13 @@ const dugs: Dug[] = [
         cover_l: "/images/acl/DUG044b.jpg",
         cover_s: "/images/acs/DUG044b.jpg",
         date: '2025-09-28',
-        label: 'pelagoram recordings'
+        label: 'pelagoram recordings',
+        credits: {
+            'composition, electronics, mixing': ['dug alcedo'],
+            'lyrics, vocals, guitar': ['thos f'],
+            'artwork': ['stevie clue'],
+            'cover layout': ['thos f']
+        }
     },
     {
         "artist": "Dug Alcedo",
@@ -42,7 +49,11 @@ const dugs: Dug[] = [
         "bc_link": "https://dugalcedo.bandcamp.com/album/humans",
         "cover_s": "/images/acxs/DUG044.jpg",
         "cover_l": "/images/acl/DUG044.jpg",
-        date: '2024-04-28'
+        date: '2024-04-28',
+        credits: {
+            'music': ['dug alcedo'],
+            'artwork': ['rural coyote (@suburbmagpie)'],
+        }
     },
     {
         artist: "Trees and Flowers",
@@ -56,6 +67,11 @@ const dugs: Dug[] = [
         cover_l: "/images/acl/CL001.jpg",
         date: '2023-12-01',
         label: 'pelagoram recordings',
+        credits: {
+            'written, recorded, performed': ['thos f'],
+            'production and additional arrangements': ['dug alcedo'],
+            'artwork': ['flapricot']
+        }
     },
     {
         "artist": "Dug Alcedo",
@@ -82,6 +98,10 @@ const dugs: Dug[] = [
         "cover_l": "/images/acl/DUG042c.jpg",
         desc: "queer, mormon folktronica album in collaboration with Trees & Flowers",
         label: 'pelagoram recordings',
+        credits: {
+            'songwriting, guitar, vocals, lyrics': ['thos f'],
+            'production, percussion, synth, electronics': ['dug alcedo']
+        }
     },
     {
         "artist": "Dug Alcedo",

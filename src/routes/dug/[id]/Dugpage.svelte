@@ -115,6 +115,18 @@
             </div>
         </div>
 
+        {#if dug.credits}
+            <h4 class="credits-heading">credits</h4>
+            <div class="two-cols credits">
+                {#each Object.entries(dug.credits) as [jobs, people]}
+                    <div class="two-col">
+                        <p>{jobs}</p>
+                        <p>{people.join(', ')}</p>
+                    </div>
+                {/each}
+            </div>
+        {/if}
+
     </section>
 </div>
 
@@ -237,6 +249,16 @@
             border-left: 1px solid rgba(255, 255, 255, 0.2);
             padding-left: 1rem;
         }
+    }
+
+    .credits-heading {
+        background-color: var(--white);
+        color: var(--black);
+        text-align: center;
+    }
+
+    .credits {
+        font-size: .8rem;
     }
 
     @media (min-width: 750px) {
