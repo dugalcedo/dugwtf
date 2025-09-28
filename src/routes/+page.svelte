@@ -2,8 +2,15 @@
     import FeaturedDugcard from "../components/FeaturedDugcard.svelte";
 </script>
 
+<svelte:head>
+    <title>Dug Alcedo - experimental electronic music</title>
+    <meta name="description" content="Ambient, noise, glitch, IDM, experimental electronic music.">
+    <meta property="music:musician" content="https://dug.wtf">
+</svelte:head>
+
 <div class="res">
     <section id="featured-dugs">
+        <FeaturedDugcard title="Crank Historic" bgTop={-40} bgFilter="invert(1) grayscale(1) contrast(3)" />
         <FeaturedDugcard title="Humans" bgTop={-40} bgFilter="invert(1)" />
         <FeaturedDugcard title="I-15 Dream" bgTop={-40} />
         <FeaturedDugcard title="Goos Beyond" bgFilter="invert(1) grayscale(1) contrast(2)"/>

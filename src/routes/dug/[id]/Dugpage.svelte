@@ -87,6 +87,7 @@
         <div class="links">
             <a href="{dug.bc_link}" target="_blank">
                 <button>
+                    <img src="/icons/download.svg" alt="download">
                     BUY
                 </button>
             </a>
@@ -94,9 +95,26 @@
                 bcplayer.dug = dug
                 bcplayer.isOpen = true
             }}>
+                <img src="/icons/music.svg" alt="music note">
                 PLAY
             </button>
         </div>
+
+        <div class="two-cols">
+            <div class="type two-col">
+                <p>type</p>
+                <p>{dug.type}</p>
+            </div>
+            <div class="released two-col">
+                <p>released</p>
+                <p>{dug.date || dug.year}</p>
+            </div>
+            <div class="label two-col">
+                <p>label</p>
+                <p>{dug.label || 'chewed leg'}</p>
+            </div>
+        </div>
+
     </section>
 </div>
 
@@ -175,11 +193,56 @@
     }
 
     .links {
+        & a {
+            text-decoration: none;
+        }
+
         & button {
             width: 100%;
             /* margin: 4px 0; */
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
             padding: .5rem;
             font-size: 1rem;
+
+            & img {
+                width: 25px;
+                display: block;
+            }
+
+            &:hover img {
+                filter: invert(1);
+            }
+        }
+    }
+
+    .two-cols {
+        & > .two-col:not(:last-child) {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+    }
+
+    .two-col {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+        & >* {
+            padding-top: .25rem;
+            padding-bottom: .25rem;
+        }
+
+        & >*:nth-child(2) {
+            border-left: 1px solid rgba(255, 255, 255, 0.2);
+            padding-left: 1rem;
+        }
+    }
+
+    @media (min-width: 750px) {
+        .links {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
         }
     }
 

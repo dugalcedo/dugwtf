@@ -15,9 +15,23 @@ export type Dug = {
     songCanLoad?: boolean
     sample_bc_id?: string
     desc_long?: string
+    label?: string
 }
 
 const dugs: Dug[] = [
+    {
+        artist: "Dew for Slug",
+        title: "Crank Historic",
+        id: "DUG044b",
+        year: 2025,
+        type: "EP",
+        bc_id: "1327450129",
+        bc_link: "https://pelagoramrecordings.bandcamp.com/album/crank-historic",
+        cover_l: "/images/acl/DUG044b.jpg",
+        cover_s: "/images/acs/DUG044b.jpg",
+        date: '2025-09-28',
+        label: 'pelagoram recordings'
+    },
     {
         "artist": "Dug Alcedo",
         "title": "Humans",
@@ -40,7 +54,8 @@ const dugs: Dug[] = [
         bc_link: "https://pelagoramrecordings.bandcamp.com/album/a-piece-of-hell-for-ourselves",
         cover_s: "/images/acxs/CL001.jpg",
         cover_l: "/images/acl/CL001.jpg",
-        date: '2023-12-01'
+        date: '2023-12-01',
+        label: 'pelagoram recordings',
     },
     {
         "artist": "Dug Alcedo",
@@ -65,7 +80,8 @@ const dugs: Dug[] = [
         "bc_link": "https://pelagoramrecordings.bandcamp.com/album/i-15-dream",
         "cover_s": "/images/acxs/DUG042c.jpg",
         "cover_l": "/images/acl/DUG042c.jpg",
-        desc: "queer, mormon folktronica album in collaboration with Trees & Flowers"
+        desc: "queer, mormon folktronica album in collaboration with Trees & Flowers",
+        label: 'pelagoram recordings',
     },
     {
         "artist": "Dug Alcedo",
@@ -310,7 +326,8 @@ const dugs: Dug[] = [
         "bc_id": "2561784264",
         "bc_link": "https://firstdog.bandcamp.com/album/aw-cute",
         "cover_s": "/images/acxs/DUG027.jpg",
-        "cover_l": "/images/acl/DUG027.jpg"
+        "cover_l": "/images/acl/DUG027.jpg",
+        label: 'ingrown records'
     },
     {
         "artist": "First Dog",
@@ -376,7 +393,7 @@ const dugs: Dug[] = [
         "bc_id": "3858484618",
         "bc_link": "https://firstdog.bandcamp.com/album/feeble",
         "cover_s": "/images/acxs/DUG021.jpg",
-        "cover_l": "/images/acl/DUG021.jpg"
+        "cover_l": "/images/acl/DUG021.jpg",
     },
     {
         "artist": "First Dog",

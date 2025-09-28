@@ -12,6 +12,12 @@
     } = $props()
 </script>
 
+<svelte:head>
+    <title>Dug Alcedo - experimental electronic music</title>
+    <meta name="description" content="Ambient, noise, glitch, IDM, experimental electronic music.">
+    <meta property="music:musician" content="https://dug.wtf">
+</svelte:head>
+
 <!-- You are inside of #app -->
 <Background />
 <NavigationForedrop />
