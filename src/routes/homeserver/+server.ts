@@ -1,5 +1,5 @@
-
+import { redirect } from "@sveltejs/kit"
 
 export const GET = () => {
-    return Response.redirect('https://vivien-ruinous-efferently.ngrok-free.dev/')
+    return redirect(302, 'https://vivien-ruinous-efferently.ngrok-free.dev/')
 }
