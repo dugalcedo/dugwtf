@@ -6,11 +6,12 @@ const onsets = new Set(['p', 'b', 'f', 'v', 'm', 'w', 't', 'd', 'T', 'D', 's', '
 const codas = new Set(['p', 'b', 'f', 'v', 'm', 'w', 't', 'd', 'T', 'D', 's', 'z', 'S', 'Z', 'c', 'j', 'n', 'l', 'k', 'g', 'r', 'q', 'Q'])
 const standalones = new Set(['p', 'b', 'f', 'v', 'm', 'w', 't', 'd', 'T', 'D', 's', 'z', 'S', 'Z', 'c', 'j', 'n', 'l', 'k', 'g', 'h', 'y', 'r', 'q', 'Q'])
 const vowels = new Set(['E', 'i', 'o', 'I', 'O', 'ö', 'U', 'e', 'a', 'A', 'u', 'ä', 'x'])
+const modifiers = new Set(['$', '£'])
 
 export const isWauSyllable = (str: string): boolean => {
     switch (str.length) {
         case 1:
-            return standalones.has(str) || vowels.has(str);
+            return modifiers.has(str) || standalones.has(str) || vowels.has(str);
         case 2:
             if (onsets.has(str[0])) return vowels.has(str[1]);
             if (vowels.has(str[0])) return codas.has(str[1]);

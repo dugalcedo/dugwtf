@@ -94,6 +94,12 @@ export const PUT = defineDugwtfRequestHandler(async (evt) => {
 export const GET = defineDugwtfRequestHandler(async (evt) => {
     const foundUser = await getUserFromEvt(evt)
 
+    if (!foundUser.verified) throw {
+        status: 401,
+        message: "unverified",
+        data: { email: foundUser.email}
+    }
+
     return {
         message: "Token verified.",
         data: {
