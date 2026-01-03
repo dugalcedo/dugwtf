@@ -3,6 +3,10 @@
     onMount(() => {
         let flag = "/homeserver/"
         let href = window.location.href;
+        if (!href.includes(flag)) {
+            window.location.href = "https://vivien-ruinous-efferently.ngrok-free.dev/"
+            return
+        }
         let i = href.indexOf(flag) + flag.length
         window.location.href = `https://vivien-ruinous-efferently.ngrok-free.dev/${href.slice(i)}`
     })
