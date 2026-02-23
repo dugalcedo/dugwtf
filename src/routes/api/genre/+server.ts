@@ -1,6 +1,7 @@
 import { json, error } from "@sveltejs/kit"
 import { readFileSync } from "fs"
-import initSqlJs from "sql.js"
+// @ts-ignore - use asm.js build to avoid WASM file resolution issues on Vercel
+import initSqlJs from "sql.js/dist/sql-asm.js"
 import type { RequestHandler } from "@sveltejs/kit"
 
 let db: Awaited<ReturnType<typeof initSqlJs>> extends infer SQL ? (SQL extends { Database: new (...args: any[]) => infer D } ? D : never) : never
