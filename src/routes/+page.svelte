@@ -1,1 +1,2 @@
-<p>i am dug the Moose. i make Music and websites. i host this website on my home server.</p>
+<p>i am dug the Moose. i make Music and websites.</p>
+<p><a href="https://dugalcedo.bandcamp.com">my bandcamp</a></p>

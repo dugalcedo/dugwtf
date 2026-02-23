@@ -1,7 +1,7 @@
 const isDev = () => window.location.href.includes("localhost:5173");
 
 export const backendUrl = () => {
-    return !isDev() ? window.location.protocol + "//" + window.location.host : "http://localhost:8765"
+    return ""
 }
 
 export type BackendFetchResult<Data> = {

@@ -569,4 +569,5 @@ const featuredDugIds: string[] = [
     'DUG022', // Volt Welve
     'DUG021', // Feeble
 ]
+
 export const featuredDugs = dugs.filter(d => featuredDugIds.includes(d.id))
