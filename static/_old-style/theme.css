@@ -1,0 +1,9 @@
+:root {
+    --black: #111;
+
+    --white: #eee;
+
+    --mobile-breakpoint: 600px;
+
+    --res-width: 800px;
+}

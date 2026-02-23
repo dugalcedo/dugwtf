@@ -9,11 +9,9 @@
 		"skipLibCheck": true,
 		"sourceMap": true,
 		"strict": true,
-		"moduleResolution": "bundler",
-		"paths": {
-			"@c/*": ["./src/compoents/*"]
-		}
-	}
+		"moduleResolution": "bundler"
+	},
+	"exclude": ["node_modules", "src/_old-components", "src/_old-lib", "src/_old-routes"]
 	// Path aliases are handled by https://svelte.dev/docs/kit/configuration#alias
 	// except $lib which is handled by https://svelte.dev/docs/kit/configuration#files
 	//

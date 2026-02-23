@@ -1,38 +1,33 @@
 <script lang="ts">
-    const contacts = [
-        { name: "discord", value: "dugnoise" },
-        { name: "email", value: "dougalcedo@gmail.com", href: "mailto:dougalcedo@gmail.com" },
-        { name: "github", value: "dugalcedo", href: "https://github.com/dugalcedo" }
-    ]
+    import CopyLeftTableCell from "../../components/ui-thingies/CopyLeftTableCell.svelte";
 </script>
 
-<div class="res">
-    <h2>contact dug</h2>
-    <br>
-    <div class="contacts">
-        {#each contacts as contact}
-            <div class="contact">
-                <img class="icon" src="/icons/{contact.name}.svg" alt="{contact.name} icon">
-                <div class="name">{contact.name}</div>
-                <div class="value">
-                    {#if contact.href}
-                        <a href="{contact.href}" target="_blank">{contact.value}</a>
-                    {:else}
-                        {contact.value}
-                    {/if}
-                </div>
-            </div>
-        {/each}
-    </div>
-</div>
-
-<style>
-    .contact {
-        display: grid;
-        grid-template-columns: 1fr 3fr 3fr;
-    }
-
-    .icon {
-        width: 35px;
-    }
-</style>
+<table>
+    <tbody>
+        <tr>
+            <th>email</th>
+            <td>dougalcedo@gmail.com</td>
+            <CopyLeftTableCell />
+        </tr>
+        <tr>
+            <th>discord</th>
+            <td>dugnoise</td>
+            <CopyLeftTableCell />
+        </tr>
+        <tr>
+            <th>rym</th>
+            <td>dougalcedo</td>
+            <CopyLeftTableCell />
+        </tr>
+        <tr>
+            <th>mastodon</th>
+            <td>@dug@bears.town</td>
+            <CopyLeftTableCell />
+        </tr>
+        <tr>
+            <th>bluesky</th>
+            <td>@dug.wtf</td>
+            <CopyLeftTableCell />
+        </tr>
+    </tbody>
+</table>

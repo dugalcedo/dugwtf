@@ -1,4 +1,4 @@
-import { type Dug } from "../lib/releases.js"
+import { type Dug } from "../_old-lib/releases.js"
 
 type Bcplayer = {
     dug: null |  Dug
