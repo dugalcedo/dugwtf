@@ -1,5 +1,6 @@
 import { json, error } from "@sveltejs/kit"
 import { readFileSync } from "fs"
+import { join } from "path"
 // @ts-ignore - use asm.js build to avoid WASM file resolution issues on Vercel
 import initSqlJs from "sql.js/dist/sql-asm.js"
 import type { RequestHandler } from "@sveltejs/kit"
@@ -9,7 +10,7 @@ let db: Awaited<ReturnType<typeof initSqlJs>> extends infer SQL ? (SQL extends {
 async function getDb() {
 	if (!db) {
 		const SQL = await initSqlJs()
-		const buffer = readFileSync("data/everynoise.db")
+		const buffer = readFileSync(join(process.cwd(), "src", "lib", "server", "data", "everynoise.db"))
 		db = new SQL.Database(buffer)
 	}
 	return db
