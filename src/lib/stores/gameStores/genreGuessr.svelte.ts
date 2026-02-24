@@ -1,4 +1,6 @@
-import { backendFetch } from "../../util/api"
+
+let _allSamples: null | Record<number, GG_Sample> = null;
+let _ids: number[] = [];
 
 export type GG_Sample = {
     id: number
@@ -192,11 +194,22 @@ export const startGameFromCode = async (code: string) => {
     gg.status = 'started'
 }
 
+
+
+export const getAllSamples = async (): Promise<Record<number, GG_Sample>> => {
+    if (_allSamples) return _allSamples;
+    const res = await fetch("/data/gg-samples.json")
+    const json = await res.json()
+    _allSamples = json
+    _ids = Object.keys(json).map(id => Number(id))
+    return json
+}
+
 export const fetchRandom = async (): Promise<GG_Sample | null> => {
     try {
-        const result = await backendFetch<GG_Sample>("/api/genre")
-        if (!result.success) throw new Error(result.error.message)
-        return result.success.data
+        const allSamples = await getAllSamples()
+        const id = _ids[Math.floor(Math.random()*_ids.length)]
+        return allSamples[id]
     } catch (error) {
         console.error(error)
         return null
@@ -224,11 +237,12 @@ export const fetchFromCode = async (code: string): Promise<GG_Sample[] | null> =
     code = code.trim()
     if (!code) throw null
     const ids = code.split('').map(decodeSampleId)
+    const allSamples = await getAllSamples()
     const samples: GG_Sample[] = []
     for (const id of ids) {
-        const result = await backendFetch<GG_Sample>(`/api/genre?id=${id}`)
-        if (!result.success) return null;
-        samples.push(result.success.data)
+        const result = allSamples[id]
+        if (!result) return null;
+        samples.push(result)
     }
     return samples
 }
