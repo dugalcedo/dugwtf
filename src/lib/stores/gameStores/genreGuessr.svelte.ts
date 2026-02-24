@@ -1,6 +1,9 @@
+// ===== MEMO =====
 
 let _allSamples: null | Record<number, GG_Sample> = null;
 let _ids: number[] = [];
+
+// ===== TYPES =====
 
 export type GG_Sample = {
     id: number
@@ -73,6 +76,8 @@ export type Scorecard = {
     score: () => number
 }
 
+// ===== STORE =====
+
 export const gg = $state<GenreGuessrStore>({
     samples: null,
     scorecards: [],
@@ -88,6 +93,8 @@ export const gg = $state<GenreGuessrStore>({
     }
 })
 
+// ===== CONSTANTS =====
+
 export const PENALTIES = {
     secondsSpentListening: 2, // remove n points for every second over 10 spent listening
     artistRevealed: 10, // remove n points if artist revealed
@@ -96,6 +103,9 @@ export const PENALTIES = {
     letterRevealedFactor: 1.5, // remove n * percentRevealed()
     wrongGuess: 25, // remove n for every wrong guess
 }
+
+// ===== FUNCTIONS =====
+
 export const newScorecard = (sample: GG_Sample): Scorecard => {
     return {
         sampleId: sample.id,
