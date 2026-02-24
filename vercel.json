@@ -18,10 +18,5 @@
         { "key": "Access-Control-Allow-Credentials", "value": "true" }
       ]
     }
-  ],
-  "functions": {
-    "src/routes/**": {
-      "includeFiles": "src/lib/server/data/**"
-    }
-  }
+  ]
 }
