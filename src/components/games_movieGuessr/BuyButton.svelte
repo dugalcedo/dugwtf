@@ -86,7 +86,7 @@
 </script>
 
 {#if movie}
-<button onclick={handleClick} disabled={disabled}>
+<button class="no-flicker" onclick={handleClick} disabled={disabled}>
     <span
         class="cost-badge" 
         style="

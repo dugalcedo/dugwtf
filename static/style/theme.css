@@ -46,6 +46,7 @@ html {
 
     /* highlight */
     --hl: rgb(46, 209, 141);
+    --hl2: rgb(109, 253, 193);
 
     /* complimentary */
     --comp: rgb(207, 58, 120);
@@ -105,6 +106,7 @@ html {
 
         /* highlight */
         --hl: rgb(0, 172, 100);
+        --hl2:rgb(0, 143, 83);
 
         /* complimentary */
         --comp: rgb(163, 37, 90);

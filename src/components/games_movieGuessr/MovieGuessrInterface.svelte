@@ -28,7 +28,7 @@
 {#if !movie}
     <p class="error">No movie</p>
 {:else}
-    <p>CASH: €{cash.toFixed(2)}</p>
+    <!-- <p>CASH: €{cash.toFixed(2)}</p> -->
     <GuessInput />
     <div class="modules">
         <Info {movie} />

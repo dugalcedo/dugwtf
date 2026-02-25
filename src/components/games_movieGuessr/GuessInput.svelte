@@ -17,7 +17,7 @@
         }}
     >
     <BuyButton name="wrongAnswer" />
-    <button class="error" onclick={handleBankrupt}>
+    <button class="error no-flicker" onclick={handleBankrupt}>
         GIVE UP
     </button>
 </div>

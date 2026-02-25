@@ -56,6 +56,27 @@ body, h1, h2, h3, h4, h5, h6, p {
 
 a {
     color: var(--hl);
+    animation: a-flicker 1s infinite step-end;
+
+    &.no-flicker {
+        animation: none !important;
+    }
+
+    &:hover {
+        animation: none;
+    }
+}
+
+@keyframes a-flicker {
+    0% {
+        color: var(--hl);
+    }
+    50% {
+        color: var(--hl2);
+    }
+    100% {
+        color: var(--hl);
+    }
 }
 
 button {
@@ -66,23 +87,48 @@ button {
     font-size: 1em;
     padding: .25em .75em;
 
+    animation: button-flicker 1s infinite step-start;
+
+    &.no-flicker {
+        animation: none !important;
+    }
+
     &:hover {
         color: var(--hc1);
         border-color: var(--hc1);
+        animation: none;
     }
 
     &:active {
         color: var(--comp);
         border-color: var(--comp);
         border-style: inset;
+        animation: none;
     }
 
     &:disabled {
         opacity: 0.5;
         filter: grayscale(1);
         cursor: not-allowed;
+        animation: none;
     }
 }
+
+@keyframes button-flicker {
+    0% {
+        border-color: var(--hl);
+        color: var(--hl);
+    }
+    50% {
+        border-color: var(--hl2);
+        color: var(--hl2);
+    }
+    100% {
+        border-color: var(--hl);
+        color: var(--hl);
+    }
+}
+
 
 table {
     border-collapse: collapse;

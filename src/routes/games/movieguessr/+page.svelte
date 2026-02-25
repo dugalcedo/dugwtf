@@ -1,27 +1,46 @@
 <script lang="ts">
-    import { mg, startGame } from "$lib/stores/gameStores/movieGuessr.svelte";
+    import { mg, startGame, startGameFromCode } from "$lib/stores/gameStores/movieGuessr.svelte";
     import Dot from "../../../components/fun/Dot.svelte";
-    import Bankrupt from "../../../components/games_movieGuessr/Bankrupt.svelte";
-    import Correct from "../../../components/games_movieGuessr/Correct.svelte";
     import MovieGuessrInterface from "../../../components/games_movieGuessr/MovieGuessrInterface.svelte";
+    import EndOfRound from "../../../components/games_movieGuessr/EndOfRound.svelte";
+    import End from "../../../components/games_movieGuessr/End.svelte";
+
+    import Stats from "../../../components/games_movieGuessr/Stats.svelte";
+
+    let codeInputValue: string = $state("")
 </script>
 
 <div id="MG_HEAD">
     <h2>
-        movie<Dot />guessr
+        MOVIE<Dot />guessr
     </h2>
+    <div>
+        <Stats />
+    </div>
+    <div class="code">
+        {#if mg.code}
+            <p>CODE: {mg.code}</p>
+        {/if}
+    </div>
 </div>
 
 {#if mg.status === 'not-started'}
     <button onclick={startGame}>
-        Start random game
+        start random game
+    </button>
+    <br>
+    <input type="text" bind:value={codeInputValue} placeholder="enter 5-char code">
+    <button onclick={() => startGameFromCode(codeInputValue)}>
+        start game from code
     </button>
 {:else if mg.status === 'fetching'}
     <p>Loading...</p>
 {:else if mg.status === 'correct'}
-    <Correct />
+    <EndOfRound />
 {:else if mg.status === 'bankrupt'}
-    <Bankrupt />
+    <EndOfRound />
+{:else if mg.status === 'end'}
+    <End />
 {:else if mg.status === 'error' || !mg.movies?.length}
     <p>Error</p>
 {:else}
@@ -31,8 +50,22 @@
 
 <style>
     #MG_HEAD {
+        border-bottom: 1px solid var(--hl);
+        padding-bottom: 1rem;
+        margin-bottom: 2rem;
+        
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        align-items: flex-end;
+
         & > h2 {
             color: var(--hl);
         }
+    }
+
+    .code {
+        text-align: right;
+        font-size: .8rem;
+        color: var(--hl);
     }
 </style>

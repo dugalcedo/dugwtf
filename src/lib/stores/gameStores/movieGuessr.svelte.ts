@@ -9,6 +9,7 @@ let wrongAnswerSignal: any = 0;
 // ===== TYPES =====
 
 export type MG_Movie = {
+    id: string
     title: string
     year: number
     rating: number
@@ -32,6 +33,7 @@ export type MG_Movie = {
     countryRevealed?: boolean
     popularityRankRevealed?: boolean
     wrongAnswers?: string[]
+    cashOverride?: number
 }
 
 export type MG_Record = Record<string, MG_Movie>
@@ -52,6 +54,7 @@ export type MG_Store = {
     i: number
     guessVal: string
     signalingWrongAnswer: boolean
+    code?: string
 }
 
 export type OMDB_Movie = {
@@ -94,7 +97,7 @@ export const COSTS: Record<CostName, number> = {
 
 const WALLET_FACTOR = 0.3;
 
-const STARTING_CASH = (() => {
+export const STARTING_CASH = (() => {
     const penaltySum = Object.entries(COSTS).reduce((sum, [k, v]) => {
         if (k === 'cast') return sum + (v*3);
         if (k === 'review') return sum + (v*4);
@@ -108,6 +111,27 @@ export const YELLOW_THRESH = Math.floor(STARTING_CASH*(2/3));
 export const RED_THRESH = Math.ceil(STARTING_CASH*(1/3));
 
 const SIMIL_THRESHOLD = 0.73
+
+const UNSCRUBBABLE_WORDS = new Set([
+    // articles
+    'the', 'a', 'an', 'some',
+    // be-words
+    'be', 'is', 'are', 'am',
+    // binding words
+    'and', 'with', 'but', 'or',
+    // prepositions
+    'to', 'of', 'in', 'for', 'on', 'at', 'by', 'from',
+    // inanimate pronouns
+    'that', 'this', 'it', 
+    // personal pronouns
+    'I', 'me', 'we', 'us', 'he', 'she', 'him', 'her', 'you', 'they', 'them',
+    // possessive pronouns
+    'his', 'hers', 'my', 'our', 'your', 'their', 
+    // other verbs
+    'have', 'say', 'do', 'will', 
+    // misc
+    'not', 'as', 'there', 'so'
+])
 
 // ===== STORE =====
 
@@ -130,12 +154,33 @@ export const startGame = async () => {
     try {
         const fiveRandom = await getFiveRandomMovies()
         if (!fiveRandom) throw new Error("failed finding 5 random movies")
+
+        // generate code
+        mg.code = fiveRandom.map(m => encodeMovieId(m.id)).join('')
+
         mg.movies = fiveRandom
         mg.status = 'started'
     } catch (error) {
         console.log("error starting movie_guessr:", error)
         mg.status = 'error'
     }
+}
+
+export const startGameFromCode = async (code: string) => {
+    // RESET
+    mg.status = 'fetching'
+    mg.movies = []
+    mg.i = 0
+
+    const movies = await getFiveMoviesFromCode(code)
+
+    if (!movies) {
+        mg.status = 'error'
+        return
+    }
+
+    mg.movies = movies
+    mg.status = 'started'
 }
 
 export const guess = () => {
@@ -188,6 +233,8 @@ export const handleCorrect = () => {
 
 export const handleBankrupt = () => {
     console.log("BANKRUPT")
+    const movie = mg.movies[mg.i]
+    if (movie) movie.cashOverride = 0
     mg.status = 'bankrupt'
 }
 
@@ -222,6 +269,7 @@ const getRandomMovie = async (): Promise<MG_Movie | null> => {
     const id = _ids[Math.floor(Math.random()*_ids.length)]
     const movie = all[id]
     if (!movie) return null
+    movie.id = id
 
     // append omdb movie (Now hardcoded)
     // movie.omdb = await searchMovieOnOmdbApi(movie)
@@ -251,6 +299,38 @@ const getFiveRandomMovies = async (): Promise<MG_Movie[] | null> => {
     return movies
 }
 
+const getMovieFromCode = async(code: string): Promise<MG_Movie | null> => {
+
+    // get id
+    let id: string;
+    try {
+        id = decodeMovieId(code)
+    } catch (error) {
+        console.error(error)
+        return null
+    }
+
+    const all = await getAllMovies()
+    const movie = all[id]
+    if (!movie) return null;
+    movie.id = id
+    return movie
+}
+
+const getFiveMoviesFromCode = async(code: string): Promise<MG_Movie[] | null> => {
+
+    let movies: MG_Movie[] = []
+
+    for (let i = 0; i < code.length; i++) {
+        const char = code[i]
+        const movie = await getMovieFromCode(char)
+        if (!movie) return null;
+        movies.push(movie)
+    }
+
+    return movies
+}
+
 const shuffleArr = (arr: any[]) => {
   let i = arr.length, j, temp;
   while(--i > 0){
@@ -264,13 +344,14 @@ const shuffleArr = (arr: any[]) => {
 const sanitizeReview = (movie: MG_Movie, rev: string): string => {
     // get lowercase array of all words to scrub
     const lcWords: string[] = []
-    ;([...movie.top3Cast, ...movie.directors, movie.title]).forEach(name => {
-        lcWords.push(...name.toLowerCase().split(' '))
+    ;([...movie.top3Cast, ...movie.directors, movie.title]).forEach(word => {
+        lcWords.push(...word.toLowerCase().split(' '))
     })
 
     // replace all words
-    lcWords.forEach(name => {
-        rev = caseInsensitiveScrubMatch(rev, name)
+    lcWords.forEach(word => {
+        if (UNSCRUBBABLE_WORDS.has(word)) return;
+        rev = caseInsensitiveScrubMatch(rev, word)
     })
 
     return rev
@@ -285,39 +366,9 @@ const caseInsensitiveScrubMatch = (str: string, match: string): string => {
   return str.replace(regex, (matched) => '▮'.repeat(matched.length));
 }
 
-// const searchMovieOnOmdbApi = async (movie: MG_Movie): Promise<null | OMDB_Movie> => {
-//     // in case of rate limiting
-//     await new Promise(resolve => setTimeout(resolve, 1000))
-//     try {
-//         // 1. Search
-//         const res1 = await fetch(`https://www.omdbapi.com/?apikey=${x}&s=${movie.title}&y=${movie.year}`)
-//         if (!res1.ok) return null;
-//         const json1 = await res1.json()
-//         if (!Array.isArray(json1.Search)) return null;
-//         const firstMatch = json1.Search[0];
-//         if (!firstMatch) return null;
-
-//         // 2. Lookup
-//         const res2 = await fetch(`https://www.omdbapi.com/?apikey=${x}&i=${firstMatch.imdbID}`)
-//         if (!res2.ok) return null;
-//         const json2 = await res2.json();
-//         if (!json2) return null;
-
-//         return {
-//             mpaRating: json2.Rated||"",
-//             runtime: json2.Runtime||"",
-//             country: json2.Country||"",
-//             boxOffice: json2.BoxOffice||"",
-//             poster: json2.Poster||""
-//         }
-//     } catch (error) {
-//         console.error("searchMovieOnOmdbApi error:", error)
-//         return null;
-//     }
-// }
-
 export const deriveRemainingCashFromMovie = (m: MG_Movie | undefined | null) => {
     if (!m) return 0;
+    if (m.cashOverride !== undefined) return m.cashOverride;
 
     let cash = STARTING_CASH
 
@@ -345,4 +396,25 @@ export const deriveColorVarFromMoneyAmount = (cost: number) => {
     if (cost > YELLOW_THRESH) return 'hl'
     if (cost > RED_THRESH) return 'warning'
     return 'error'
+}
+
+// helper
+const OFFSET = 0x4E00;
+function encodeMovieId(id: string) {
+    const n = Number(id)
+    if (!Number.isInteger(n) || n < 0 || n > 10000) {
+        throw new Error(`Input must be an integer from 0 to 10000, got: ${n}`);
+    }
+    return String.fromCodePoint(OFFSET + n);
+}
+function decodeMovieId(str: string): string {
+    const codePoints = [...str].map(c => c.codePointAt(0)!);
+    if (codePoints.length !== 1) {
+        throw new Error(`Expected a single character, got: "${str}"`);
+    }
+    const n = codePoints[0] - OFFSET;
+    if (!Number.isInteger(n) || n < 0 || n > 10000) {
+        throw new Error(`Character "${str}" does not map to a number in range 0–10000`);
+    }
+    return n.toString();
 }

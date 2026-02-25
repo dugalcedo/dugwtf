@@ -52,6 +52,10 @@
     .movie {
         display: flex;
         gap: 1rem;
+        width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 100%;
     }
     
     .right {

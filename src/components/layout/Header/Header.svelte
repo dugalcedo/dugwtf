@@ -7,7 +7,7 @@
 
 <header>
 
-  <a href="/">
+  <a href="/" class="no-flicker">
     <div id="LOGO_AND_MAIN_HEADING">
       <div id="LOGO_CONTAINER">
         <Logo />
