@@ -63,12 +63,12 @@
     }
 
     #HEADING h1 {
-      font-size: 1rem;
+      font-size: 2rem;
       top: 0px;
     }
 
     :global(#HEADING > .blorby) {
-      font-size: 0.6rem;
+      font-size: 1rem;
       top: 0px;
       left: -15px;
     }

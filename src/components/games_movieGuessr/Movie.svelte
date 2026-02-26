@@ -56,6 +56,12 @@
         margin-left: auto;
         margin-right: auto;
         max-width: 100%;
+
+        @media (width < 550px) {
+            display: grid;
+
+            & .right { order: -1; }
+        }
     }
     
     .right {
@@ -65,6 +71,10 @@
             gap: 1rem;
             padding-bottom: .25rem;
             padding-top: .25rem;
+
+            @media (width < 800px) {
+                grid-template-columns: 1fr;
+            }
 
             &:not(:last-child) {
                 border-bottom: 1px solid var(--fgo20);

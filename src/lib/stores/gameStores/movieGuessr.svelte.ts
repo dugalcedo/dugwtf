@@ -48,12 +48,41 @@ export type MG_StoreStatus = (
     | 'end'
 )
 
+export type MG_DifficultyName = (
+    | 'hard'
+    | 'normal'
+    | 'easy'
+    | 'extra-easy'
+)
+
+export type MG_Difficulty = {
+    getMax: () => number
+}
+
+export const MG_DifficultyRecord: Record<MG_DifficultyName, MG_Difficulty> = {
+    hard: {
+        getMax: () => _ids.length
+    },
+    normal: {
+        getMax: () => 2000
+    },
+    easy: {
+        getMax: () => 1000
+    },
+    "extra-easy": {
+        getMax: () => 250
+    }
+}
+
+
+
 export type MG_Store = {
     status: MG_StoreStatus
     movies: MG_Movie[]
     i: number
     guessVal: string
     signalingWrongAnswer: boolean
+    difficulty: MG_DifficultyName
     code?: string
 }
 
@@ -140,7 +169,8 @@ export const mg = $state<MG_Store>({
     movies: [],
     i: 0,
     guessVal: '',
-    signalingWrongAnswer: false
+    signalingWrongAnswer: false,
+    difficulty: 'normal'
 })
 
 // ===== STORE-MUTATING FUNCTIONS =====
@@ -261,12 +291,14 @@ const getAllMovies = async (): Promise<MG_Record> => {
     const json = await res.json()
     _all = json
     _ids = Object.keys(json)
+    _ids.sort((a, b) => Number(a)-Number(b))
     return json
 }
 
 const getRandomMovie = async (): Promise<MG_Movie | null> => {
     const all = await getAllMovies()
-    const id = _ids[Math.floor(Math.random()*_ids.length)]
+    const max = MG_DifficultyRecord[mg.difficulty].getMax()
+    const id = _ids[Math.floor(Math.random()*max)]
     const movie = all[id]
     if (!movie) return null
     movie.id = id

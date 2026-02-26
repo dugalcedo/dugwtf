@@ -6,6 +6,7 @@
     import End from "../../../components/games_movieGuessr/End.svelte";
 
     import Stats from "../../../components/games_movieGuessr/Stats.svelte";
+    import DifficultySelector from "../../../components/games_movieGuessr/DifficultySelector.svelte";
 
     let codeInputValue: string = $state("")
 </script>
@@ -25,6 +26,9 @@
 </div>
 
 {#if mg.status === 'not-started'}
+    <DifficultySelector />
+    <br>
+    <br>
     <button onclick={startGame}>
         start random game
     </button>

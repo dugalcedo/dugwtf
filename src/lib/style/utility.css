@@ -1,3 +1,7 @@
+:root {
+    --z-nav-menu: 500;
+}
+
 html {
     &:not(.light) .invert-on-dark {
         filter: invert(1);
