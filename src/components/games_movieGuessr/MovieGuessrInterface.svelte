@@ -41,5 +41,9 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 1rem;
+
+        @media (width < 750px) {
+            grid-template-columns: 1fr;
+        }
     }
 </style>

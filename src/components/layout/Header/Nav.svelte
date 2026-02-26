@@ -1,8 +1,9 @@
 <nav id="MAIN_NAV" class="normal">
     <!-- svelte-ignore a11y_invalid_attribute -->
     <a href="/">HOME</a>
-    <a href="/contact">CONTACT</a>
+    <a href="/music">MUSIC</a>
     <a href="/games">GAMES</a>
+    <a href="/contact">CONTACT</a>
 </nav>
 
 <nav id="MAIN_NAV" class="smallscreen">

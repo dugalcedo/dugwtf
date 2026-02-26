@@ -35,6 +35,25 @@
                 outline: 3px dashed var(--error);
             }
         }
+
+        @media (width < 750px) {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+
+            & .error {
+                grid-column: span 2;
+            }
+        }
+
+        @media (width < 550px) {
+            grid-template-columns: 1fr;
+            justify-items: center;
+
+            & .error {
+                grid-column: span 1;
+            }
+        }
     }
 
     .error {

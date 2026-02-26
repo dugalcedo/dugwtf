@@ -29,6 +29,7 @@
         start random game
     </button>
     <br>
+    <br>
     <input type="text" bind:value={codeInputValue} placeholder="enter 5-char code">
     <button onclick={() => startGameFromCode(codeInputValue)}>
         start game from code
@@ -53,10 +54,17 @@
         border-bottom: 1px solid var(--hl);
         padding-bottom: 1rem;
         margin-bottom: 2rem;
-        
+
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         align-items: flex-end;
+
+        @media (width < 750px) {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: center;
+        }
 
         & > h2 {
             color: var(--hl);

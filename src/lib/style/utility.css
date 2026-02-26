@@ -84,3 +84,10 @@ html {
         outline: 2px dashed var(--hl);
     }
 }
+
+/* responsiveness */
+
+.res-left {
+    width: 800px;
+    max-width: 100%;
+}

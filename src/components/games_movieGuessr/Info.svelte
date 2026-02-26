@@ -142,6 +142,10 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 1rem;
+
+        @media (width < 550px) {
+            grid-template-columns: 1fr;
+        }
     }
     
     .info {

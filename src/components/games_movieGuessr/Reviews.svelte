@@ -29,6 +29,12 @@
 </div>
 
 <style>
+    @media (width < 750px) {
+        #REVIEWS_MODULE {
+            order: -1;
+        }
+    }
+
     h3 {
         background-color: var(--fg);
         color: var(--bg);

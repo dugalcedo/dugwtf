@@ -10,8 +10,26 @@
     font-weight: bold;
 }
 
+:root {
+    --page-padding: 0.3rem;
+    @media (width >= 650px) {
+        --page-padding: 0.6rem;
+    }
+    @media (width >= 1200px) {
+        --page-padding: 1rem;
+    }
+}
+
 html {
-    font-size: 18px;
+    font-size: 14px;
+
+    @media (width >= 650px) {
+        font-size: 16px;
+    }
+
+    @media (width >= 1200px) {
+        font-size: 18px;
+    }
 }
 
 body, button, input, select, option, textarea {
@@ -34,15 +52,15 @@ body {
 
 header {
     background-color: var(--bg1);
-    padding: 1rem;
+    padding: var(--page-padding);
 }
 
 main {
     flex-grow: 1;
     overflow: auto;
-    border-left: 1rem solid var(--bg1);
-    border-right: 1rem solid var(--bg1);
-    padding: 1rem;
+    border-left: var(--page-padding) solid var(--bg1);
+    border-right: var(--page-padding) solid var(--bg1);
+    padding: var(--page-padding);
 }
 
 footer {

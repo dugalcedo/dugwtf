@@ -33,6 +33,11 @@
             color: var(--hl);
             padding-bottom: .5rem;
         }
+
+        @media (width < 750px) {
+            background-color: var(--fgo10);
+            padding: .5rem;
+        }
     }
 
     .cash {
