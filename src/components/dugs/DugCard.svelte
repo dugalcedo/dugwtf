@@ -42,30 +42,27 @@
         "
     >
 
-    {#if selected}
-        <div class="controls">
-            <!-- <a href="/dugscography/{dug.title}">
-                go to page
-            </a> -->
-            <a href="##" onclick={e => {
-                e.stopPropagation()
-                e.preventDefault()
-                openBcPlayer(dug)
-            }}>
-                play here
-            </a>
-            <a href={dug.bc_link} target="_blank">
-                bandcamp
-            </a>
-        </div>
-        <div class="info">
-            <div class="title">
-                <h5>{dug.title}</h5>
-                <p>by {dug.artist}</p>
+    <div class="right">
+        <h4>{dug.title}</h4>
+        {#if selected}
+            <p>{dug.year}</p>
+            <small>{dug.id}</small>
+            <small>{dug.type}</small>
+            <div style="flex-grow: 1;"></div>
+            <div class="controls">
+                <!-- svelte-ignore node_invalid_placement_ssr -->
+                <button onclick={e => {
+                    e.stopPropagation()
+                    e.stopImmediatePropagation()
+                    openBcPlayer(dug)
+                }}>
+                    &#9654;
+                </button>
+                <a href={dug.bc_link} target="_blank">get</a>
+                <a href="/dugscography/{dug.id}">see more</a>
             </div>
-            <p>{dug.id} ({dug.year})</p>
-        </div>
-    {/if}
+        {/if}
+    </div>
 </button>
 
 <style>
@@ -74,72 +71,57 @@
         border: 0;
         position: relative;
         color: var(--fg) !important;
+        display: flex;
+        width: 100%;
+        gap: 1rem;
 
-        & .cover {
-            width: 100%;
-            display: block;
-            image-rendering: pixelated;
+        & .right {
+            text-align: left;
+            display: flex;
+            flex-direction: column;
         }
 
-        &.selected {
-            grid-column: span 2;
-            grid-row: span 2;
+        & h4 {
+            font-style: italic;
+            text-align: left;
+        }
 
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            align-content: flex-start;
+        & .cover {
+            width: 75px;
+            display: block;
+            image-rendering: pixelated;
+            border-radius: 1rem;
+        }
 
-            border: 3px dashed var(--bg);
-            border-left: 0;
-            border-right: 0;
-
-            background-color: var(--fgo20);
-
-            
+        &:hover, &:focus, &.selected {
+            background-color: var(--fgo10);
         }
 
         &.selected .cover, &:hover .cover {
             filter: none !important;
             mix-blend-mode: normal !important;
+            border-radius: 0;
         }
-    }
-
-    .controls {
-        display: flex;
-        flex-direction: column;
-
-        & a {
-            flex-grow: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            animation: none !important;
-            background-color: var(--hl);
-            color: var(--bg) !important;
-
-            &:hover {
-                background-color: var(--hc1) !important;
-            }
+        
+        &.selected .cover {
+            width: 125px;
         }
-    }
 
-    .info {
-        grid-column: span 2;
-        text-align: left;
+        & .controls {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
 
-        & .title {
             & > * {
-                display: inline;
+                border: 0;
+                padding: 0;
+                font-size: 1rem;
+                text-align: center;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                outline: 1px solid var(--fgo20);
+                padding: .25rem;
             }
-
-            & p {
-                font-size: .8rem;
-            }
-        }
-
-        & h5 {
-            font-size: 1.25rem;
-            font-style: italic;
         }
     }
 

@@ -12,7 +12,11 @@
 <br>
 
 <p class="res-left" use:makeMoreReadable>
-    between 2008 and 2024, from the ages of 15 to 31, i made a lot of electronic music. since then, i have paused for a few reasons: §<i>1.</i> i have become a little bored, §<i>2.</i> i am feeling more inspired by guitar music these days, §<i>3.</i> i have been devoting a lot of time to learning to program, §<i>4.</i> i want to take the time to expand my skills and styles, learn how to play the guitar, and learn how to record sounds better.
+    between 2008 and 2024, from the ages of 15 to 31, i made a lot of electronic music. since then, i have paused for a few reasons: 
+    <br>§<i>1.</i> i have become a little bored, 
+    <br>§<i>2.</i> i am feeling more inspired by guitar music these days, 
+    <br>§<i>3.</i> i have been devoting a lot of time to learning to write web software, 
+    <br>§<i>4.</i> i want to take the time to expand my skills and styles, learn how to play the guitar, and learn how to record sounds better.
 </p>
 
 <br>
@@ -64,8 +68,6 @@
     }
 
     .dug-cards {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(100px, 150px));
         margin-bottom: 2rem;
     }
 

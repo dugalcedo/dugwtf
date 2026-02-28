@@ -51,7 +51,7 @@
             width: calc(100% + 10px) !important;
             height: calc(100% + 10px) !important;
             translate: -5px -5px;
-            filter: contrast(1.35);
+            filter: contrast(1.8);
             z-index: 1;
         }
 
@@ -62,6 +62,12 @@
             z-index: 2;
             right: 0;
             top: 0;
+
+            & > * {
+                &:not(:last-child) {
+                    border-right: 1px solid var(--fgo30) !important;
+                }
+            }
         }
 
         & button {
