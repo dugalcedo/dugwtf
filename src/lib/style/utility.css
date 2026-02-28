@@ -1,8 +1,7 @@
 :root {
     --z-nav-menu: 500;
-    --z-dug-card: 101;
-    --z-dug-card-modal: 102;
-    --z-dug-card-modal-backdrop: 100;
+    --z-bc-player: 400;
+    --z-bc-player-tray: 399;
 }
 
 html {

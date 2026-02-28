@@ -1,5 +1,6 @@
 <script lang="ts">
     import type { Dug } from "$lib/clientData/dugs";
+    import { openBcPlayer } from "$lib/stores/bcPlayerStore.svelte";
 
     let { 
         dug,
@@ -43,18 +44,18 @@
 
     {#if selected}
         <div class="controls">
+            <!-- <a href="/dugscography/{dug.title}">
+                go to page
+            </a> -->
             <a href="##" onclick={e => {
                 e.stopPropagation()
                 e.preventDefault()
-                console.log('playing')
+                openBcPlayer(dug)
             }}>
-                play
+                play here
             </a>
             <a href={dug.bc_link} target="_blank">
                 bandcamp
-            </a>
-            <a href="/dugscography/{dug.title}">
-                go to page
             </a>
         </div>
         <div class="info">
@@ -115,6 +116,10 @@
             animation: none !important;
             background-color: var(--hl);
             color: var(--bg) !important;
+
+            &:hover {
+                background-color: var(--hc1) !important;
+            }
         }
     }
 

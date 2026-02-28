@@ -2,6 +2,7 @@
     import '../lib/style/_main.css'
     import type { Snippet } from "svelte";
     import Header from "../components/layout/Header/Header.svelte";
+    import BcPlayer from '../components/layout/BcPlayer/BcPlayer.svelte';
 
     const {
         children
@@ -19,3 +20,5 @@
 <footer>
 
 </footer>
+
+<BcPlayer />

@@ -274,7 +274,7 @@ export const dugs: Record<string, Dug> = {
     "bc_id": "2585332977",
     "bc_link": "https://dugalcedo.bandcamp.com/album/fish-antlers",
     "cover_s": "/images/acxs/DUG035.jpg",
-    "cover_l": "/images/acl/DUG035.jpg"
+    "cover_l": "/images/acl/DUG035.jpg",
   },
   "Money Snakes": {
     "artist": "Dug Alcedo",
