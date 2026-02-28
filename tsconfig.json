@@ -11,7 +11,7 @@
 		"strict": true,
 		"moduleResolution": "bundler"
 	},
-	"exclude": ["node_modules", "src/_old-components", "src/_old-lib", "src/_old-routes"]
+	"exclude": ["node_modules", "src/_old-components", "src/_old/_old-lib", "src/_old/_old-routes"]
 	// Path aliases are handled by https://svelte.dev/docs/kit/configuration#alias
 	// except $lib which is handled by https://svelte.dev/docs/kit/configuration#files
 	//
