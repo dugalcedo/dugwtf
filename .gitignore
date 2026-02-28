@@ -25,6 +25,4 @@ vite.config.ts.timestamp-*
 _htmltest
 
 # Older iterations
-src/_old-components
-src/_old-lib
-src/_old-routes
+src/_old
