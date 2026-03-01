@@ -12,6 +12,7 @@
 
     // svelte-ignore state_referenced_locally
     const dugValues = Object.values(dugs)
+    console.log({params, dugValues})
     const dugI = $derived(dugValues.findIndex(d => d.id == params.id))
     const dug: undefined | Dug = $derived(dugI < 0 ? undefined : dugValues[dugI]);
     const prevDug = $derived.by(() => {
