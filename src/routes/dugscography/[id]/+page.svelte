@@ -1,37 +1,19 @@
 <script lang="ts">
-    import { dugs, type Dug } from "$lib/clientData/dugs";
     import { makeMoreReadable } from "$lib/util/makeMoreReadable";
+    import type { PageData } from "./$types";
 
     const {
-        params
+        data
     }: {
-        params: {
-            id: string
-        }
+        data: PageData
     } = $props()
-
-    // svelte-ignore state_referenced_locally
-    const dugValues = Object.values(dugs)
-    console.log({params, dugValues})
-    const dugI = $derived(dugValues.findIndex(d => d.id == params.id))
-    const dug: undefined | Dug = $derived(dugI < 0 ? undefined : dugValues[dugI]);
-    const prevDug = $derived.by(() => {
-        const item = dugValues[dugI+1]
-        if (!item) return null;
-        return item;
-    });
-    const nextDug = $derived.by(() => {
-        const item = dugValues[dugI-1]
-        if (!item) return null;
-        if (item.artist==="NULL") return null;
-        return item;
-    });
 
 </script>
 
-{#if !dug}
+{#if !data.dug}
     <p>not found</p>
 {:else}
+{@const { dug, prevDug, nextDug } = data}
     <h2 class="hl">{dug.title} ({dug.artist} {dug.type})</h2>
 
     <article>
