@@ -3,9 +3,16 @@
   import BlorbyText from "../../fun/BlorbyText.svelte";
   import Nav from "./Nav.svelte";
   import Logo from "./Logo.svelte";
+  import { page } from "$app/state";
 </script>
 
 <header>
+
+  {#if page.data.user}
+    <p class="logged-in-as">
+      logged in as <em>{page.data.user.displayName}</em>
+    </p>
+  {/if}
 
   <a href="/" class="no-flicker">
     <div id="LOGO_AND_MAIN_HEADING">
@@ -25,6 +32,7 @@
 
 <style>
   header {
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
@@ -33,6 +41,14 @@
       color: unset;
       text-decoration: none;
     }
+  }
+
+  .logged-in-as {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    font-size: 0.7rem;
+    opacity: 0.7;
   }
 
   #LOGO_AND_MAIN_HEADING {

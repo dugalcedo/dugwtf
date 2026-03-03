@@ -1,14 +1,47 @@
 <script>
+    import { page } from "$app/state";
     import { clickOutside } from "../../../lib/util/clickOutside";
     let smallMenuOpen = $state(false)
+
+    const pageLoggedIn = $derived(page.data.user !== undefined)
+
+    const navItems = [
+        {
+            href: "/",
+            text: "HOME"
+        },
+        {
+            href: "/music",
+            text: "MUSIC"
+        },
+        {
+            href: "/games",
+            text: "GAMES"
+        },
+        {
+            href: "/contact",
+            text: "CONTACT"
+        },
+        {
+            href: "/logout",
+            text: "LOG OUT",
+            loggedIn: true
+        },
+        {
+            href: "/auth",
+            text: "LOG IN",
+            loggedIn: false
+        }
+    ]
 </script>
 
 <nav id="MAIN_NAV" class="normal">
-    <!-- svelte-ignore a11y_invalid_attribute -->
-    <a href="/">HOME</a>
-    <a href="/music">MUSIC</a>
-    <a href="/games">GAMES</a>
-    <a href="/contact">CONTACT</a>
+    {#each navItems as { href, text, loggedIn }}
+    {@const show = (loggedIn === undefined) || (loggedIn && pageLoggedIn) || (!loggedIn && !pageLoggedIn)}
+    {#if show}
+        <a href={href}>{text}</a>
+    {/if}
+    {/each}
 </nav>
 
 <nav id="MAIN_NAV" class="smallscreen" use:clickOutside={() => smallMenuOpen = false}>
@@ -27,10 +60,12 @@
     <div class="menu" style="
         display: {smallMenuOpen ? 'flex' : 'none'};
     ">
-        <a onclick={() => smallMenuOpen = false} href="/">HOME</a>
-        <a onclick={() => smallMenuOpen = false} href="/music">MUSIC</a>
-        <a onclick={() => smallMenuOpen = false} href="/games">GAMES</a>
-        <a onclick={() => smallMenuOpen = false} href="/contact">CONTACT</a>
+        {#each navItems as { href, text, loggedIn }}
+        {@const show = (loggedIn === undefined) || (loggedIn && pageLoggedIn)}
+        {#if show}
+            <a onclick={() => smallMenuOpen = false} href={href}>{text}</a>
+        {/if}
+        {/each}
     </div>
 </nav>
 

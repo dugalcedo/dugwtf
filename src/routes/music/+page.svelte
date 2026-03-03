@@ -25,30 +25,32 @@
 
 <br>
 
-{#each whatIveMade as { heading, items } }
-    <div class="wim res-left">
-        <h4>{heading}</h4>
-        <div class="dug-cards">
-            {#each items as item}
-            {@const dug = item.dug || dugs[0]}
-                <DugCard 
-                    {dug} 
-                    filter={item.filter} 
-                    blend={item.blend} 
-                    bind:selectedDugTitle={selectedDugTitle}
-                />
-            {/each}
+<section class="what-ive-made-modules">
+    {#each whatIveMade as { heading, items } }
+        <div class="wim">
+            <h4>{heading}</h4>
+            <div class="dug-cards">
+                {#each items as item}
+                {@const dug = item.dug || dugs[0]}
+                    <DugCard
+                        {dug}
+                        filter={item.filter}
+                        blend={item.blend}
+                        bind:selectedDugTitle={selectedDugTitle}
+                    />
+                {/each}
+            </div>
         </div>
+    {/each}
+    
+    <div class="wim">
+        <h4>and much more</h4>
+        <br>
+        <p>you'll find a lot more stuff on my bandcamps</p>
+        <p><a target="_blank" href="https://dugalcedo.bandcamp.com">bandcamp (2019 - present)</a></p>
+        <p><a target="_blank" href="https://firstdog.bandcamp.com">bandcamp (2008 - 2018)</a></p>
     </div>
-{/each}
-
-<div class="wim res-left">
-    <h4>and much more</h4>
-    <br>
-    <p>you'll find a lot more stuff on my bandcamps</p>
-    <p><a target="_blank" href="https://dugalcedo.bandcamp.com">bandcamp (2019 - present)</a></p>
-    <p><a target="_blank" href="https://firstdog.bandcamp.com">bandcamp (2008 - 2018)</a></p>
-</div>
+</section>
 
 <style>
     p i {
@@ -65,6 +67,18 @@
         color: var(--bg);
         margin-bottom: 1rem;
         display: inline-block;
+    }
+
+    .what-ive-made-modules {
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: repeat(2, 1fr);
+        width: 1200px;
+        max-width: 100%;
+
+        @media (width < 600px) {
+            grid-template-columns: 1fr;
+        }
     }
 
     .dug-cards {

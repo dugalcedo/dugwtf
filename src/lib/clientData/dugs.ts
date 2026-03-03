@@ -142,17 +142,17 @@ export const dugs: Record<string, Dug> = {
       ]
     }
   },
-  "Starship Comino (Cave version)": {
-    "artist": "Dug Alcedo",
-    "title": "Starship Comino (Cave version)",
-    "id": "DUG042b",
-    "year": 2021,
-    "type": "single",
-    "bc_id": "397204052",
-    "bc_link": "https://dugalcedo.bandcamp.com/album/2021-06-18-thos-album-release-show",
-    "cover_s": "/images/acxs/DUG042b.jpg",
-    "cover_l": "/images/acl/DUG042b.jpg"
-  },
+  // "Starship Comino (Cave version)": {
+  //   "artist": "Dug Alcedo",
+  //   "title": "Starship Comino (Cave version)",
+  //   "id": "DUG042b",
+  //   "year": 2021,
+  //   "type": "single",
+  //   "bc_id": "397204052",
+  //   "bc_link": "https://dugalcedo.bandcamp.com/album/2021-06-18-thos-album-release-show",
+  //   "cover_s": "/images/acxs/DUG042b.jpg",
+  //   "cover_l": "/images/acl/DUG042b.jpg"
+  // },
   "Big Fish eat Little Fish": {
     "artist": "Dug Alcedo",
     "title": "Big Fish eat Little Fish",

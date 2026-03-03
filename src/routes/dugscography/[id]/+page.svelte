@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { openBcPlayer } from "$lib/stores/bcPlayerStore.svelte";
     import { makeMoreReadable } from "$lib/util/makeMoreReadable";
     import type { PageData } from "./$types";
 
@@ -17,7 +18,7 @@
     <h2 class="hl">{dug.title} ({dug.artist} {dug.type})</h2>
 
     <article>
-        <div class="cover">
+        <div class="cover-and-info">
             <img src={dug.cover_l} alt="album cover of '{dug.title}' by '{dug.artist}'">
             <div class="controls">
                 {#if prevDug}
@@ -29,10 +30,10 @@
                         PREV
                     </button>
                 {/if}
-                <button>
+                <a href={dug.bc_link} target="_blank">
                     GET
-                </button>
-                <button>
+                </a>
+                <button onclick={() => openBcPlayer(dug)}>
                     &#9654;
                 </button>
                 {#if nextDug}
@@ -75,11 +76,19 @@
             </table>
         </div>
 
-
+        <div class="desc" use:makeMoreReadable>
+            {dug.desc_long}
+        </div>
+        
     </article>
 {/if}
 
 <style>
+    h2 {
+        border-bottom: 1px solid var(--hl);
+        margin-bottom: 1rem;
+    }
+
     th {
         text-align: left;
         font-size: .9rem;
@@ -91,7 +100,7 @@
         color: var(--bg);
     }
 
-    .cover {
+    .cover-and-info {
         & img {
             width: 100%;
             display: block;

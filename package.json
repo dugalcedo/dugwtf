@@ -9,7 +9,8 @@
 		"preview": "vite preview",
 		"prepare": "svelte-kit sync || echo ''",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"drizzle": "bunx drizzle-kit generate && bunx drizzle-kit migrate"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^6.0.0",
@@ -21,9 +22,10 @@
 		"@types/showdown": "^2.0.6",
 		"@types/uuid": "^10.0.0",
 		"@types/validator": "^13.15.2",
+		"drizzle-kit": "^0.31.9",
 		"svelte": "^5.0.0",
 		"svelte-check": "^4.0.0",
-		"tsx": "^4.20.5",
+		"tsx": "^4.21.0",
 		"typescript": "^5.0.0",
 		"vite": "^6.2.6"
 	},
@@ -33,13 +35,15 @@
 		]
 	},
 	"dependencies": {
-		"bcryptjs": "^3.0.2",
+		"bcryptjs": "^3.0.3",
 		"dayjs": "^1.11.13",
-		"dotenv": "^17.2.1",
+		"dotenv": "^17.3.1",
+		"drizzle-orm": "^0.45.1",
 		"html2canvas": "^1.4.1",
-		"jsonwebtoken": "^9.0.2",
+		"jsonwebtoken": "^9.0.3",
 		"mongoose": "^8.18.0",
 		"nodemailer": "^7.0.6",
+		"postgres": "^3.4.8",
 		"showdown": "^2.1.0",
 		"string-similarity-js": "^2.1.4",
 		"uuid": "^11.1.0",
