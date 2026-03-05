@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { makeMoreReadable } from "../../lib/util/makeMoreReadable";
+    import { makeMoreReadable } from "../../lib/clientUtils/makeMoreReadable";
     import { whatIveMade, dugs, type Dug } from "../../lib/clientData/dugs";
     import DugCard from "../../components/dugs/DugCard.svelte";
 

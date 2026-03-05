@@ -2,7 +2,7 @@ import type { LayoutServerLoad } from "./$types";
 import { userTable } from "$lib/server/db/schema";
 import { getPostgresDb } from "$lib/server/db/connect";
 import { eq } from "drizzle-orm";
-import { verifyToken } from "$lib/server/util/jwt";
+import { verifyToken } from "$lib/server/serverUtils/jwt";
 
 export const load: LayoutServerLoad = async (ctx) => {
     const token = ctx.cookies.get('dugwtf-token')
@@ -36,7 +36,10 @@ export const load: LayoutServerLoad = async (ctx) => {
     return {
         user: {
             displayName: user.displayName,
-            email: user.email
+            email: user.email,
+            verified: user.verified,
+            lastVerificationCodeSentAt: user.lastVerificationCodeSentAt,
+            isAdmin: ['dug', 'admin'].includes(user.role||'')
         }
     }
 }

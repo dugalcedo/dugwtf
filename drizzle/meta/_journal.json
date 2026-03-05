@@ -15,6 +15,41 @@
       "when": 1772555022769,
       "tag": "0001_slimy_ronan",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1772704528343,
+      "tag": "0002_breezy_darwin",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1772705922016,
+      "tag": "0003_complete_firestar",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1772707460935,
+      "tag": "0004_lively_purifiers",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1772713301467,
+      "tag": "0005_red_lord_hawal",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1772715682485,
+      "tag": "0006_petite_big_bertha",
+      "breakpoints": true
     }
   ]
 }

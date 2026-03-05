@@ -1,6 +1,6 @@
 <script>
     import { page } from "$app/state";
-    import { clickOutside } from "../../../lib/util/clickOutside";
+    import { clickOutside } from "../../../lib/clientUtils/clickOutside";
     let smallMenuOpen = $state(false)
 
     const pageLoggedIn = $derived(page.data.user !== undefined)

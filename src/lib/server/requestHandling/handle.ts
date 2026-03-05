@@ -7,6 +7,9 @@ import postgres from "postgres";
 const { PostgresError } = postgres;
 type PostgresError = InstanceType<typeof PostgresError>;
 import { DEV } from "$env/static/private";
+import { preventAttacks } from "./preventAttacks";
+import type { DbUser } from "../db/schemas/user";
+import { signToken } from "../serverUtils/jwt";
 
 // DRH = DUGWTF REQUEST HANDLER
 
@@ -14,6 +17,8 @@ type DRH_Context<S extends ZodObject> = RequestEvent & {
     db: PostgresJsDatabase
     body: z.infer<S>
     validateFound: (item: any, msg: string) => void 
+    keepLoggedIn: (user: DbUser) => string
+    signToken: (user: DbUser) => string
 };
 
 type DRH_Result = {
@@ -36,6 +41,7 @@ type DRH_Error = {
 type DRH_Options<S extends ZodObject> = {
     parseBody?: boolean
     zodSchema?: S
+    customResponse?: Response
 }
 
 type DRH_Init<S extends ZodObject> = DRH_Options<S> & {
@@ -50,6 +56,9 @@ export const drhHandle = <S extends ZodObject>(init: DRH_Init<S>): RequestHandle
         console.log(`${new Date().toString()} NEW REQUEST [${ctx.request.method} ${ctx.request.url}]`)
 
         try {
+            // PREVENT ATTACKS
+            preventAttacks(ctx)
+
             // PARSE BODY
             const skipParsingBody = init.parseBody === false;
             const body = skipParsingBody ? null : (await parseBody(ctx));
@@ -75,10 +84,29 @@ export const drhHandle = <S extends ZodObject>(init: DRH_Init<S>): RequestHandle
                     }
                     return db
                 },
-                validateFound
+                validateFound,
+                keepLoggedIn(user) {
+                    const token = signToken({ id: user.id, hash: user.hash })
+                    ctx.cookies.set(
+                        "dugwtf-token", 
+                        token, 
+                        {
+                            path: "/",
+                            httpOnly: true,
+                            maxAge: 30 * 24 * 60 * 60
+                        }
+                    )
+                    return token
+                },
+                signToken(user) {
+                    return signToken({ id: user.id, hash: user.hash })
+                }
             })
 
-            // GOOD RESPOND
+            // CUSTOM RESPONSE
+            if (init.customResponse) return init.customResponse;
+
+            // GOOD RESPONSE
             return Response.json({
                 msg: result.msg || "success?",
                 data: result.data,

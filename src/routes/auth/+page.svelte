@@ -1,6 +1,6 @@
 <script lang="ts">
     import DugForm from "../../components/forms/DugForm.svelte";
-    import { getErrorMessage } from "$lib/util/getErrorMessage";
+    import { getErrorMessage } from "$lib/clientUtils/getErrorMessage";
 </script>
 
 <!-- SIGN UP FORM -->

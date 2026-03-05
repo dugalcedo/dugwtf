@@ -1,7 +1,7 @@
 <script lang="ts">
     import type { Snippet } from "svelte";
     import type { Scorecard } from "../../lib/stores/gameStores/genreGuessr.svelte";
-    import { onHoverOrFocus } from "../../lib/util/onHoverOrFocus";
+    import { onHoverOrFocus } from "../../lib/clientUtils/onHoverOrFocus";
     import { gg, scoreColor } from "../../lib/stores/gameStores/genreGuessr.svelte";
 
     const {

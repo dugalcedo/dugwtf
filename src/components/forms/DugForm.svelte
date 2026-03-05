@@ -1,6 +1,6 @@
 <script lang="ts">
     import Field from "./Field.svelte";
-    import { nextId } from "$lib/util/generateId";
+    import { nextId } from "$lib/clientUtils/generateId";
 
     const {
         config

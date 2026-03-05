@@ -1,7 +1,7 @@
 <script lang="ts">
     import type { GG_Sample, Scorecard, GG_Additional_Sample } from "../../lib/stores/gameStores/genreGuessr.svelte";
     import { PENALTIES } from "../../lib/stores/gameStores/genreGuessr.svelte";
-    import { AudioTimeTracker } from "../../lib/util/AudioTimeTracker";
+    import { AudioTimeTracker } from "../../lib/clientUtils/AudioTimeTracker";
     import { onMount } from "svelte";
     import CostTooltip from "./CostTooltip.svelte";
 

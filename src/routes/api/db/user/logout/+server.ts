@@ -1,6 +1,7 @@
 import { drhHandle } from "$lib/server/requestHandling/handle";
 
 export const GET = drhHandle({
+    parseBody: false,
     async handler({ cookies }) {
         cookies.set("dugwtf-token", "", {
             path: "/",

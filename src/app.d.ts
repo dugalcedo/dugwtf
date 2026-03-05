@@ -4,7 +4,15 @@ declare global {
 	namespace App {
 		// interface Error {}
 		// interface Locals {}
-		// interface PageData {}
+		interface PageData {
+			user?: {
+				displayName: string
+				email: string
+				verified: boolean
+				lastVerificationCodeSentAt?: Date
+				isAdmin: boolean
+			}
+		}
 		// interface PageState {}
 		// interface Platform {}
 	}

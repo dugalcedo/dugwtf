@@ -1,9 +1,8 @@
 import { userTable, type DbUser } from "$lib/server/db/schemas/user";
 import { drhHandle } from "$lib/server/requestHandling/handle";
 import { z } from "zod";
-import { verifyPassword } from "$lib/server/util/hashing";
+import { verifyPassword } from "$lib/server/serverUtils/hashing";
 import { eq } from "drizzle-orm";
-import { signToken } from "$lib/server/util/jwt";
 
 export const POST = drhHandle({
     zodSchema: z.object({
@@ -11,7 +10,7 @@ export const POST = drhHandle({
         email: z.string().optional(),
         password: z.string("password required")
     }),
-    async handler({ db, body, cookies }) {
+    async handler({ db, body, keepLoggedIn }) {
 
         // FIND USER
         let user: DbUser;        
@@ -59,18 +58,12 @@ export const POST = drhHandle({
         }
 
         // SUCCESS
-        const token = signToken({ id: user.id, hash: user.hash })
-
-        cookies.set("dugwtf-token", token, {
-            path: "/",
-            httpOnly: true,
-            maxAge: 30 * 24 * 60 * 60
-        })
+        const token = keepLoggedIn(user)
 
         return {
             status: 201,
             msg: "logged in",
-            data: { token }
+            data: { token, verified: user.verified }
         }
     },
 })

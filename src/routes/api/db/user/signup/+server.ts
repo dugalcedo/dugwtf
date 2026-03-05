@@ -1,8 +1,9 @@
 import { userTable } from "$lib/server/db/schemas/user";
 import { drhHandle } from "$lib/server/requestHandling/handle";
 import { z } from 'zod'
-import { hashPassword } from "$lib/server/util/hashing";
-import { signToken } from "$lib/server/util/jwt";
+import { hashPassword } from "$lib/server/serverUtils/hashing";
+import { genCode } from "$lib/server/serverUtils/util"
+import { sendVerificationEmail } from "$lib/server/services/nodemailer";
 
 export const POST = drhHandle({
     zodSchema: z.object({
@@ -16,25 +17,20 @@ export const POST = drhHandle({
         password: z
             .string("password required")
     }),
-    async handler({ db, body, validateFound, cookies }) {
+    async handler({ db, body, validateFound, keepLoggedIn }) {
         const [newUser] = await db
             .insert(userTable)
             .values({
                 displayName: body.displayName,
                 hash: hashPassword(body.password),
                 email: body.email,
+                verificationCode: genCode()
             })
             .returning();
 
         validateFound(newUser, "user not found")
-
-        const token = signToken({ id: newUser.id, hash: newUser.hash })
-
-        cookies.set("dugwtf-token", token, {
-            path: "/",
-            httpOnly: true,
-            maxAge: 30 * 24 * 60 * 60
-        })
+        sendVerificationEmail(newUser.email, newUser.verificationCode)
+        const token = keepLoggedIn(newUser)
 
         return {
             status: 201,

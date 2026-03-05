@@ -1,0 +1,1 @@
+ALTER TABLE "users" ALTER COLUMN "lastVerificationCodeSentAt" SET DATA TYPE timestamp;

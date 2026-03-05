@@ -1,6 +1,6 @@
 <script lang="ts">
     import { openBcPlayer } from "$lib/stores/bcPlayerStore.svelte";
-    import { makeMoreReadable } from "$lib/util/makeMoreReadable";
+    import { makeMoreReadable } from "$lib/clientUtils/makeMoreReadable";
     import type { PageData } from "./$types";
 
     const {
