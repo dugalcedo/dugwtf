@@ -21,10 +21,14 @@ export function getPostgresDb() {
 }
 
 export function keepDbAlive() {
-    const db = getPostgresDb()
-    setInterval(() => {
-        if (db) db.select()
-            .from(userTable)
-            .limit(1)
+    setInterval(async () => {
+        const db = getPostgresDb()
+        console.log("keeping db alive... db truthy: ", !!db)
+        if (db) {
+            const [user] = await db.select()
+                .from(userTable)
+                .limit(1)
+            console.log("user:", user?.displayName)
+        }
     }, 12 * 60 * 60 * 1000);
 }
