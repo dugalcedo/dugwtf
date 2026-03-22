@@ -1,0 +1,9 @@
+@use "./theme.scss";
+@use "./elements.scss";
+@use "./utility.scss";
+@use "./layout-utility.scss";
+
+* {
+    box-sizing: border-box;
+    scrollbar-color: var(--hl) var(--bg);
+}

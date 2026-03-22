@@ -1,0 +1,40 @@
+@use "sass:math";
+
+.g {gap: 1rem;}
+
+/* gap utility */
+$gAmt: 5;
+@while $gAmt <= 30 {
+    .g-#{$gAmt} {
+        gap: #{math.div($gAmt, 10)}rem;
+    }
+    $gAmt: $gAmt + 5;
+}
+
+.grid-2 {
+    display: grid;
+
+    & > * {
+        width: 100%;
+    }
+
+    @media (width >= 800px) {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.grid-3 {
+    display: grid;
+
+    & > * {
+        width: 100%;
+    }
+
+    @media (width >= 600px) {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    @media (width >= 1000px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}

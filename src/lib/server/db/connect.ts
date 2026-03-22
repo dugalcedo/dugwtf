@@ -1,5 +1,6 @@
 import { drizzle, PostgresJsDatabase } from 'drizzle-orm/postgres-js'
 import { DATABASE_URL } from '$env/static/private'
+import { userTable } from './schema';
 
 let db: PostgresJsDatabase | null = null;
 
@@ -17,4 +18,13 @@ export function connectToPostgresqlDb() {
 export function getPostgresDb() {
     if (db) return db;
     return connectToPostgresqlDb()        
+}
+
+export function keepDbAlive() {
+    const db = getPostgresDb()
+    setInterval(() => {
+        if (db) db.select()
+            .from(userTable)
+            .limit(1)
+    }, 12 * 60 * 60 * 1000);
 }

@@ -1,20 +1,20 @@
 <script lang="ts">
-    import '../lib/style/_main.css'
+    import "../lib/style/_main.scss";
     import type { Snippet } from "svelte";
     import Header from "../components/layout/Header/Header.svelte";
-    import BcPlayer from '../components/layout/BcPlayer/BcPlayer.svelte';
-    import { page } from '$app/state';
-    import { onMount } from 'svelte';
+    import BcPlayer from "../components/layout/BcPlayer/BcPlayer.svelte";
+    import { page } from "$app/state";
+    import { onMount } from "svelte";
 
     const {
-        children
+        children,
     }: {
-        children: Snippet
-    } = $props()
+        children: Snippet;
+    } = $props();
 
     onMount(() => {
-        console.log("PAGE DATA:", page.data)
-    })
+        console.log("PAGE DATA:", page.data);
+    });
 </script>
 
 <Header />
@@ -23,8 +23,6 @@
     {@render children()}
 </main>
 
-<footer>
-
-</footer>
+<footer></footer>
 
 <BcPlayer />

@@ -1,8 +1,0 @@
-@import "./theme.css";
-@import "./elements.css";
-@import "./utility.css";
-
-* {
-    box-sizing: border-box;
-    scrollbar-color: var(--hl) var(--bg);
-}
