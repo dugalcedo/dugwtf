@@ -21,26 +21,13 @@
         {
             href: "/contact",
             text: "CONTACT"
-        },
-        {
-            href: "/logout",
-            text: "LOG OUT",
-            loggedIn: true
-        },
-        {
-            href: "/auth",
-            text: "LOG IN",
-            loggedIn: false
         }
     ]
 </script>
 
 <nav id="MAIN_NAV" class="normal">
-    {#each navItems as { href, text, loggedIn }}
-    {@const show = (loggedIn === undefined) || (loggedIn && pageLoggedIn) || (!loggedIn && !pageLoggedIn)}
-    {#if show}
+    {#each navItems as { href, text }}
         <a href={href}>{text}</a>
-    {/if}
     {/each}
 </nav>
 
@@ -60,11 +47,8 @@
     <div class="menu" style="
         display: {smallMenuOpen ? 'flex' : 'none'};
     ">
-        {#each navItems as { href, text, loggedIn }}
-        {@const show = (loggedIn === undefined) || (loggedIn && pageLoggedIn)}
-        {#if show}
+        {#each navItems as { href, text }}
             <a onclick={() => smallMenuOpen = false} href={href}>{text}</a>
-        {/if}
         {/each}
     </div>
 </nav>
