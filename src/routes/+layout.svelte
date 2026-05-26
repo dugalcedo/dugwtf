@@ -3,6 +3,7 @@
     import type { Snippet } from "svelte";
     import Header from "../components/layout/Header/Header.svelte";
     import BcPlayer from "../components/layout/BcPlayer/BcPlayer.svelte";
+    import { page } from '$app/state'
 
     const {
         children,
@@ -10,14 +11,21 @@
         children: Snippet;
     } = $props();
 
+    const showMainLayout = $derived(!page.url.pathname.match(/^(\/portfolio)/gm))
+
 </script>
 
-<Header />
+{#if showMainLayout}
+    <Header />
+{/if}
 
 <main>
     {@render children()}
 </main>
 
-<footer></footer>
+{#if showMainLayout}
+    <footer></footer>
+    <BcPlayer />
+{/if}
 
-<BcPlayer />
+

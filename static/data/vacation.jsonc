@@ -1,0 +1,114 @@
+[
+    {
+        "name": "St. Petersburg, Russia",
+        "rating": 4
+    },
+    {
+        "name": "Moscow, Russia",
+        "rating": 4
+    },
+    {
+        "name": "Athens, Greece",
+        "rating": 5
+    },
+    {
+        "name": "Istanbul, Türkiye",
+        "rating": 5
+    },
+    {
+        "name": "Wadi Musa, Jordan",
+        "rating": 3,
+        "notes": [
+            "Petra"
+        ]
+    },
+    {
+        "name": "Tbilisi, Georgia",
+        "rating": 3
+    },
+    {
+        "name": "Delhi, India",
+        "rating": 3
+    },
+    {
+        "name": "Nagpur, India",
+        "rating": 5,
+        "notes": [
+            "Tadoba-Andhari Tiger Reserve"
+        ]
+    },
+    {
+        "name": "Mumbai, India",
+        "rating": 5
+    },
+    {
+        "name": "Colombo, Sri Lanka",
+        "rating": 5
+    },
+    {
+        "name": "Kolkata, India",
+        "rating": 4
+    },
+    {
+        "name": "Kathmandu, Nepal",
+        "rating": 5
+    },
+    {
+        "name": "Bangkok, Thailand",
+        "rating": 5
+    },
+    {
+        "name": "Ho Chi Minh City, Vietnam",
+        "rating": 5
+    },
+    {
+        "name": "Da Nang, Vietnam",
+        "rating": 5
+    },
+    {
+        "name": "Hanoi, Vietnam",
+        "rating": 5
+    },
+    {
+        "name": "Phnom Penh, Cambodia",
+        "rating": 5
+    },
+    {
+        "name": "Siem Reap, Cambodia",
+        "rating": 5,
+        "notes": [
+            "Angkor Wat"
+        ]
+    },
+    {
+        "name": "Jakarta, Indonesia",
+        "rating": 5
+    },
+    {
+        "name": "Balikpapan, Indonesia",
+        "rating": 4,
+        "notes": [
+            "Orangutans"
+        ]
+    },
+    /* ========== CHINA ========== */
+    {
+        "name": "Chongqing, China",
+        "rating": 5
+    },
+    {
+        "name": "Chengdu, China",
+        "rating": 5
+    },
+    {
+        "name": "Shanghai, China",
+        "rating": 4
+    },
+    {
+        "name": "Beijing, China",
+        "rating": 4
+    },
+    {
+        "name": ""
+    }
+]
