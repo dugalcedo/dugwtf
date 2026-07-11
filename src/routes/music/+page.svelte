@@ -7,23 +7,20 @@
 
 </script>
 
+<h2 class="hl">music i like</h2>
+
+<br>
+
+<a href="/recs">click here</a>
+
+<br>
+<br>
+
 <h2 class="hl">my music</h2>
 
 <br>
 
-<p class="res-left" use:makeMoreReadable>
-    between 2008 and 2024, from the ages of 15 to 31, i made a lot of electronic music. since then, i have paused for a few reasons: 
-    <br>§<i>1.</i> i have become a little bored, 
-    <br>§<i>2.</i> i am feeling more inspired by guitar music these days, 
-    <br>§<i>3.</i> i have been devoting a lot of time to learning to write web software, 
-    <br>§<i>4.</i> i want to take the time to expand my skills and styles, learn how to play the guitar, and learn how to record sounds better.
-</p>
 
-<br>
-
-<h3 class="hl">what i've made</h3>
-
-<br>
 
 <section class="what-ive-made-modules">
     {#each whatIveMade as { heading, items } }

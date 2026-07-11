@@ -227,7 +227,7 @@ export const guess = () => {
         similarity = stringSimilarity(mg.guessVal, title, 1)
     }
     else if (title.length < 25) {
-        similarity = stringSimilarity(mg.guessVal, title)
+        similarity = stringSimilarity(mg.guessVal, title, 2)
     }
     else {
         similarity = stringSimilarity(mg.guessVal, title, 3)

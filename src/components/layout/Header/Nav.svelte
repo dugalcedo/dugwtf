@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import { page } from "$app/state";
     import { clickOutside } from "../../../lib/clientUtils/clickOutside";
     let smallMenuOpen = $state(false)
@@ -23,11 +23,18 @@
             text: "CONTACT"
         }
     ]
+
+    function isActive(pathname: string, href: string): boolean {
+        if (href === '/' && pathname === '/') return true
+        return href !== '/' && pathname.startsWith(href)
+    }
+
 </script>
 
 <nav id="MAIN_NAV" class="normal">
     {#each navItems as { href, text }}
-        <a href={href}>{text}</a>
+    {@const active = isActive(page.url.pathname, href)}
+        <a href={href} class:active={active}>{text}</a>
     {/each}
 </nav>
 
@@ -48,7 +55,8 @@
         display: {smallMenuOpen ? 'flex' : 'none'};
     ">
         {#each navItems as { href, text }}
-            <a onclick={() => smallMenuOpen = false} href={href}>{text}</a>
+        {@const active = isActive(page.url.pathname, href)}
+            <a onclick={() => smallMenuOpen = false} href={href} class:active={active}>{text}</a>
         {/each}
     </div>
 </nav>
@@ -66,6 +74,11 @@
             &:hover {
                 background-color: var(--bg3);
                 color: var(--comp);
+            }
+
+            &.active {
+                background-color: var(--hl);
+                color: var(--bg) !important;
             }
         }
     }
@@ -91,6 +104,12 @@
                 color: var(--bg) !important;
                 padding: .5rem;
                 font-size: 1.5rem;
+
+                &.active {
+                    background-color: var(--bg);
+                    width: 100%;
+                    color: var(--hl) !important;
+                }
             }
         }
     }
