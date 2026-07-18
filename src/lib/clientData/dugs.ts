@@ -65,7 +65,8 @@ export const dugs: Record<string, Dug> = {
         "thos f"
       ]
     },
-    hasIcon: true
+    hasIcon: true,
+    wau: "fIv soq$ I mAd wx mI frend tom. I rOt Dx soq$ and tom add£ stuf lIk vO'kxl$ and gi'tor tx Dem. kInd xv lIk Dx opxsit xv wxt wE did fxr \"I-15 drEm\"."
   },
   "Humans": {
     "artist": "Dug Alcedo",
@@ -112,7 +113,8 @@ export const dugs: Record<string, Dug> = {
         "flapricot"
       ]
     },
-    hasIcon: true
+    hasIcon: true,
+    wau: "x sO'lO albxm bI mI frend tom Dat I prx'dUs£."
   },
   "Goos Beyond": {
     "artist": "Dug Alcedo",

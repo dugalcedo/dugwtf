@@ -15,8 +15,8 @@
             text: "MUSIC"
         },
         {
-            href: "/games",
-            text: "GAMES"
+            href: "/stuff",
+            text: "STUFF"
         },
         {
             href: "/contact",

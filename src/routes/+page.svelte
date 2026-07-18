@@ -30,6 +30,10 @@
             filter: invert(1);
             mix-blend-mode: lighten;
         }
+
+        @media (width <= 550px) {
+            float: none;
+        }
     }
 
     p {

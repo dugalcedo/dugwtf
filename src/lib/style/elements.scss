@@ -10,6 +10,11 @@
     font-weight: bold;
 }
 
+@font-face {
+    font-family: "Syne Mono";
+    src: url("/fonts/Syne/SyneMono-Regular.ttf");
+}
+
 :root {
     --page-padding: 0.3rem;
     @media (width >= 650px) {
@@ -33,7 +38,7 @@ html {
 }
 
 body, button, input, select, option, textarea {
-    font-family: Consola;
+    font-family: "Syne Mono";
 }
 
 html, body, #app {
@@ -97,7 +102,7 @@ a {
     }
 }
 
-button {
+button, .button {
     cursor: pointer;
     background-color: transparent;
     color: var(--hl);
@@ -161,7 +166,7 @@ table {
 
     & th, td {
         border: 1px solid var(--fgo30);
-        padding: .5rem;
+        padding: .25rem;
         text-align-last: left;
     }
 }

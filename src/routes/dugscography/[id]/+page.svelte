@@ -18,6 +18,10 @@
 
 </script>
 
+<svelte:head>
+    <title>"{data.dug.title}" by {data.dug.artist} - listen and download</title>
+</svelte:head>
+
 {#if !data.dug}
     <p>not found</p>
 {:else}
@@ -88,11 +92,19 @@
         </div>
 
         <div class="right">
+            <nav>
+                <button  onclick={() => openBcPlayer(dug)}>
+                    PLAY
+                </button>
+                <a class="button" href={dug.bc_link}>
+                    download on bandcamp
+                </a>
+            </nav>
             <div class="desc" use:makeMoreReadable>
                 {dug.desc_long}
             </div>
             <div class="wau">
-                {@html wau.write(dug.wau ?? "nu'Txq tx rEd hEr yet.")}
+                {@html wau.write(dug.wau ?? "")}
             </div>
         </div>
         
@@ -117,8 +129,10 @@
     }
 
     .cover-and-info {
+        position: relative;
         margin-right: 2rem;
         margin-bottom: 2rem;
+        z-index: 6;
 
         & img {
             width: 100%;
@@ -156,6 +170,20 @@
 
     .wau {
         max-width: 900px;
-        
+        position: absolute;
+        right: 1rem;
+        top: 1rem;
+        pointer-events: none;
+        user-select: none;
+        opacity: 0.1;
+    }
+
+    .right {
+        position: relative;
+        z-index: 5;
+    }
+
+    .right nav {
+        margin-bottom: 1rem;
     }
 </style>
