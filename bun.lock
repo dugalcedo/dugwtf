@@ -4,6 +4,7 @@
     "": {
       "name": "dugwtf",
       "dependencies": {
+        "@dugalcedo/wau": "^0.3.0",
         "bcryptjs": "^3.0.3",
         "dayjs": "^1.11.13",
         "dotenv": "^17.3.1",
@@ -41,6 +42,8 @@
   },
   "packages": {
     "@drizzle-team/brocli": ["@drizzle-team/brocli@0.10.2", "", {}, "sha512-z33Il7l5dKjUgGULTqBsQBQwckHh5AbIuxhdsIxDDiZAzBOrZO6q9ogcWC65kU382AfynTfgNumVcNIjuIua6w=="],
+
+    "@dugalcedo/wau": ["@dugalcedo/wau@0.3.0", "", {}, "sha512-/c6goH13h43GKGFq9gSEPFAGmQEAE8Z09dipMabfmYPn7XKg0nc8VxkAK+ECZ1g0SD8J9xRtn6RJGII1JJuxHQ=="],
 
     "@esbuild-kit/core-utils": ["@esbuild-kit/core-utils@3.3.2", "", { "dependencies": { "esbuild": "~0.18.20", "source-map-support": "^0.5.21" } }, "sha512-sPRAnw9CdSsRmEtnsl2WXWdyquogVpB3yZ3dgwJfe8zrOzTsV7cJvmwrKVa+0ma5BoiGJ+BoqkMvawbayKUsqQ=="],
 

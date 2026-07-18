@@ -18,6 +18,7 @@ export type Dug = {
     label?: string,
     credits?: Record<string, string[]>
     hasIcon?: boolean
+    wau?: string
 }
 
 export const dugs: Record<string, Dug> = {
@@ -85,7 +86,8 @@ export const dugs: Record<string, Dug> = {
         "rural coyote (@suburbmagpie)"
       ]
     },
-    "hasIcon": true
+    "hasIcon": true,
+    wau: `mAd in stokkhOlm dxrq x tIm wen I felt prxtE un'in'spIr£, myU'zik'lE. ol'sO fEl'q lots xv Aqgxr xnd frustrA'Sxn.`
   },
   "A Piece Of Hell For Ourselves": {
     "artist": "Trees and Flowers",
@@ -341,7 +343,8 @@ export const dugs: Record<string, Dug> = {
     "bc_id": "4071937567",
     "bc_link": "https://firstdog.bandcamp.com/album/bird-in-a-cave-(echo)",
     "cover_s": "/images/acxs/DUG031.jpg",
-    "cover_l": "/images/acl/DUG031.jpg"
+    "cover_l": "/images/acl/DUG031.jpg",
+   
   },
   "Friends Fever": {
     "artist": "First Dog",
@@ -352,7 +355,8 @@ export const dugs: Record<string, Dug> = {
     "bc_id": "3613936290",
     "bc_link": "https://firstdog.bandcamp.com/album/friends-fever",
     "cover_s": "/images/acxs/DUG030.jpg",
-    "cover_l": "/images/acl/DUG030.jpg"
+    "cover_l": "/images/acl/DUG030.jpg",
+    wau: "I wxz olre'dE wel xwer Dt I hxd tru'bxl mAk'q and kEp'q frend$, and hxv'q bxn dI'xg'nOs£ wx O'ti'zxm TrE yEr$ prI'xr, I had a ge'nx'rxl sens az tx wI. I mAd DEz soq$ in 2017 wx x lot xv Doz fElq$ in mInd."
   },
   "Loukas 1": {
     "artist": "Loukas",
@@ -374,7 +378,8 @@ export const dugs: Record<string, Dug> = {
     "bc_id": "3660544442",
     "bc_link": "https://firstdog.bandcamp.com/album/bird-in-a-cave",
     "cover_s": "/images/acxs/DUG028.jpg",
-    "cover_l": "/images/acl/DUG028.jpg"
+    "cover_l": "/images/acl/DUG028.jpg",
+    wau: "mAd dxr'q x tIm wen Txq$ felt rE'lE unsxrtxn, fI'nanSx'lE, and I felt rE'lE sker£ and lost, lIk x bxr£ in x kAv, hens Dx nAm. I wxz just mUv'q ät xv Dx häs xv mI fo'Dr--hU z x lI'q lUz'xr hU I dE'spIz. I wxz mUv'q tx Dx kO'ce'lx va'lE in x kor wx x brO'kxn enjin fan. I had x Sit'E bö'frend in ri'vxr'sID hU I wxd fInd ät wxz cEt'q on x'nu'Dr gI wx mE. lIf felt espe'Sx'lE bad dx'rxq Dis tIm."
   },
   "Ow Cute": {
     "artist": "First Dog",

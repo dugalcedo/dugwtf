@@ -97,3 +97,14 @@ html {
     width: 800px;
     max-width: 100%;
 }
+
+// wau
+
+.wau {
+    line-height: 200%;
+
+    & .wau-word img {
+        filter: invert(1);
+        margin-right: 3px;
+    }
+}

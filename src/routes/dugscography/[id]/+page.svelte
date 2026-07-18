@@ -2,12 +2,19 @@
     import { openBcPlayer } from "$lib/stores/bcPlayerStore.svelte";
     import { makeMoreReadable } from "$lib/clientUtils/makeMoreReadable";
     import type { PageData } from "./$types";
+    import wau from "$lib/clientUtils/wauWriter";
+    import { beforeNavigate, afterNavigate } from "$app/navigation";
 
     const {
         data
     }: {
         data: PageData
     } = $props()
+
+    let navigating = $state(false)
+
+    beforeNavigate(() => navigating = true)
+    afterNavigate(() => navigating = false)
 
 </script>
 
@@ -19,7 +26,11 @@
 
     <article>
         <div class="cover-and-info">
-            <img src={dug.cover_l} alt="album cover of '{dug.title}' by '{dug.artist}'">
+            {#if navigating}
+                <div class="navigating">LOADING...</div>
+            {:else}
+                <img src={dug.cover_l} alt="album cover of '{dug.title}' by '{dug.artist}'">
+            {/if}
             <div class="controls">
                 {#if prevDug}
                     <a href="/dugscography/{prevDug.id}">
@@ -76,8 +87,13 @@
             </table>
         </div>
 
-        <div class="desc" use:makeMoreReadable>
-            {dug.desc_long}
+        <div class="right">
+            <div class="desc" use:makeMoreReadable>
+                {dug.desc_long}
+            </div>
+            <div class="wau">
+                {@html wau.write(dug.wau ?? "nu'Txq tx rEd hEr yet.")}
+            </div>
         </div>
         
     </article>
@@ -101,6 +117,9 @@
     }
 
     .cover-and-info {
+        margin-right: 2rem;
+        margin-bottom: 2rem;
+
         & img {
             width: 100%;
             display: block;
@@ -111,6 +130,7 @@
             float: left;
         }
     }
+
 
     .controls {
         display: flex;
@@ -128,5 +148,10 @@
                 border-right: 1px solid var(--fg);
             }
         }
+    }
+
+    .wau {
+        max-width: 900px;
+        
     }
 </style>
