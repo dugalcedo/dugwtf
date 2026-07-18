@@ -17,6 +17,7 @@ export type Dug = {
     desc_long?: string
     label?: string,
     credits?: Record<string, string[]>
+    hasIcon?: boolean
 }
 
 export const dugs: Record<string, Dug> = {
@@ -62,7 +63,8 @@ export const dugs: Record<string, Dug> = {
       "cover layout": [
         "thos f"
       ]
-    }
+    },
+    hasIcon: true
   },
   "Humans": {
     "artist": "Dug Alcedo",
@@ -82,7 +84,8 @@ export const dugs: Record<string, Dug> = {
       "artwork": [
         "rural coyote (@suburbmagpie)"
       ]
-    }
+    },
+    "hasIcon": true
   },
   "A Piece Of Hell For Ourselves": {
     "artist": "Trees and Flowers",
@@ -106,7 +109,8 @@ export const dugs: Record<string, Dug> = {
       "artwork": [
         "flapricot"
       ]
-    }
+    },
+    hasIcon: true
   },
   "Goos Beyond": {
     "artist": "Dug Alcedo",
@@ -119,7 +123,8 @@ export const dugs: Record<string, Dug> = {
     "cover_s": "/images/acxs/DUG043.jpg",
     "cover_l": "/images/acl/DUG043.jpg",
     "desc": "ambience and noise",
-    "songCanLoad": true
+    "songCanLoad": true,
+    hasIcon: true
   },
   "I-15 Dream": {
     "artist": "Dew for Slug",
@@ -164,7 +169,8 @@ export const dugs: Record<string, Dug> = {
     "cover_s": "/images/acxs/DUG042.jpg",
     "cover_l": "/images/acl/DUG042.jpg",
     "desc": "melodic, chaotic idm",
-    "songCanLoad": true
+    "songCanLoad": true,
+    hasIcon: true
   },
   "Bonito": {
     "artist": "Dug Alcedo",
@@ -208,7 +214,8 @@ export const dugs: Record<string, Dug> = {
     "bc_id": "3245678441",
     "bc_link": "https://dugalcedo.bandcamp.com/album/xl",
     "cover_s": "/images/acxs/DUG040.jpg",
-    "cover_l": "/images/acl/DUG040.jpg"
+    "cover_l": "/images/acl/DUG040.jpg",
+    hasIcon: true
   },
   "Hell Scenery": {
     "artist": "Dug Alcedo",
@@ -219,7 +226,8 @@ export const dugs: Record<string, Dug> = {
     "bc_id": "3813412774",
     "bc_link": "https://dugalcedo.bandcamp.com/album/hell-scenery",
     "cover_s": "/images/acxs/DUG039.jpg",
-    "cover_l": "/images/acl/DUG039.jpg"
+    "cover_l": "/images/acl/DUG039.jpg",
+    hasIcon: true
   },
   "Casked Acid in Black Sheep Canyon": {
     "artist": "Dug Alcedo",
@@ -275,6 +283,7 @@ export const dugs: Record<string, Dug> = {
     "bc_link": "https://dugalcedo.bandcamp.com/album/fish-antlers",
     "cover_s": "/images/acxs/DUG035.jpg",
     "cover_l": "/images/acl/DUG035.jpg",
+    hasIcon: true
   },
   "Money Snakes": {
     "artist": "Dug Alcedo",
@@ -286,7 +295,8 @@ export const dugs: Record<string, Dug> = {
     "bc_link": "https://dugalcedo.bandcamp.com/album/money-snakes",
     "cover_s": "/images/acxs/DUG034.jpg",
     "cover_l": "/images/acl/DUG034.jpg",
-    "songCanLoad": true
+    "songCanLoad": true,
+    hasIcon: true
   },
   "Isyiau": {
     "artist": "First Dog",
@@ -297,7 +307,8 @@ export const dugs: Record<string, Dug> = {
     "bc_id": "2439411014",
     "bc_link": "https://firstdog.bandcamp.com/album/isyiau",
     "cover_s": "/images/acxs/DUG033.jpg",
-    "cover_l": "/images/acl/DUG033.jpg"
+    "cover_l": "/images/acl/DUG033.jpg",
+    hasIcon: true
   },
   "Separation Newdrum": {
     "artist": "First Dog",
@@ -452,7 +463,8 @@ export const dugs: Record<string, Dug> = {
     "bc_id": "3858484618",
     "bc_link": "https://firstdog.bandcamp.com/album/feeble",
     "cover_s": "/images/acxs/DUG021.jpg",
-    "cover_l": "/images/acl/DUG021.jpg"
+    "cover_l": "/images/acl/DUG021.jpg",
+    hasIcon: true
   },
   "Language from the Grip": {
     "artist": "First Dog",
@@ -599,7 +611,7 @@ type WhatIveMade = {
 
 export const whatIveMade: WhatIveMade[] = [
     {
-      heading: "atmospheric, beat-driven noise",
+      heading: "noisy stuff",
       items: [
           {
               dug: dugs["Humans"],
@@ -623,7 +635,7 @@ export const whatIveMade: WhatIveMade[] = [
       ]
     },
     {
-      heading: "folktronica with my friend thom",
+      heading: "dug & thos flowers",
       items: [
           {
               dug: dugs["Crank Historic"],
@@ -640,7 +652,7 @@ export const whatIveMade: WhatIveMade[] = [
       ]
     },
     {
-      heading: "glitchy, melodic techno inspired by IDM and videogame music",
+      heading: "melodic stuff",
       items: [
         {
           dug: dugs["Big Fish eat Little Fish"],

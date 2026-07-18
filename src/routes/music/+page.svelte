@@ -50,14 +50,7 @@
 </section>
 
 <style>
-    p i {
-        color: var(--comp);
-        font-style: normal;
-    }
 
-    h3 {
-        border-bottom: 1px solid var(--hl);
-    }
 
     h4 {
         background-color: var(--hl);
@@ -80,6 +73,14 @@
 
     .dug-cards {
         margin-bottom: 2rem;
+
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+
+        @media (width < 1000px) {
+            grid-template-columns: 1fr;
+        }
     }
 
 
