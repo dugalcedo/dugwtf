@@ -26,14 +26,9 @@
 
     <article>
         <div class="cover-and-info">
-            {#if navigating}
-                <div class="navigating">LOADING...</div>
-            {:else}
-                <img src={dug.cover_l} alt="album cover of '{dug.title}' by '{dug.artist}'">
-            {/if}
             <div class="controls">
                 {#if prevDug}
-                    <a href="/dugscography/{prevDug.id}">
+                    <a class="small" href="/dugscography/{prevDug.id}">
                         PREV
                     </a>
                 {:else}
@@ -42,13 +37,13 @@
                     </button>
                 {/if}
                 <a href={dug.bc_link} target="_blank">
-                    GET
+                    DOWNLOAD
                 </a>
                 <button onclick={() => openBcPlayer(dug)}>
                     &#9654;
                 </button>
                 {#if nextDug}
-                    <a href="/dugscography/{nextDug.id}">
+                    <a class="small" href="/dugscography/{nextDug.id}">
                         NEXT
                     </a>
                 {:else}
@@ -57,6 +52,11 @@
                     </button>
                 {/if}
             </div>
+            {#if navigating}
+                <div class="navigating">LOADING...</div>
+            {:else}
+                <img src={dug.cover_l} alt="album cover of '{dug.title}' by '{dug.artist}'">
+            {/if}
             <table style="width: 100%;">
                 <tbody>
                     <tr>
@@ -148,6 +148,10 @@
                 border-right: 1px solid var(--fg);
             }
         }
+    }
+
+    .small {
+        font-size: 0.6rem;
     }
 
     .wau {

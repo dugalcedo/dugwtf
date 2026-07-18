@@ -639,23 +639,7 @@ export const whatIveMade: WhatIveMade[] = [
           },
       ]
     },
-    {
-      heading: "dug & thos flowers",
-      items: [
-          {
-              dug: dugs["Crank Historic"],
-              filter: 'invert(1) grayscale(1) contrast(2)',
-          },
-          {
-              dug: dugs["A Piece Of Hell For Ourselves"],
-              filter: 'grayscale(1) invert(1) brightness(1) contrast(3)',
-          },
-          {
-              dug: dugs["I-15 Dream"],
-              filter: 'grayscale(2) contrast(2)',
-          }
-      ]
-    },
+
     {
       heading: "melodic stuff",
       items: [
@@ -688,5 +672,22 @@ export const whatIveMade: WhatIveMade[] = [
           filter: 'grayscale(1) invert(1) contrast(3)'
         },
       ]
-    }
+    },
+        {
+      heading: "collabs with thos flowers",
+      items: [
+          {
+              dug: dugs["Crank Historic"],
+              filter: 'invert(1) grayscale(1) contrast(2)',
+          },
+          {
+              dug: dugs["A Piece Of Hell For Ourselves"],
+              filter: 'grayscale(1) invert(1) brightness(1) contrast(3)',
+          },
+          {
+              dug: dugs["I-15 Dream"],
+              filter: 'grayscale(2) contrast(2)',
+          }
+      ]
+    },
 ]
