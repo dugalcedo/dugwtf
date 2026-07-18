@@ -42,8 +42,9 @@
     <div>
         <h3>and much more</h3>
         <div class="much-more-links">
-            <a href="https://dugalcedo.bandcamp.com">2018 - present</a>
-            <a href="https://firstdog.bandcamp.com">2008 - 2018</a>
+            <a href="https://dugalcedo.bandcamp.com" target="_blank">2018 - present</a>
+            <a href="https://firstdog.bandcamp.com" target="_blank">2008 - 2018</a>
+            <a href="/dugscography">dugscography</a>
         </div>
     </div>
 </section>

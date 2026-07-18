@@ -26,7 +26,10 @@
     <p>not found</p>
 {:else}
 {@const { dug, prevDug, nextDug } = data}
-    <h2 class="hl">{dug.title} ({dug.artist} {dug.type})</h2>
+    <div class="heading">
+        <h2 class="hl">{dug.title} ({dug.artist} {dug.type})</h2>
+        <a href="/dugscography" class="all">all</a>
+    </div>
 
     <article>
         <div class="cover-and-info">
@@ -112,9 +115,12 @@
 {/if}
 
 <style>
-    h2 {
+    .heading {
         border-bottom: 1px solid var(--hl);
         margin-bottom: 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
     }
 
     th {

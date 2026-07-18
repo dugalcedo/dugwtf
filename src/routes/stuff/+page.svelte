@@ -1,4 +1,4 @@
 <h3>Games</h3>
-<a href="/games/genreguessr">GenreGuessr</a>
+<a href="/stuff/genreguessr">GenreGuessr</a>
 <br>
-<a href="/games/movieguessr">MovieGuessr</a>
+<a href="/stuff/movieguessr">MovieGuessr</a>
