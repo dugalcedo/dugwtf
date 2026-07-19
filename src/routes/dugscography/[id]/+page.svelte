@@ -103,6 +103,17 @@
                     download on bandcamp
                 </a>
             </nav>
+            <table class="tracklist">
+                <tbody>
+                    {#each dug.tracklist as { title, minutes, seconds }, i}
+                        <tr>
+                            <th>{i+1}</th>
+                            <td>{minutes + ":" + seconds.toString().padStart(2, "0")}</td>
+                            <td>{title}</td>
+                        </tr>
+                    {/each}
+                </tbody>
+            </table>
             <div class="desc" use:makeMoreReadable>
                 {dug.desc_long}
             </div>
@@ -191,5 +202,19 @@
 
     .right nav {
         margin-bottom: 1rem;
+    }
+
+    .tracklist tbody {
+        & td, th {
+            padding: .5rem;
+        }
+    }
+
+    .tracklist tbody > tr:nth-child(even) {
+        background-color: var(--fgo05);
+    }
+
+    .tracklist * {
+        border: 0;
     }
 </style>

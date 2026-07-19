@@ -1,7 +1,9 @@
 <script lang="ts">
     import { makeMoreReadable } from "../../lib/clientUtils/makeMoreReadable";
     import { whatIveMade, dugs, type Dug } from "../../lib/clientData/dugs";
+    import MusicPageItem from "./MusicPageItem.svelte";
 
+    let selectedDugId = $state<string | null>(null)
 
 </script>
 
@@ -11,6 +13,8 @@
 
 
 <h2>my music</h2>
+<p>click to play</p>
+<p>double-click to </p>
 
 <section id="MY_MUSIC">
     {#each whatIveMade as { heading, items }}
@@ -18,26 +22,7 @@
             <h3>{heading}</h3>
             <div class="items">
                 {#each items as {dug, filter}}
-                {@const alt = `${dug.title} by ${dug.artist}`}
-                    <a class="item" href="/dugscography/{dug.id}">
-                        {#if dug.hasIcon}
-                            <img class="cover" src="/images/album_icons/{dug.id}.png" alt={alt}>
-                        {:else}
-                            <img 
-                                src={dug.cover_s} 
-                                alt={alt} 
-                                class="cover"
-                                style="
-                                    filter: {filter};
-                                    mix-blend-mode: lighten;
-                                "
-                            >
-                        {/if}
-                        <div class="title">
-                            <h5>{dug.title}</h5>
-                            <p>{dug.year}</p>
-                        </div>
-                    </a>
+                    <MusicPageItem {dug} {filter} bind:selectedDugId={selectedDugId} />
                 {/each}
             </div>
         </div>
@@ -80,54 +65,10 @@
             gap: 1rem;
         }
 
-        & .item {
-            position: relative;
-
-            & .cover {
-                width: 100%;
-            }
-
-            & .title {
-                display: none;
-                pointer-events: none;
-                user-select: none;
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                translate: -50% -50%;
-                text-align: center;
-                background-color: var(--comp);
-                color: var(--fg);
-
-                & p {
-                    font-size: .7rem;
-                }
-            }
-
-            &:hover .title {
-                display: block;
-            }
-
-            &:hover .cover {
-                animation: cover 1s linear infinite;
-            }
-        }
+        
     }
 
-    @keyframes cover {
-        0% {
-            transform: scaleX(1) scaleY(1);
-        }
-        25% {
-            transform: scaleX(0.9) scaleY(1.1);
-        }
-        75% {
-            transform: scalex(1.1) scaleY(0.9);
-        }
-        100% {
-            transform: scaleX(1) scaleY(1);
-        }
-    }
+
 
     .much-more-links {
         & a {

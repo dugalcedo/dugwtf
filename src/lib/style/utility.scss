@@ -10,85 +10,48 @@ html {
     }
 }
 
-@keyframes score-chip-danger {
-    0% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.25);
-    }
-}
+// List every variable name you want an outline animation for
+$funny-outline-vars: (
+  bg, bg1, bg2, bg3, bg4, bg5,
+  fg, fg1, fg2, fg3, fg4, fg5,
+  bgo90, bgo80, bgo70, bgo60, bgo50, bgo40, bgo30, bgo20, bgo15, bgo10, bgo05, bgo025, bgo01, bgo005,
+  fgo90, fgo80, fgo70, fgo60, fgo50, fgo40, fgo30, fgo20, fgo15, fgo10, fgo05, fgo025, fgo01, fgo005,
+  hl, hl2,
+  comp,
+  hc1, hc2,
+  error, warning
+);
 
-@keyframes funny-error-outline {
+@each $name in $funny-outline-vars {
+  @keyframes funny-#{$name}-outline {
     0% {
-        outline: 2px dashed var(--error);
+      outline: 2px dashed var(--#{$name});
     }
     16% {
-        outline: 3px dashed var(--error);
+      outline: 3px dashed var(--#{$name});
     }
     33% {
-        outline: 4px dashed var(--error);
+      outline: 4px dashed var(--#{$name});
     }
     50% {
-        outline: 5px dashed var(--error);
+      outline: 5px dashed var(--#{$name});
     }
     67% {
-        outline: 4px dashed var(--error);
+      outline: 4px dashed var(--#{$name});
     }
     84% {
-        outline: 3px dashed var(--error);
+      outline: 3px dashed var(--#{$name});
     }
     100% {
-        outline: 2px dashed var(--error);
+      outline: 2px dashed var(--#{$name});
     }
+  }
 }
 
-@keyframes funny-warning-outline {
-    0% {
-        outline: 2px dashed var(--warning);
-    }
-    16% {
-        outline: 3px dashed var(--warning);
-    }
-    33% {
-        outline: 4px dashed var(--warning);
-    }
-    50% {
-        outline: 5px dashed var(--warning);
-    }
-    67% {
-        outline: 4px dashed var(--warning);
-    }
-    84% {
-        outline: 3px dashed var(--warning);
-    }
-    100% {
-        outline: 2px dashed var(--warning);
-    }
-}
-
-@keyframes funny-hl-outline {
-    0% {
-        outline: 2px dashed var(--hl);
-    }
-    16% {
-        outline: 3px dashed var(--hl);
-    }
-    33% {
-        outline: 4px dashed var(--hl);
-    }
-    50% {
-        outline: 5px dashed var(--hl);
-    }
-    67% {
-        outline: 4px dashed var(--hl);
-    }
-    84% {
-        outline: 3px dashed var(--hl);
-    }
-    100% {
-        outline: 2px dashed var(--hl);
-    }
+@each $name in $funny-outline-vars {
+  .funny-#{$name}-outline {
+    animation: funny-#{$name}-outline 1s infinite;
+  }
 }
 
 /* responsiveness */
