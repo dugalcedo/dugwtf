@@ -458,10 +458,16 @@ export const dugs: Record<string, Dug> = {
     "cover_s": "/images/acxs/DUG036.jpg",
     "cover_l": "/images/acl/DUG036.jpg",
     "tracklist": [
+      { "title": "that friday", "minutes": 2, "seconds": 33 },
       { "title": "gricwa", "minutes": 3, "seconds": 7 },
-      { "title": "xgjfhgklj;kll", "minutes": 2, "seconds": 9 },
+      { "title": "xgjfhgklj;kll", "minutes": 2, "seconds": 8 },
+      { "title": "cxiny prr", "minutes": 2, "seconds": 56 },
       { "title": "wd nin wehi", "minutes": 2, "seconds": 16 },
-      { "title": "lkzxuc", "minutes": 5, "seconds": 17 },
+      { "title": "ewuiprt mrytriod", "minutes": 1, "seconds": 49 },
+      { "title": "lkzxuc", "minutes": 5, "seconds": 16 },
+      { "title": "kpy", "minutes": 1, "seconds": 43 },
+      { "title": "ewky", "minutes": 2, "seconds": 37 },
+      { "title": "woiund dougs", "minutes": 2, "seconds": 38 },
       { "title": "reprise", "minutes": 2, "seconds": 10 }
     ]
   },
