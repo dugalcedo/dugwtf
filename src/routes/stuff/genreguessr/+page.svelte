@@ -8,6 +8,10 @@
     import GameCodeInput from "../../../components/games_genreGuessr/GameCodeInput.svelte";
 </script>
 
+<svelte:head>
+    <title>Guess the music tag - Game by Dug Alcedo</title>
+</svelte:head>
+
 <div id="GG_HEAD">
     <h2>
         genre<Dot />guessr

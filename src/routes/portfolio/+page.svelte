@@ -3,6 +3,10 @@
     import PortfolioItem from "./PortfolioItem.svelte";
 </script>
 
+<svelte:head>
+    <title>Doug Alcedo's portfoliio</title>
+</svelte:head>
+
 <dl id="PORTFOLIO_ITEMS">
     {#each portfolioItems as item}
         <PortfolioItem {item} />

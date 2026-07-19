@@ -9,6 +9,11 @@
 
 </script>
 
+<svelte:head>
+    <title>Dug Alcedo - electronic music</title>
+</svelte:head>
+
+
 <section id="HOME_PAGE">
     <div class="float"><img src="/images/moose_suburb.png" alt="anthropomorphic cartoon moose"></div>
     <p use:makeMoreReadable>

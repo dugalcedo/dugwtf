@@ -11,6 +11,10 @@
     let codeInputValue: string = $state("")
 </script>
 
+<svelte:head>
+    <title>Guess the movie - game by Dug Alcedo</title>
+</svelte:head>
+
 <div id="MG_HEAD">
     <h2>
         MOVIE<Dot />guessr

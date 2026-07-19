@@ -5,6 +5,10 @@
 
 </script>
 
+<svelte:head>
+    <title>Music by Dug Alcedo</title>
+</svelte:head>
+
 
 <h2>my music</h2>
 

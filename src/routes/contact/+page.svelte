@@ -2,6 +2,10 @@
     import CopyLeftTableCell from "../../components/ui-thingies/CopyLeftTableCell.svelte";
 </script>
 
+<svelte:head>
+    <title>Contact Dug Alcedo</title>
+</svelte:head>
+
 <table>
     <tbody>
         <tr>

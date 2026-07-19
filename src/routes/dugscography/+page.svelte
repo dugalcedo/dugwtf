@@ -10,6 +10,11 @@
     }
 </script>
 
+<svelte:head>
+    <title>Dugscography</title>
+</svelte:head>
+
+
 <h2>dugscography</h2>
 <br>
 
