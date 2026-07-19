@@ -16,6 +16,16 @@
     beforeNavigate(() => navigating = true)
     afterNavigate(() => navigating = false)
 
+    const length = $derived.by(() => {
+        const seconds = data.dug.tracklist.reduce((acc, { minutes, seconds }) => {
+            return acc + seconds + (minutes*60)
+        }, 0)
+
+        const m = Math.floor(seconds/60)
+        const s = Math.round(seconds - m*60)
+        return `${m}:${s.toString().padStart(2, "0")}`
+    })
+
 </script>
 
 <svelte:head>
@@ -77,6 +87,10 @@
                     <tr>
                         <th>FORMAT</th>
                         <td>{dug.type}</td>
+                    </tr>
+                    <tr>
+                        <th>LENGTH</th>
+                        <td>{length}</td>
                     </tr>
                     <!-- CREDITS -->
                     {#if dug.credits}

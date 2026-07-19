@@ -13,8 +13,6 @@
 
 
 <h2>my music</h2>
-<p>click to play</p>
-<p>double-click to </p>
 
 <section id="MY_MUSIC">
     {#each whatIveMade as { heading, items }}
