@@ -25,6 +25,7 @@ export type Dug = {
     credits?: Record<string, string[]>
     hasIcon?: boolean
     wau?: string
+    iwau?: string
     tracklist: DugTrack[]
 }
 
@@ -75,6 +76,7 @@ export const dugs: Record<string, Dug> = {
     },
     hasIcon: true,
     wau: "fIv soq$ I mAd wx mI frend tom. I rOt Dx soq$ and tom add£ stuf lIk vO'kxl$ and gi'tor tx Dem. kInd xv lIk Dx opxsit xv wxt wE did fxr \"I-15 drEm\".",
+    iwau: "weer booT reelee hape w hau it trnd aut. wee TQ Dx tiitl trak z reelee speSl.",
     "tracklist": [
       { "title": "Costco Queen", "minutes": 4, "seconds": 4 },
       { "title": "Mink Hat", "minutes": 4, "seconds": 37 },
@@ -104,6 +106,7 @@ export const dugs: Record<string, Dug> = {
     },
     "hasIcon": true,
     wau: `mAd in stokkhOlm dxrq x tIm wen I felt prxtE un'in'spIr£, myU'zik'lE. ol'sO fEl'q lots xv Aqgxr xnd frustrA'Sxn.`,
+    iwau: "ii xrijnlee rleesd Ds az tuu ee-peez but ii caanjd mii miind.",
     "tracklist": [
       { "title": "hard rock", "minutes": 4, "seconds": 33 },
       { "title": "grimmer", "minutes": 4, "seconds": 5 },
@@ -195,7 +198,8 @@ export const dugs: Record<string, Dug> = {
       { "title": "humor, subduing", "minutes": 2, "seconds": 29 },
       { "title": "på riktigt", "minutes": 1, "seconds": 19 },
       { "title": "på riktigt", "minutes": 3, "seconds": 36 }
-    ]
+    ],
+    iwau: 'Ds z xbaut hau Der miit not bee xn aftrliif.'
   },
   "I-15 Dream": {
     "artist": "Dew for Slug",

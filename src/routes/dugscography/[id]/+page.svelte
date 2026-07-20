@@ -2,7 +2,7 @@
     import { openBcPlayer } from "$lib/stores/bcPlayerStore.svelte";
     import { makeMoreReadable } from "$lib/clientUtils/makeMoreReadable";
     import type { PageData } from "./$types";
-    import wau from "$lib/clientUtils/wauWriter";
+    import wau, { iwau } from "$lib/clientUtils/wauWriter";
     import { beforeNavigate, afterNavigate } from "$app/navigation";
 
     const {
@@ -133,6 +133,10 @@
             </div>
             <div class="wau">
                 {@html wau.write(dug.wau ?? "")}
+
+                {#if dug.wau && dug.iwau}<br>{/if}
+            
+                {@html iwau.write(dug.iwau ?? "")}
             </div>
         </div>
         

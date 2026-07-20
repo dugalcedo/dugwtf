@@ -36,7 +36,7 @@
 		]
 	},
 	"dependencies": {
-		"@dugalcedo/wau": "^0.3.0",
+		"@dugalcedo/wau": "^0.4.1",
 		"bcryptjs": "^3.0.3",
 		"dayjs": "^1.11.21",
 		"dotenv": "^17.4.2",
