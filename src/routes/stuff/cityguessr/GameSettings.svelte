@@ -37,7 +37,7 @@
         <div class="field">
             <label>
                 <h4>min population</h4>
-                <p>leave empty for no minimum</p>
+                <p class="small">leave empty for no minimum</p>
                 <BigNumberInput
                     min={0}
                     max={cgState.init.cityOpts.maxPop}
@@ -50,7 +50,7 @@
         <div class="field">
             <label>
                 <h4>max population</h4>
-                <p>leave empty for no maximum</p>
+                <p class="small">leave empty for no maximum</p>
                 <BigNumberInput
                     min={cgState.init.cityOpts.minPop}
                     max={100_000_000}

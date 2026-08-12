@@ -31,6 +31,7 @@
 {#if viewedCity}
     <div class="image-viewer-backdrop">
         <img src={viewedCity.url} alt="sattelite photo of {viewedCity.name}, {viewedCity.admin1}, {viewedCity.country}">
+        <button class="no-flicker" onclick={() => viewedCity = null}>CLOSE</button>
     </div>
 {/if}
 
@@ -73,5 +74,15 @@
         display: flex;
         align-items: center;
         justify-content: center;
+
+        & button {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            translate: -50% 0;
+            font-size: 2rem;
+            background-color: var(--hl);
+            color: var(--bg) !important;
+        }
     }
 </style>
