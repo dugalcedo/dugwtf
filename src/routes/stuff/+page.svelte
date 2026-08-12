@@ -6,3 +6,5 @@
 <a href="/stuff/genreguessr">GenreGuessr</a>
 <br>
 <a href="/stuff/movieguessr">MovieGuessr</a>
+<br>
+<a href="/stuff/cityguessr">CityGuessr</a>
