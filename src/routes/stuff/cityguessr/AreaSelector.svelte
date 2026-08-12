@@ -13,10 +13,10 @@
 
     const update = () => {
         if (type === 'continents') {
-            cgState.init.cityOpts.continents = new Set(initItems)
+            cgState.init.cityOpts.continents = initItems === 'all' ? initItems : new Set(initItems)
         }
         else {
-            cgState.init.cityOpts.countries = new Set(initItems)
+            cgState.init.cityOpts.countries = initItems === 'all' ? initItems : new Set(initItems)
         }
     }
 
