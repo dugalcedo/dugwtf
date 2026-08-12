@@ -1,6 +1,6 @@
 <script lang="ts">
     import { cgState, startNewGame, nextTurn } from "./cgState.svelte";
-    import stringSimilarity from "string-similarity-js";
+    import { isCorrectGuess } from "./guessing";
     import IncorrectGuessMeter from "./IncorrectGuessMeter.svelte";
     import Answers from "./Answers.svelte";
     import GameSettings from "./GameSettings.svelte";
@@ -9,8 +9,9 @@
     let guessVal = $state("")
     const currentCity = $derived(cgState.cities[cgState.turn])
 
-    const handleSubmit = () => {
-        const isCorrect = stringSimilarity(currentCity.name, guessVal, 3) >= 0.8
+
+    const handleSubmit = async () => {
+        const isCorrect = await isCorrectGuess(currentCity, guessVal)
 
         if (isCorrect) {
             cgState.correctGuesses++

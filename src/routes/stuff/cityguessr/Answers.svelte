@@ -11,15 +11,21 @@
         <li class={city.correct?'correct':'incorrect'}>
             {city.name}, {city.admin1}, {city.country}
             {#if cgState.status === 'over'}
-                <button class="no-flicker" onclick={() => {
-                    viewedCity = city
-                }}>
-                    <img 
-                        src={city.url} 
-                        alt="satellite photo of {city.name}, {city.admin1}, {city.country}"
-                        width="100"
-                    >
-                </button>
+            {@const allowed = [city.name, ...city.altNames]}
+                <div class="over">
+                    <button class="no-flicker" onclick={() => {
+                        viewedCity = city
+                    }}>
+                        <img
+                            src={city.url}
+                            alt="satellite photo of {city.name}, {city.admin1}, {city.country}"
+                            width="100"
+                        >
+                    </button>
+                    <p class="allowed">
+                        allowed: <span class="small">{allowed.join(', ')}</span>
+                    </p>
+                </div>
             {/if}
         </li>
     {:else}
@@ -62,6 +68,16 @@
     }
     .incorrect {
         color: rgb(255, 64, 64);
+    }
+    .over {
+        display: grid;
+        grid-template-columns: 125px 1fr;
+        gap: 1rem;
+        align-items: start;
+    }
+    .allowed {
+        color: white;
+        max-width: 150px;
     }
 
     .image-viewer-backdrop {

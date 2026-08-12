@@ -1,5 +1,6 @@
 import type { City, CityImageOptions } from "./cgTypes"
 
+
 let fetchedCities: City[] | null = null
 
 
@@ -19,7 +20,8 @@ export async function getImageUrls(count: number, opts: CityImageOptions): Promi
 }
 
 
-async function fetchCities(): Promise<City[] | null> {
+/** Every city in the dataset, not just the ones in play. Cached after the first call. */
+export async function fetchCities(): Promise<City[] | null> {
     if (fetchedCities) return fetchedCities
     try {
         fetchedCities = await (await fetch("/data/cg-cities.json")).json()
@@ -46,11 +48,42 @@ const R = 6378137
 const FRAMING = 1
 
 /** Web Mercator northing, in metres, for a latitude in degrees. */
-const mercatorY = (lat: number) =>
+export const mercatorY = (lat: number) =>
     R * Math.log(Math.tan(Math.PI / 4 + (lat * Math.PI) / 360))
 
 /** Web Mercator easting, in metres, for a longitude in degrees. */
-const mercatorX = (lon: number) => R * ((lon * Math.PI) / 180)
+export const mercatorX = (lon: number) => R * ((lon * Math.PI) / 180)
+
+/**
+ * The square the satellite shot actually covers, in Web Mercator metres —
+ * centre plus half-side. Split out from `mapImageUrlForCity` so the guess
+ * checker can ask what's visible in the frame without re-deriving the maths.
+ */
+export function frameFor(city: City): { cx: number, cy: number, half: number } {
+    if (city.bounds) {
+        // Frame the city's true extent. Centring on `lat`/`lon` instead would
+        // put the cluster's centroid mid-frame, which for an elongated city
+        // can push the named town clean out of shot.
+        const west = mercatorX(city.bounds.west)
+        const east = mercatorX(city.bounds.east)
+        const south = mercatorY(city.bounds.south)
+        const north = mercatorY(city.bounds.north)
+
+        return {
+            cx: (west + east) / 2,
+            cy: (south + north) / 2,
+            // Square image, so the longer side decides.
+            half: (Math.max(east - west, north - south) * FRAMING) / 2,
+        }
+    }
+    // No envelope in the source geometry — fall back to assuming a roughly
+    // square city of the given area.
+    return {
+        cx: mercatorX(city.lon),
+        cy: mercatorY(city.lat),
+        half: (Math.sqrt(Math.max(city.areaKm2, 1)) * 1000 * FRAMING) / 2,
+    }
+}
 
 /**
  * Builds a satellite image URL centred on the city.
@@ -63,30 +96,7 @@ const mercatorX = (lon: number) => R * ((lon * Math.PI) / 180)
  * uses, though that one hits the XYZ tile endpoint because it pans.
  */
 export function mapImageUrlForCity(city: City, size = 640): string {
-    let cx: number
-    let cy: number
-    let half: number
-
-    if (city.bounds) {
-        // Frame the city's true extent. Centring on `lat`/`lon` instead would
-        // put the cluster's centroid mid-frame, which for an elongated city
-        // can push the named town clean out of shot.
-        const west = mercatorX(city.bounds.west)
-        const east = mercatorX(city.bounds.east)
-        const south = mercatorY(city.bounds.south)
-        const north = mercatorY(city.bounds.north)
-
-        cx = (west + east) / 2
-        cy = (south + north) / 2
-        // Square image, so the longer side decides.
-        half = (Math.max(east - west, north - south) * FRAMING) / 2
-    } else {
-        // No envelope in the source geometry — fall back to assuming a roughly
-        // square city of the given area.
-        cx = mercatorX(city.lon)
-        cy = mercatorY(city.lat)
-        half = (Math.sqrt(Math.max(city.areaKm2, 1)) * 1000 * FRAMING) / 2
-    }
+    const { cx, cy, half } = frameFor(city)
 
     const bbox = [cx - half, cy - half, cx + half, cy + half].join(",")
 

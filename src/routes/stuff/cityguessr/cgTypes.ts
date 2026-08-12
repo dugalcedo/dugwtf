@@ -9,6 +9,7 @@ export type Bounds = {
 export type City = {
     id: number,
     name: string,
+    altNames: string[],
     country: string,
     /** State / province / department. null where the country has no admin-1. */
     admin1: string | null,
