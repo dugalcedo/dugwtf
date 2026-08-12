@@ -41,7 +41,14 @@
 </ul>
 
 {#if viewedCity}
-    <div class="image-viewer-backdrop">
+    <!-- svelte-ignore a11y_click_events_have_key_events -->
+    <div 
+        class="image-viewer-backdrop" 
+        tabindex="0"
+        role="button"
+        onclick={e => {
+            if (e.currentTarget === e.target) viewedCity = null;
+        }}>
         <img src={viewedCity.url} alt="sattelite photo of {viewedCity.name}, {viewedCity.admin1}, {viewedCity.country}">
         <button class="no-flicker" onclick={() => viewedCity = null}>CLOSE</button>
     </div>

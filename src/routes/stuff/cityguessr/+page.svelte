@@ -61,6 +61,8 @@
         </div>
         <div class="controls">
             <p>City {cgState.turn+1} / {cgState.cities.length}</p>
+            <p class="small">population: {(cgState.init.cityOpts.minPop||0).toLocaleString()} - {cgState.init.cityOpts.maxPop}</p>
+            <br>
             <form onsubmit={e => {
                 e.preventDefault()
                 if (cgState.loadingTurn) return
