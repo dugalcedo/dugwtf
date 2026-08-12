@@ -1,5 +1,6 @@
 import type { City, CityImageOptions, CityInGame } from "./cgTypes"
 import { getImageUrls, countries, continents } from "./service"
+import { PRESETS } from "./presets.svelte"
 
 export type CgState = {
     status: 'loading' | 'started' | 'over' | 'not-started' 
@@ -25,10 +26,10 @@ export const cgState = $state<CgState>({
     incorrectGuesses: 0,
     correctGuesses: 0,
     init: {
-        length: 8,
-        allowedIncorrectGuesses: 4,
+        length: PRESETS.USA.medium[0],
+        allowedIncorrectGuesses: PRESETS.USA.medium[1],
         cityOpts: {
-            minPop: 500000,
+            minPop: PRESETS.USA.medium[2],
             maxPop: Infinity,
             countries: new Set(['United States']),
             continents: new Set([])

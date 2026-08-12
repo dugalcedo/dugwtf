@@ -11,8 +11,8 @@ export const PRESETS: Record<
     >
 > = {
     USA: {
-        easy: [5, 3, 800_000, ['United States'], []],
-        medium: [8, 4, 500_000, ['United States'], []],
+        easy: [5, 4, 800_000, ['United States'], []],
+        medium: [8, 5, 500_000, ['United States'], []],
         hard: [10, 5, 200_000, ['United States'], []],
         "very hard": [10, 5, 100_000, ['United States'], [], 3_000_000],
         "insane": [15, 6, -Infinity, ['United States'], [], 999_999]
@@ -24,8 +24,8 @@ export const PRESETS: Record<
         "very hard": [10, 5, -Infinity, NORDICS, [], 299_999]
     },
     Europe: {
-        easy: [5, 3, 500_000, [], ['Europe']],
-        medium: [8, 4, 200_000, [], ['Europe']],
+        easy: [5, 4, 800_000, [], ['Europe']],
+        medium: [8, 4, 400_000, [], ['Europe']],
         hard: [10, 5, 100_000, [], ['Europe']],
         "very hard": [10, 5, -Infinity, [], ['Europe'], 2_000_000],
         "insane": [15, 5, -Infinity, [], ['Europe'], 799_999],
