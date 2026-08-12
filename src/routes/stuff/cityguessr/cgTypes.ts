@@ -30,6 +30,8 @@ export type City = {
 export type CityInGame = City & {
     url: string
     correct?: boolean
+    /** Other cities whose centre falls inside this city's image. */
+    citiesInRect: City[]
 }
 
 export type CityImageOptions = {

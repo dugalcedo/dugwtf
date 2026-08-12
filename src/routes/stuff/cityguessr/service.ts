@@ -1,10 +1,10 @@
-import type { City, CityImageOptions } from "./cgTypes"
+import type { City, CityImageOptions, CityInGame } from "./cgTypes"
 
 
 let fetchedCities: City[] | null = null
 
 
-export async function getImageUrls(count: number, opts: CityImageOptions): Promise<(City&{url:string})[]> {
+export async function getImageUrls(count: number, opts: CityImageOptions): Promise<CityInGame[]> {
     const cities = await fetchCities()
     if (!cities) return []
     const filtered = shuffle(cities.filter(city => {
@@ -15,7 +15,7 @@ export async function getImageUrls(count: number, opts: CityImageOptions): Promi
     }))
     return filtered.splice(0, count).map(city => {
         const url = mapImageUrlForCity(city)
-        return {...city, url}
+        return {...city, url, citiesInRect: citiesInFrame(city, cities)}
     })
 }
 
@@ -47,19 +47,26 @@ const R = 6378137
  */
 const FRAMING = 1
 
+/**
+ * How far outside the frame a city can sit and still count as being in the
+ * shot, in km. 0 demands its centre be inside the picture; higher forgives ones
+ * on the edge, whose built-up area is in frame even though their centre isn't.
+ */
+const FRAME_MARGIN_KM = 5
+
 /** Web Mercator northing, in metres, for a latitude in degrees. */
-export const mercatorY = (lat: number) =>
+const mercatorY = (lat: number) =>
     R * Math.log(Math.tan(Math.PI / 4 + (lat * Math.PI) / 360))
 
 /** Web Mercator easting, in metres, for a longitude in degrees. */
-export const mercatorX = (lon: number) => R * ((lon * Math.PI) / 180)
+const mercatorX = (lon: number) => R * ((lon * Math.PI) / 180)
 
 /**
  * The square the satellite shot actually covers, in Web Mercator metres —
- * centre plus half-side. Split out from `mapImageUrlForCity` so the guess
- * checker can ask what's visible in the frame without re-deriving the maths.
+ * centre plus half-side. Split out from `mapImageUrlForCity` so `citiesInFrame`
+ * can ask what's visible without re-deriving the maths.
  */
-export function frameFor(city: City): { cx: number, cy: number, half: number } {
+function frameFor(city: City): { cx: number, cy: number, half: number } {
     if (city.bounds) {
         // Frame the city's true extent. Centring on `lat`/`lon` instead would
         // put the cluster's centroid mid-frame, which for an elongated city
@@ -83,6 +90,21 @@ export function frameFor(city: City): { cx: number, cy: number, half: number } {
         cy: mercatorY(city.lat),
         half: (Math.sqrt(Math.max(city.areaKm2, 1)) * 1000 * FRAMING) / 2,
     }
+}
+
+/** The other cities you can see in the shot framed on `city`. */
+function citiesInFrame(city: City, all: City[]): City[] {
+    const { cx, cy, half } = frameFor(city)
+    // Mercator inflates distances by 1/cos(lat), so the margin has to as well.
+    const margin = (FRAME_MARGIN_KM * 1000)
+        / Math.max(Math.cos(city.lat * Math.PI / 180), 0.01)
+    const reach = half + margin
+
+    return all.filter(other =>
+        other.id !== city.id
+        && Math.abs(mercatorX(other.lon) - cx) <= reach
+        && Math.abs(mercatorY(other.lat) - cy) <= reach
+    )
 }
 
 /**

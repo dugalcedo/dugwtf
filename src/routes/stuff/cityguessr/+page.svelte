@@ -10,8 +10,8 @@
     const currentCity = $derived(cgState.cities[cgState.turn])
 
 
-    const handleSubmit = async () => {
-        const isCorrect = await isCorrectGuess(currentCity, guessVal)
+    const handleSubmit = () => {
+        const isCorrect = isCorrectGuess(currentCity, guessVal)
 
         if (isCorrect) {
             cgState.correctGuesses++

@@ -1,5 +1,6 @@
 <script lang="ts">
     import { cgState } from "./cgState.svelte";
+    import { allowedNames } from "./guessing";
     import type { CityInGame } from "./cgTypes";
 
     let viewedCity = $state<null|CityInGame>(null)
@@ -11,7 +12,7 @@
         <li class={city.correct?'correct':'incorrect'}>
             {city.name}, {city.admin1}, {city.country}
             {#if cgState.status === 'over'}
-            {@const allowed = [city.name, ...city.altNames]}
+            {@const allowed = allowedNames(city)}
                 <div class="over">
                     <button class="no-flicker" onclick={() => {
                         viewedCity = city
@@ -23,7 +24,7 @@
                         >
                     </button>
                     <p class="allowed">
-                        allowed: <span class="small">{allowed.join(', ')}</span>
+                        <b>guesses allowed:</b> <span class="small">{allowed.join(', ')}</span>
                     </p>
                 </div>
             {/if}
@@ -47,7 +48,8 @@
     #ANSWERS {
         &.end {
             display: flex;
-            flex-wrap: wrap;
+            flex-direction: column;
+            align-items: start;
             list-style-type: none;
             padding: 0;
             gap: 1rem;
@@ -77,7 +79,7 @@
     }
     .allowed {
         color: white;
-        max-width: 150px;
+        max-width: 350px;
     }
 
     .image-viewer-backdrop {
