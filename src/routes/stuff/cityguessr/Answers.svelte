@@ -27,6 +27,11 @@
                         <b>guesses allowed:</b> <span class="small">{allowed.join(', ')}</span>
                     </p>
                 </div>
+            {:else}
+            {@const allowed = allowedNames(city)}
+                <p class="allowed small">
+                    <b>guesses allowed:</b> <span>{allowed.join(', ')}</span>
+                </p>
             {/if}
         </li>
     {:else}

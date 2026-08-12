@@ -51,6 +51,14 @@ const normalize = (s: string) => s
 const ALIASES: Record<number, string[]> = {
     // Washington, DC
     7910: ["Washington DC", "Washington D.C.", "DC", "D.C.", "District of Columbia"],
+    // West Houston, renamed in the dataset from GHS's "Cinco Ranch". Katy is
+    // the town actually recognisable in the shot, and the whole cluster sits
+    // inside Houston's own bounds, so anyone naming Houston has identified the
+    // place.
+    6114: ["Katy", "Houston", "Energy", "Energy Corridor"],
+    // The Woodlands — same story one suburb north, and Spring is the other
+    // settlement in frame.
+    6285: ["North Houston", "Houston", "Spring"],
 }
 
 /**
