@@ -25,6 +25,9 @@
             if (cgState.incorrectGuesses >= cgState.init.allowedIncorrectGuesses) {
                 cgState.status = 'over'
             }
+            else {
+                nextTurn()
+            }
         }
     }
 
@@ -70,7 +73,7 @@
             }}>
                 <label>
                     <span>your guess</span>
-                    <input type="text" bind:value={guessVal}>
+                    <input type="text" bind:value={guessVal} spellcheck="false">
                 </label>
                 <br>
                 <button disabled={cgState.loadingTurn}>
