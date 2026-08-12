@@ -59,6 +59,15 @@ const ALIASES: Record<number, string[]> = {
     // The Woodlands — same story one suburb north, and Spring is the other
     // settlement in frame.
     6285: ["North Houston", "Houston", "Spring"],
+    // New York City. The dataset lists the surrounding cities but none of the
+    // boroughs, all of which are in frame and all of which are fair answers.
+    8099: [
+        "NYC", "N.Y.C.",
+        "Manhattan", "Brooklyn", "Queens", "The Bronx", "Bronx",
+        "Staten Island",
+    ],
+    // Los Angeles
+    2007: ["LA", "L.A."],
 }
 
 /**
