@@ -40,10 +40,34 @@ const normalize = (s: string) => s
     .map(word => ABBREVIATIONS[word] ?? word)
     .join(" ")
 
-const nameMatches = (name: string, guess: string) =>
-    stringSimilarity(normalize(name), normalize(guess), 3) >= SIMILARITY_THRESHOLD
+/**
+ * Names a player would reasonably type that the dataset doesn't carry, keyed by
+ * city id. Keyed by id rather than name because "Washington" is also a town in
+ * Tyne and Wear, and "DC" shouldn't be an answer for that one.
+ *
+ * Spelling variants are listed out rather than left to the similarity check:
+ * short answers can't be fuzzy-matched at all (see `nameMatches`).
+ */
+const ALIASES: Record<number, string[]> = {
+    // Washington, DC
+    7910: ["Washington DC", "Washington D.C.", "DC", "D.C.", "District of Columbia"],
+}
 
-const namesOf = (city: City) => [city.name, ...city.altNames]
+/**
+ * Trigram similarity scores anything shorter than 3 characters as 0, so "DC"
+ * could never match itself — hence the exact check first. It also lets the
+ * threshold stay strict for short names generally, where a single wrong letter
+ * is a different city rather than a typo.
+ */
+const nameMatches = (name: string, guess: string) => {
+    const a = normalize(name)
+    const b = normalize(guess)
+    return a === b || stringSimilarity(a, b, 3) >= SIMILARITY_THRESHOLD
+}
+
+const namesOf = (city: City) => [
+    city.name, ...city.altNames, ...(ALIASES[city.id] ?? [])
+]
 
 /**
  * Every name that counts as an answer for this city: its own, the towns sharing
