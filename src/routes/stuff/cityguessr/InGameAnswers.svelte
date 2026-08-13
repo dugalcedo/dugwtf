@@ -7,7 +7,7 @@
 
     $effect(() => {if (cgState.turn>=0){
         lis[cgState.turn]!.scrollIntoView()
-        // lis[cgState.turn]!.parentElement!.scrollBy({ top: -150 })
+        lis[cgState.turn]!.parentElement!.scrollBy({ top: -150 })
     }})
 </script>
 

@@ -21,7 +21,8 @@ const ABBREVIATIONS: Record<string, string> = {
     hts: 'heights', spgs: 'springs', spg: 'springs',
     jct: 'junction', ctr: 'center', cty: 'city',
     n: 'north', s: 'south', e: 'east', w: 'west',
-    "": "township"
+    "": "township",
+    "philly": "philadelhpia"
 }
 
 /**

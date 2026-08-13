@@ -6,7 +6,7 @@
 {#if dugPlayer.nowPlaying}
     <div id="DUGPLAYERNOWPLAYING">
         {dugPlayer.playing ? 'playing' : 'paused'}:
-        <a href="/dugsscography/{dugPlayer.nowPlaying?.dug?.id}">"{dugPlayer.nowPlaying?.track?.title}" [{dugPlayer?.nowPlaying?.dug?.title}]</a>
+        <a target="_blank" href="/dugscography/{dugPlayer.nowPlaying?.dug?.id}">"{dugPlayer.nowPlaying?.track?.title}" [{dugPlayer?.nowPlaying?.dug?.title}]</a>
         <button class="no-flicker" onclick={() => dugPlayer.playing ? pause() : unpause()}>
             {dugPlayer.playing ? 'pause' : 'play'}
         </button>
