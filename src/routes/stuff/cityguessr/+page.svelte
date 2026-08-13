@@ -1,26 +1,44 @@
 <script lang="ts">
     import { cgState, startNewGame, nextTurn } from "./cgState.svelte";
-    import { isCorrectGuess } from "./guessing";
+    import { isCorrectGuess, isNearby } from "./guessing";
+    import { audio, preLoadAudio } from "./sounds";
+    import { onMount } from "svelte";
     import IncorrectGuessMeter from "./IncorrectGuessMeter.svelte";
-    import Answers from "./Answers.svelte";
     import GameSettings from "./GameSettings.svelte";
     import End from "./End.svelte";
+    import InGameAnswers from "./InGameAnswers.svelte";
+
+    onMount(() => {preLoadAudio()})
 
     let guessVal = $state("")
+    let evaluatingAnswer = $state(false)
     const currentCity = $derived(cgState.cities[cgState.turn])
 
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
+        evaluatingAnswer = true
         const isCorrect = isCorrectGuess(currentCity, guessVal)
 
         if (isCorrect) {
+            audio.correct?.play()
             cgState.correctGuesses++
             currentCity.correct = true
+            cgState.userAnswers.push(guessVal)
+            guessVal = ""
+            nextTurn()
+        }
+        else if (await isNearby(currentCity, guessVal)) {
+            audio.nearby?.play()
+            cgState.correctGuesses += 0.5
+            currentCity.guessedNearby = true
+            cgState.userAnswers.push(guessVal)
             guessVal = ""
             nextTurn()
         }
         else {
+            audio.incorrect?.play()
             cgState.incorrectGuesses++
+            cgState.userAnswers.push(guessVal)
             guessVal = ""
             if (cgState.incorrectGuesses >= cgState.init.allowedIncorrectGuesses) {
                 cgState.status = 'over'
@@ -29,6 +47,8 @@
                 nextTurn()
             }
         }
+
+        evaluatingAnswer = false
     }
 
     const handlePass = () => {
@@ -38,6 +58,8 @@
             cgState.status = 'over'
         }
         else {
+            cgState.userAnswers.push("[PASS]")
+            console.log(cgState.userAnswers)
             nextTurn()
         }
     }
@@ -76,15 +98,15 @@
                     <input type="text" bind:value={guessVal} spellcheck="false">
                 </label>
                 <br>
-                <button disabled={cgState.loadingTurn}>
-                    {cgState.loadingTurn ? 'wait...' : 'guess'}
+                <button disabled={cgState.loadingTurn || evaluatingAnswer}>
+                    {(cgState.loadingTurn || evaluatingAnswer) ? 'wait...' : 'guess'}
                 </button>
-                <button type="button" class="no-flicker" onclick={handlePass}  disabled={cgState.loadingTurn}>
-                    pass
+                <button type="button" class="no-flicker" onclick={handlePass}  disabled={cgState.loadingTurn || evaluatingAnswer}>
+                    {(cgState.loadingTurn || evaluatingAnswer) ? 'wait...' : 'pass'}
                 </button>
             </form>
             <IncorrectGuessMeter />
-            <Answers />
+            <InGameAnswers />
         </div>
     </section>
 {/if}

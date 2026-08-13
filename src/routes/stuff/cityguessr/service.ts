@@ -1,4 +1,5 @@
 import type { City, CityImageOptions, CityInGame } from "./cgTypes"
+import shuffle from "$lib/clientUtils/shuffle"
 
 
 let fetchedCities: City[] | null = null
@@ -92,7 +93,42 @@ function frameFor(city: City): { cx: number, cy: number, half: number } {
     }
 }
 
-/** The other cities you can see in the shot framed on `city`. */
+/** A city's own footprint as a Web Mercator box. */
+function extentOf(city: City): {
+    minX: number, maxX: number, minY: number, maxY: number
+} {
+    if (city.bounds) {
+        return {
+            minX: mercatorX(city.bounds.west),
+            maxX: mercatorX(city.bounds.east),
+            minY: mercatorY(city.bounds.south),
+            maxY: mercatorY(city.bounds.north),
+        }
+    }
+    // No envelope in the source — assume a square of the given area. areaKm2 is
+    // ground area, so the side has to be inflated by 1/cos(lat) to become
+    // Mercator metres.
+    const half = ((Math.sqrt(Math.max(city.areaKm2, 1)) * 1000) / 2)
+        / Math.max(Math.cos(city.lat * Math.PI / 180), 0.01)
+    const x = mercatorX(city.lon)
+    const y = mercatorY(city.lat)
+    return { minX: x - half, maxX: x + half, minY: y - half, maxY: y + half }
+}
+
+/**
+ * The other cities you can see in the shot framed on `city`.
+ *
+ * Overlap is footprint against frame, not centroid against frame. GHS splits a
+ * metro wherever built-up density dips, so a fragment like Riverwood — really
+ * north-west Atlanta — sits 18km from Atlanta's centroid and would fail a
+ * centroid test, even though the Atlanta cluster physically extends across the
+ * whole picture. Any part of a city being in shot makes its name an answer.
+ *
+ * Bounding boxes are a loose stand-in for an irregular cluster, so this errs
+ * generous: it can accept a big neighbour on the strength of a rectangle corner
+ * over open water. Being too lenient about what counts as a right answer is the
+ * cheaper mistake.
+ */
 function citiesInFrame(city: City, all: City[]): City[] {
     const { cx, cy, half } = frameFor(city)
     // Mercator inflates distances by 1/cos(lat), so the margin has to as well.
@@ -100,11 +136,17 @@ function citiesInFrame(city: City, all: City[]): City[] {
         / Math.max(Math.cos(city.lat * Math.PI / 180), 0.01)
     const reach = half + margin
 
-    return all.filter(other =>
-        other.id !== city.id
-        && Math.abs(mercatorX(other.lon) - cx) <= reach
-        && Math.abs(mercatorY(other.lat) - cy) <= reach
-    )
+    const minX = cx - reach
+    const maxX = cx + reach
+    const minY = cy - reach
+    const maxY = cy + reach
+
+    return all.filter(other => {
+        if (other.id === city.id) return false
+        const e = extentOf(other)
+        return e.minX <= maxX && e.maxX >= minX
+            && e.minY <= maxY && e.maxY >= minY
+    })
 }
 
 /**
@@ -132,15 +174,6 @@ export function mapImageUrlForCity(city: City, size = 640): string {
     })
 
     return `${ESRI_WORLD_IMAGERY}?${params}`
-}
-
-function shuffle<T>(arr: T[]): T[] {
-    const newArr: T[] = []
-    while (arr.length) {
-        const r = Math.floor(Math.random()*arr.length)
-        newArr.push(arr.splice(r, 1)[0])
-    }
-    return newArr
 }
 
 export const countries = [

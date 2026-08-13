@@ -1,5 +1,5 @@
 <script lang="ts">
-    import Answers from "./Answers.svelte";
+    import EndGameAnswers from "./EndGameAnswers.svelte";
     import { cgState } from "./cgState.svelte";
 
 </script>
@@ -11,5 +11,6 @@
 <br>
 
 <button onclick={() => cgState.status = 'not-started'}>RESET</button>
+<br>
 
-<Answers />
+<EndGameAnswers />

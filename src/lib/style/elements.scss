@@ -116,6 +116,11 @@ button, .button {
         animation: none !important;
     }
 
+    &.no-button {
+        border: 0;
+        padding: 0;
+    }
+
     &:hover {
         color: var(--hc1);
         border-color: var(--hc1);

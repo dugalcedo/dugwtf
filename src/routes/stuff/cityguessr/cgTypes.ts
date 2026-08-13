@@ -24,13 +24,16 @@ export type City = {
     areaKm2: number,
     zoom: number,
     isCapital: boolean,
-    difficulty: string
+    difficulty: string,
+    /** ids of cities whose centroid is within 100km, nearest first. */
+    nearby: number[]
 }
 
 export type CityInGame = City & {
     url: string
     correct?: boolean
-    /** Other cities whose centre falls inside this city's image. */
+    guessedNearby?: boolean
+    /** Other cities whose footprint overlaps this city's image. */
     citiesInRect: City[]
 }
 

@@ -2,6 +2,8 @@ export type DugTrack = {
   title: string
   minutes: number
   seconds: number
+  /** No source file on the drive, so nothing was ever uploaded to R2. */
+  noAudio?: boolean
 }
 
 export type Dug = {
@@ -861,7 +863,7 @@ export const dugs: Record<string, Dug> = {
       { "title": "Karob", "minutes": 3, "seconds": 32 },
       { "title": "Bablon", "minutes": 6, "seconds": 48 },
       { "title": "shortsong(nerve)", "minutes": 0, "seconds": 58 },
-      { "title": "seventynine", "minutes": 2, "seconds": 7 },
+      { "title": "seventynine", "minutes": 2, "seconds": 7, "noAudio": true },
       { "title": "Weathervein", "minutes": 6, "seconds": 50 },
       { "title": "echogore", "minutes": 1, "seconds": 54 },
       { "title": "Nohom", "minutes": 3, "seconds": 51 },
@@ -1337,3 +1339,97 @@ export const whatIveMade: WhatIveMade[] = [
       ]
     },
 ]
+
+const AUDIO_BASE_URL = "https://audio.dug.wtf"
+
+/**
+ * Mirrors trackKey.ts in ../audiodugwtf. If these diverge, every link 404s.
+ *
+ * A literal "/" in a title would split the key into a nested prefix in R2, so
+ * the uploader turned it into "-". Control characters are dropped, ends trimmed.
+ */
+const sanitizeSegment = (title: string): string => title
+    .replace(/\//g, "-")
+    // eslint-disable-next-line no-control-regex
+    .replace(/[\x00-\x1f\x7f]/g, "")
+    .trim()
+
+/** e.g. dugAudioUrl("DUG044b", 1) -> "https://audio.dug.wtf/DUG044b/01%20Costco%20Queen.mp3" */
+export const dugAudioUrl = (dugId: string, trackNo: number): string | null => {
+    const dug = Object.values(dugs).find(d => d.id === dugId)
+    const track = dug?.tracklist[trackNo - 1]
+    if (!track || track.noAudio) return null
+
+    const key = `${dugId}/${String(trackNo).padStart(2, "0")} ${sanitizeSegment(track.title)}.mp3`
+
+    // Encode each segment separately so the "/" between album and track survives.
+    return `${AUDIO_BASE_URL}/${key.split("/").map(encodeURIComponent).join("/")}`
+}
+
+export type PlaylistKey = (
+  | 'ambientForGames'
+)
+
+export type PlaylistTuple = [string, string|number]
+
+export const playlists: Record<PlaylistKey, PlaylistTuple[]> = {
+  ambientForGames: [
+    ['volt welve', 'weathervein'],
+    ['volt welve', 'echogore'],
+    ['volt welve', '_typal'],
+    ['volt welve', 'bossnova'],
+    ['volt welve', 'epilog(mlear)'],
+    ['aw cute', '(untrue bayou)'],
+    ['feeble', 'resonator / steinway'],
+    ['feeder', 'knew'],
+    ['gabaraptor', 'edge of dishonesty'],
+    ['bird in a cave', 'theme of cave'],
+    ['separation newdrum', 8],
+    ['casked acid in black sheep canyon', 'lobe-synch pancake'],
+    ['fish antlers', 'fish finesse'],
+    ['fish antlers', 'wet feta'],
+    ['money snakes', 'WARS'],
+    ['comber', 'alcedo'],
+    ['comber', 'the horror'],
+    ['comber', 'support'],
+    ['comber', 'empty energy'],
+    ['comber', 'new bug'],
+    ['comber', 'ouauaaeo'],
+    ['xl', 'brackish'],
+    ['goos beyond', 1],
+    ['goos beyond', 24],
+    ['humans', 'demiurge'],
+  ]
+}
+
+export type PlaylistTrack = {
+  album: Dug
+  track: DugTrack
+  trackNo: number
+  url: string
+}
+
+/**
+ * Resolve a playlist tuple to the album, the track, and its url.
+ *
+ * The second tuple element is either a track title or a 1-based track number
+ * (same numbering as the files in the bucket), so a title match has to be
+ * bumped off findIndex's 0-based result.
+ */
+export const playlistTupleToTrack = ([albumTitle, songTitleOrNumber]: PlaylistTuple): PlaylistTrack | null => {
+  const album = Object.values(dugs).find(d => d.title.toLowerCase() === albumTitle.toLowerCase())
+  if (!album) return null
+
+  const trackNo = (typeof songTitleOrNumber === 'number')
+    ? songTitleOrNumber
+    : album.tracklist.findIndex(s => s.title.toLowerCase() === songTitleOrNumber.toLowerCase()) + 1
+
+  const track = album.tracklist[trackNo - 1]
+  const url = dugAudioUrl(album.id, trackNo)
+  if (!track || !url) return null
+
+  return { album, track, trackNo, url }
+}
+
+export const playlistTupleToDugAudioUrl = (tuple: PlaylistTuple): string | null =>
+  playlistTupleToTrack(tuple)?.url ?? null

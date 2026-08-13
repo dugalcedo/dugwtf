@@ -1,4 +1,5 @@
 import type { City, CityInGame } from "./cgTypes"
+import { fetchCities } from "./service"
 import stringSimilarity from "string-similarity-js"
 
 /** How close a guess has to be to a name. Lower = more typos forgiven. */
@@ -20,6 +21,7 @@ const ABBREVIATIONS: Record<string, string> = {
     hts: 'heights', spgs: 'springs', spg: 'springs',
     jct: 'junction', ctr: 'center', cty: 'city',
     n: 'north', s: 'south', e: 'east', w: 'west',
+    "": "township"
 }
 
 /**
@@ -67,7 +69,17 @@ const ALIASES: Record<number, string[]> = {
         "Staten Island",
     ],
     // Los Angeles
-    2007: ["LA", "L.A."],
+    2007: ["LA", "L.A."],       
+    // Handen
+    1873: ["Haninge"],
+    // Ekerö
+    1785: ["Botkyrka"],
+    // Lagunen, Norway
+    245: ["Bergen"],
+    // Bayamon
+    213: ["Bayamón", "Bayamon"],
+    // Montoya texas
+    5005: ["Northwest El Paso", "nw el paso", "north el paso"]
 }
 
 /**
@@ -97,3 +109,25 @@ export const allowedNames = (city: CityInGame): string[] => [
 
 export const isCorrectGuess = (city: CityInGame, guess: string): boolean =>
     !!guess.trim() && allowedNames(city).some(name => nameMatches(name, guess))
+
+/**
+ * Whether the guess names one of the cities within 100km of this one — worth
+ * half credit. Async because `city.nearby` holds ids, so the names have to be
+ * looked up in the full dataset; `fetchCities` is cached, so only the first
+ * call can actually wait on anything.
+ *
+ * A guess that's outright correct is not also nearby: anything visible in the
+ * shot is a full answer, and most of those are inside 100km too.
+ */
+export const isNearby = async (
+    city: CityInGame,
+    guess: string
+): Promise<boolean> => {
+    if (!guess.trim() || isCorrectGuess(city, guess)) return false
+    const all = await fetchCities()
+    if (!all) return false
+    const ids = new Set(city.nearby)
+    return all.some(other =>
+        ids.has(other.id) && namesOf(other).some(name => nameMatches(name, guess))
+    )
+}

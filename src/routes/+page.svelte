@@ -1,5 +1,6 @@
 <script>
     import { makeMoreReadable } from "../lib/clientUtils/makeMoreReadable";
+    import { dugAudioUrl } from "../lib/clientData/dugs";
 
     const age = (() => {
         const now = new Date()

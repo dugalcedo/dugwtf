@@ -6,6 +6,7 @@ export type CgState = {
     status: 'loading' | 'started' | 'over' | 'not-started' 
     loadingTurn: boolean
     cities: CityInGame[]
+    userAnswers: string[],
     turn: number
     init: GameInit
     incorrectGuesses: number
@@ -22,6 +23,7 @@ export const cgState = $state<CgState>({
     status: 'not-started',
     loadingTurn: false,
     cities: [],
+    userAnswers: [],
     turn: 0,
     incorrectGuesses: 0,
     correctGuesses: 0,
@@ -42,6 +44,7 @@ export const startNewGame = async () => {
     cgState.turn = 0
     cgState.correctGuesses = 0
     cgState.incorrectGuesses = 0
+    cgState.userAnswers = []
     cgState.cities = await getImageUrls(cgState.init.length, cgState.init.cityOpts)
     loadTurn()
     cgState.status = 'started'
