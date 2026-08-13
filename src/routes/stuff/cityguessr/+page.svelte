@@ -77,6 +77,10 @@
 {:else if cgState.status === 'over'}
     <End />
 {:else if cgState.status === 'started'}
+    <button onclick={() => cgState.status = 'not-started'}>
+        RESET
+    </button>
+    <br><br>
     <section id="CITY_GUESSR">
         <div class="city-container">
             {#if !cgState.loadingTurn}
