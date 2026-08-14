@@ -33,6 +33,7 @@ export type CityInGame = City & {
     url: string
     correct?: boolean
     guessedNearby?: boolean
+    reportSubmitted?: boolean
     /** Other cities whose footprint overlaps this city's image. */
     citiesInRect: City[]
 }

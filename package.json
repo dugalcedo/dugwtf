@@ -36,6 +36,7 @@
 		]
 	},
 	"dependencies": {
+		"@dugalcedo/moose": "^0.2.7",
 		"@dugalcedo/wau": "^0.4.1",
 		"bcryptjs": "^3.0.3",
 		"dayjs": "^1.11.21",

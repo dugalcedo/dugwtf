@@ -4,6 +4,7 @@
     "": {
       "name": "dugwtf",
       "dependencies": {
+        "@dugalcedo/moose": "^0.2.7",
         "@dugalcedo/wau": "^0.4.1",
         "bcryptjs": "^3.0.3",
         "dayjs": "^1.11.21",
@@ -42,6 +43,8 @@
   },
   "packages": {
     "@drizzle-team/brocli": ["@drizzle-team/brocli@0.10.2", "", {}, "sha512-z33Il7l5dKjUgGULTqBsQBQwckHh5AbIuxhdsIxDDiZAzBOrZO6q9ogcWC65kU382AfynTfgNumVcNIjuIua6w=="],
+
+    "@dugalcedo/moose": ["@dugalcedo/moose@0.2.7", "", { "dependencies": { "bcryptjs": "^3.0.3", "dayjs": "^1.11.20", "dotenv": "^17.4.2", "drizzle-orm": "^0.45.2", "jsonwebtoken": "^9.0.3", "zod": "^4.3.6" }, "peerDependencies": { "svelte": "^5.0.0" } }, "sha512-JGwHHXgusApsmO944dJ97dm75DT0ACfhae/IHlesWEvXIFlxfiJp0j3j/ZoJunK1dqctNML4291nbUEMtU8r5w=="],
 
     "@dugalcedo/wau": ["@dugalcedo/wau@0.4.1", "", {}, "sha512-bEUJVBcrTLBPE/yA0z8MMgtH//uCSPyLUUTNlkGlPWx8bif0+PRmXDTanPgZjEQVqs3+CkcHkEiGwWwvbSIkcA=="],
 

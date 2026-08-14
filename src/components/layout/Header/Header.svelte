@@ -4,6 +4,19 @@
   import Nav from "./Nav.svelte";
   import Logo from "./Logo.svelte";
   import { page } from "$app/state";
+
+  const blorby = $derived.by(() => {
+    switch (page.url.pathname) {
+      case "/stuff/genreguessr":
+        return "guess the spotify tag!"
+      case "/stuff/movieguessr":
+        return "guess the movie!"
+      case "/stuff/cityguessr":
+        return "guess the city!"
+      default:
+        return "dug alcedo's website"
+    }
+  })
 </script>
 
 <header>
@@ -21,7 +34,7 @@
       </div>
       <div id="HEADING">
         <h1>dug<Dot/>wtf</h1>
-        <BlorbyText text="dug alcedo's website" />
+        <BlorbyText text={blorby} />
       </div>
     </div>
   </a>
@@ -68,7 +81,7 @@
   :global(#HEADING > .blorby) {
     font-style: italic;
     position: relative;
-    left: -30px;
+    left: -10px;
     top: -10px;
   }
 

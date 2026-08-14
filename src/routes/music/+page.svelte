@@ -11,8 +11,7 @@
     <title>Music by Dug Alcedo</title>
 </svelte:head>
 
-
-<h2>my music</h2>
+<h2>m u s i c</h2>
 
 <section id="MY_MUSIC">
     {#each whatIveMade as { heading, items }}
@@ -25,6 +24,13 @@
             </div>
         </div>
     {/each}
+
+    <div>
+        <h3>what i like</h3>
+        <div class="much-more-links">
+            <a href="/music/dugs-favs">my all-time favorite albums</a>
+        </div>
+    </div>
 
     <div>
         <h3>and much more</h3>

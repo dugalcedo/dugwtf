@@ -37,6 +37,10 @@ html {
     }
 }
 
+*:focus {
+    outline: 3px dashed var(--comp);
+}
+
 body, button, input, select, option, textarea {
     font-family: "Syne Mono";
 }

@@ -15,6 +15,15 @@ const transporter = nodemailer.createTransport({
     }
 })
 
+export const sendMail = async (subject: string, html: string) => {
+    await transporter.sendMail({
+        from: `"dug.wtf" <${EMAIL}>`,
+        to: EMAIL,
+        subject,
+        html
+    })
+}
+
 export const sendVerificationEmail = async (db: PostgresJsDatabase, user: DbUser) => {
     const now = Date.now()
 

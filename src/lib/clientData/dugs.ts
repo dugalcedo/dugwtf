@@ -1368,6 +1368,7 @@ export const dugAudioUrl = (dugId: string, trackNo: number): string | null => {
 
 export type PlaylistKey = (
   | 'ambientForGames'
+  | 'melodic'
 )
 
 export type PlaylistTuple = [string, string|number]
@@ -1399,6 +1400,9 @@ export const playlists: Record<PlaylistKey, PlaylistTuple[]> = {
     ['goos beyond', 1],
     ['goos beyond', 24],
     ['humans', 'demiurge'],
+  ],
+  melodic: [
+
   ]
 }
 

@@ -10,7 +10,7 @@
     } = $props()
 
     // svelte-ignore state_referenced_locally
-    let chars = $state(text.split("").map((char, i) => {
+    let chars = $derived(text.split("").map((char, i) => {
         return {
             char,
             n: iToN(i)

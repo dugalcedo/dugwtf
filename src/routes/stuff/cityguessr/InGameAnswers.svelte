@@ -1,6 +1,7 @@
 <script lang="ts">
     import { cgState } from "./cgState.svelte";
     import { allowedNames } from "./guessing";
+    import ReportGuess from "./ReportGuess.svelte";
 
     const seeingMore = $state<number[]>([])
     const lis = $state<HTMLLIElement[]>([])
@@ -38,10 +39,13 @@
                 {#if seeingMore.includes(i) || allowed.length <= 3}
                     allowed answers: <span class="small">{allowed.join(', ')}</span>
                 {:else}
-                    allowed answers: <span class="small">
-                        {allowed.slice(0, 3).join(', ')}
-                        <button class="see-more no-flicker" onclick={() => seeingMore.push(i)}>see more...</button>
-                    </span>
+                allowed answers: <span class="small">
+                    {allowed.slice(0, 3).join(', ')}
+                    <button class="see-more no-flicker" onclick={() => seeingMore.push(i)}>see more...</button>
+                </span>
+                {/if}
+                {#if !city.reportSubmitted && !city.correct && cgState.userAnswers[i]?.trim() && (cgState.userAnswers[i]?.trim()!=="[PASS]")}
+                <ReportGuess {city} userAnswer={cgState.userAnswers[i]||""} />
                 {/if}
             </span>
             {:else}
