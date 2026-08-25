@@ -8,6 +8,7 @@
         displayRating: number
         year: number
         cover_art_url: string
+        tags?: string[]
     }
 
     let loading = $state(true)
@@ -63,12 +64,17 @@
                     <div class="right">
                         {#each group as album, j (album)}
                         {@const query = `${album.artist_name} ${album.title}`.replaceAll(' ','+')}
-                            <a class:hovered={hovered===album} use:handleHover={album} target="_blank" class="no-flicker" href="https://www.youtube.com/results?search_query={query}">
-                                <span class="n">{i*5 + j + 1}.</span>
-                                <strong>{album.artist_name}</strong>
-                                -
-                                <em>{album.title}</em>
-                            </a>
+                            <div class="item">
+                                <a class:hovered={hovered===album} use:handleHover={album} target="_blank" class="no-flicker" href="https://www.youtube.com/results?search_query={query}">
+                                    <span class="n">{i*5 + j + 1}.</span>
+                                    <strong>{album.artist_name}</strong>
+                                    -
+                                    <em>{album.title}</em>
+                                </a>
+                                {#if album.tags?.length}
+                                    <span class="tags">[{album.tags.join(', ')}]</span>
+                                {/if}
+                            </div>
                         {/each}
                     </div>
                 </div>
@@ -125,8 +131,10 @@
         & .right {
             margin-left: 1rem;
             font-size: .7rem;
-            & > a {
-                display: block;
+            display: flex;
+            flex-direction: column;
+
+            & a {
                 padding: .25rem 0;
 
                 &:last-child {
@@ -137,6 +145,11 @@
                     background-color: var(--comp);
                     color: var(--fg) !important;
                 }
+            }
+
+            & .tags {
+                font-size: .6rem;
+                opacity: 0.6;
             }
         }
     }
